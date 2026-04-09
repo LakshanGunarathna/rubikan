@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mini Cube | Rubikan</title>
-  <link rel="icon" type="image/png" href="/assets/Logo.png" />`n  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" type="image/png" href="../../assets/Logo.png" />
+  <link rel="stylesheet" href="../../css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <script type="importmap">
     {
@@ -54,10 +55,10 @@
   <div id="app-2x2-main" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></div>
 
   <script type="module">
-    import { initNavbar } from '/js/navbar.js';
-    import '/js/cube-2x2.js';
+    import { initNavbar } from '../../js/navbar.js';
+    import '../../js/cube-2x2.js';
 
-    initNavbar();
+    initNavbar('../../');
 
     window.dispatchEvent(new CustomEvent('route-changed', { detail: '/cubes/2x2x2-cube' }));
   </script>

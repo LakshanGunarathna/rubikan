@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rubik's Cube | Rubikan</title>
-  <link rel="icon" type="image/png" href="/assets/Logo.png" />`n  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" type="image/png" href="../../assets/Logo.png" />
+  <link rel="stylesheet" href="../../css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <script type="importmap">
     {
@@ -60,10 +61,10 @@
   <div id="app"></div>
 
   <script type="module">
-    import { initNavbar } from '/js/navbar.js';
-    import '/js/cube-3x3.js';
+    import { initNavbar } from '../../js/navbar.js';
+    import '../../js/cube-3x3.js';
 
-    initNavbar();
+    initNavbar('../../');
 
     // Initialize the module by dispatching the route event
     window.dispatchEvent(new CustomEvent('route-changed', { detail: '/cubes/3x3x3-cube' }));

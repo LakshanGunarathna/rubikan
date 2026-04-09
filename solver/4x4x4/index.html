@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Revenge Cube Solver | Rubikan</title>
-  <link rel="icon" type="image/png" href="/assets/Logo.png" />`n  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" type="image/png" href="../../assets/Logo.png" />
+  <link rel="stylesheet" href="../../css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <script type="importmap">
     {
@@ -114,10 +115,10 @@
   </div>
 
   <script type="module">
-    import { initNavbar } from '/js/navbar.js';
-    import '/js/solver-4x4.js';
+    import { initNavbar } from '../../js/navbar.js';
+    import '../../js/solver-4x4.js';
 
-    initNavbar();
+    initNavbar('../../');
 
     window.dispatchEvent(new CustomEvent('route-changed', { detail: '/solver/4x4x4-cube' }));
   </script>
