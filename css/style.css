@@ -1080,15 +1080,24 @@ button:active {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
+.cube-art-img-wrapper {
+  height: 250px;
+  overflow: hidden;
+
+}
+
 .cube-art-img {
   border-radius: 30px;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
   padding: 1rem;
   transition: transform 0.4s ease;
 }
 
 .cube-art-card:hover .cube-art-img {
-  transform: scale(1.3);
+  transform: scale(1.35);
 }
 
 .cube-art-body {

@@ -2,95 +2,95 @@
   "2x2x2": [
     {
       "id": "2x2_1",
-      "name": "Checkerboard",
+      "name": "4 Side Chekerboard",
       "difficulty": "Easy",
-      "moves": "U R F2 U R F2 R U F' R",
+      "moves": "R2 F2 R2 U2",
       "imageUrl": "/assets/cube-arts/2x2_1.png"
     },
     {
       "id": "2x2_2",
-      "name": "Zig Zag",
-      "difficulty": "Easy",
-      "moves": "U2 R2 F2",
+      "name": "Checkerboard",
+      "difficulty": "Medium",
+      "moves": "U R F2 U R F2 R U F' R",
       "imageUrl": "/assets/cube-arts/2x2_2.png"
     },
     {
       "id": "2x2_3",
-      "name": "Cube in a Cube",
-      "difficulty": "Medium",
-      "moves": "R F U' R2 U F' R U F2 R2",
+      "name": "Zig Zag",
+      "difficulty": "Easy",
+      "moves": "U2 R2 F2",
       "imageUrl": "/assets/cube-arts/2x2_3.png"
     },
     {
       "id": "2x2_4",
-      "name": "4 Side Chekerboard",
-      "difficulty": "Hard",
-      "moves": "R2 F2 R2 U2",
+      "name": "Cube in a Cube",
+      "difficulty": "Medium",
+      "moves": "R F U' R2 U F' R U F2 R2",
       "imageUrl": "/assets/cube-arts/2x2_4.png"
     }
   ],
   "3x3x3": [
     {
       "id": "3x3_1",
-      "name": "Superflip",
-      "difficulty": "Hard",
-      "moves": "U R2 F B R B2 R U2 L B2 R U' D' R2 F R' L B2 U2 F2",
+      "name": "Wire",
+      "difficulty": "Medium",
+      "moves": "R L F B R L F B R L F B R2 B2 L2 R2 B2 L2",
       "imageUrl": "/assets/cube-arts/3x3_1.png"
     },
     {
       "id": "3x3_2",
-      "name": "Easy Checkerboard",
-      "difficulty": "Easy",
-      "moves": "M2 E2 S2",
+      "name": "Superflip",
+      "difficulty": "Medium",
+      "moves": "U R2 F B R B2 R U2 L B2 R U' D' R2 F R' L B2 U2 F2",
       "imageUrl": "/assets/cube-arts/3x3_2.png"
     },
     {
       "id": "3x3_3",
-      "name": "SpeedSolving",
+      "name": "Vertical Stripes",
       "difficulty": "Medium",
-      "moves": "R' L' U2 F2 D2 F2 R L B2 U2 B2 U2",
+      "moves": "F U F R L2 B D' R D2 L D' B R2 L F U F",
       "imageUrl": "/assets/cube-arts/3x3_3.png"
     },
     {
       "id": "3x3_4",
-      "name": "3 Sides Solved",
-      "difficulty": "Easy",
-      "moves": "U2 D R' D B' L2 B D' R L2 U2 B2 L2 B2 D R2 L2 D R2",
+      "name": "Twister",
+      "difficulty": "Medium",
+      "moves": "F R' U L F' L' F U' R U L' U' L F'",
       "imageUrl": "/assets/cube-arts/3x3_4.png"
     },
     {
       "id": "3x3_5",
-      "name": "All Flags & Crests",
-      "difficulty": "Hard",
-      "moves": "B2 U' B2 L2 U B2 U R2 B2 U' L' R' B D U' L2 F2 R'",
+      "name": "Fruit Bowl",
+      "difficulty": "Medium",
+      "moves": "B2 L2 F2 R2 F2 R2 D U B2 U2 B' F' L' R' D' U'",
       "imageUrl": "/assets/cube-arts/3x3_5.png"
     },
     {
       "id": "3x3_6",
-      "name": "Wire",
-      "difficulty": "Medium",
-      "moves": "R L F B R L F B R L F B R2 B2 L2 R2 B2 L2",
+      "name": "Order in Chaos",
+      "difficulty": "Hard",
+      "moves": "B L2 B' U2 B F2 U L U B U' R U' B F U' R D R B' U'",
       "imageUrl": "/assets/cube-arts/3x3_6.png"
     },
     {
       "id": "3x3_7",
-      "name": "Checkerboard in the Cube",
+      "name": "Are You High",
       "difficulty": "Medium",
-      "moves": "B D F' B' D L2 U L U' B D' R B R D' R L' F U2 D",
+      "moves": "L R' U2 D2 L' R U2 D2 R2 L2",
       "imageUrl": "/assets/cube-arts/3x3_7.png"
     },
     {
       "id": "3x3_8",
-      "name": "Perfect Scramble",
-      "difficulty": "Easy",
-      "moves": "U F' L' U' R2 F' R2 B' U' R F' U F D' L2 F2 L2 U'",
+      "name": "Displaced Motif",
+      "difficulty": "Medium",
+      "moves": "L2 B2 D' B2 D L2 U R2 D R2 B U R' F2 R U' B' U'",
       "imageUrl": "/assets/cube-arts/3x3_8.png"
     },
     {
       "id": "3x3_9",
-      "name": "Minority Cross",
+      "name": "Perfect Scramble",
       "difficulty": "Medium",
-      "moves": "L2 D' B2 L2 B2 D' F2 D U' B2 L B2 F' L B' F U' F' U L2",
+      "moves": "U F' L' U' R2 F' R2 B' U' R F' U F D' L2 F2 L2 U'",
       "imageUrl": "/assets/cube-arts/3x3_9.png"
     },
     {
@@ -102,268 +102,268 @@
     },
     {
       "id": "3x3_11",
-      "name": "Flipped Tips",
-      "difficulty": "Medium",
-      "moves": "U B D' F2 D B' U' R2 D F2 D' R2 D F2 D' R2",
+      "name": "The Hole",
+      "difficulty": "Easy",
+      "moves": "R L' F' B D U'",
       "imageUrl": "/assets/cube-arts/3x3_11.png"
     },
     {
       "id": "3x3_12",
-      "name": "Plus Minus",
-      "difficulty": "Easy",
-      "moves": "U2 R2 L2 U2 R2 L2",
+      "name": "Flower",
+      "difficulty": "Medium",
+      "moves": "R2 D2 R2 U2 R2 F2 U2 D2 F2 U2",
       "imageUrl": "/assets/cube-arts/3x3_12.png"
     },
     {
       "id": "3x3_13",
-      "name": "Tablecloth",
+      "name": "3C3W",
       "difficulty": "Medium",
-      "moves": "R L U2 F' U2 D2 R2 L2 F' D2 F2 D R2 L2 F2 B2 D B2 L2",
+      "moves": "D L B' L2 F L' B' U D' R L' F B D L'",
       "imageUrl": "/assets/cube-arts/3x3_13.png"
     },
     {
       "id": "3x3_14",
-      "name": "Deckerboard",
+      "name": "Flipped Tips",
       "difficulty": "Medium",
-      "moves": "U D R L' F' B U D' R2 U R2 L2 D2 F2 B2 D",
+      "moves": "U B D' F2 D B' U' R2 D F2 D' R2 D F2 D' R2",
       "imageUrl": "/assets/cube-arts/3x3_14.png"
     },
     {
       "id": "3x3_15",
-      "name": "Spiral Pattern",
-      "difficulty": "Medium",
-      "moves": "L' B' D U R U' R' D2 R2 D L D' L' R' F U",
+      "name": "Hi All Around",
+      "difficulty": "Easy",
+      "moves": "U2 R2 F2 U2 D2 F2 L2 U2",
       "imageUrl": "/assets/cube-arts/3x3_15.png"
     },
     {
       "id": "3x3_16",
-      "name": "Fruit Bowl",
-      "difficulty": "Hard",
-      "moves": "B2 L2 F2 R2 F2 R2 D U B2 U2 B' F' L' R' D' U'",
+      "name": "Tangled",
+      "difficulty": "Medium",
+      "moves": "F B U D F B U D F B U D F2 B2",
       "imageUrl": "/assets/cube-arts/3x3_16.png"
     },
     {
       "id": "3x3_17",
-      "name": "Flower",
-      "difficulty": "Easy",
-      "moves": "R2 D2 R2 U2 R2 F2 U2 D2 F2 U2",
+      "name": "Minority Cross",
+      "difficulty": "Medium",
+      "moves": "L2 D' B2 L2 B2 D' F2 D U' B2 L B2 F' L B' F U' F' U L2",
       "imageUrl": "/assets/cube-arts/3x3_17.png"
     },
     {
       "id": "3x3_18",
-      "name": "Vertical Stripes",
-      "difficulty": "Easy",
-      "moves": "F U F R L2 B D' R D2 L D' B R2 L F U F",
+      "name": "Python",
+      "difficulty": "Medium",
+      "moves": "F2 R' B' U R' L F' L F' B D' R B L2",
       "imageUrl": "/assets/cube-arts/3x3_18.png"
     },
     {
       "id": "3x3_19",
-      "name": "Gift Box",
+      "name": "Cross",
       "difficulty": "Medium",
-      "moves": "U B2 R2 B2 L2 F2 R2 D' F2 L2 B F' L F2 D U' R2 F' L' R'",
+      "moves": "R2 L' D F2 R' D' R' L U' D R D B2 R' U D2",
       "imageUrl": "/assets/cube-arts/3x3_19.png"
     },
     {
       "id": "3x3_20",
-      "name": "Opposite Corners",
+      "name": "Checkerboard in the Cube",
       "difficulty": "Medium",
-      "moves": "R L U2 F2 D2 F2 R L F2 D2 B2 D2",
+      "moves": "B D F' B' D L2 U L U' B D' R B R D' R L' F U2 D",
       "imageUrl": "/assets/cube-arts/3x3_20.png"
     },
     {
       "id": "3x3_21",
-      "name": "Cross",
-      "difficulty": "Easy",
-      "moves": "R2 L' D F2 R' D' R' L U' D R D B2 R' U D2",
+      "name": "Black Mamba",
+      "difficulty": "Medium",
+      "moves": "R D L F' R L' D R' U D' B U' R' D'",
       "imageUrl": "/assets/cube-arts/3x3_21.png"
     },
     {
       "id": "3x3_22",
-      "name": "4 Crosses",
+      "name": "Deckerboard",
       "difficulty": "Medium",
-      "moves": "U2 R2 L2 F2 B2 D2 L2 R2 F2 B2",
+      "moves": "U D R L' F' B U D' R2 U R2 L2 D2 F2 B2 D",
       "imageUrl": "/assets/cube-arts/3x3_22.png"
     },
     {
       "id": "3x3_23",
-      "name": "Union Jack",
+      "name": "4 Crosses",
       "difficulty": "Medium",
-      "moves": "U F B' L2 U2 L2 F' B U2 L2 U",
+      "moves": "U2 R2 L2 F2 B2 D2 L2 R2 F2 B2",
       "imageUrl": "/assets/cube-arts/3x3_23.png"
     },
     {
       "id": "3x3_24",
-      "name": "Cube in the Cube",
+      "name": "Green Mamba",
       "difficulty": "Medium",
-      "moves": "F L F U' R U F2 L2 U' L' B D' B' L2 U",
+      "moves": "R D R F R' F' B D R' U' B' U D2",
       "imageUrl": "/assets/cube-arts/3x3_24.png"
     },
     {
       "id": "3x3_25",
       "name": "Cube in a Cube in a Cube",
-      "difficulty": "Hard",
+      "difficulty": "Medium",
       "moves": "U' L' U' F' R2 B' R F U B2 U B' L U' F U R F'",
       "imageUrl": "/assets/cube-arts/3x3_25.png"
     },
     {
       "id": "3x3_26",
-      "name": "Anaconda",
-      "difficulty": "Hard",
-      "moves": "L U B' U' R L' B R' F B' D R D' F'",
+      "name": "Plus Minus",
+      "difficulty": "Easy",
+      "moves": "U2 R2 L2 U2 R2 L2",
       "imageUrl": "/assets/cube-arts/3x3_26.png"
     },
     {
       "id": "3x3_27",
-      "name": "Python",
+      "name": "Kilt - Scottish Skirt",
       "difficulty": "Medium",
-      "moves": "F2 R' B' U R' L F' L F' B D' R B L2",
+      "moves": "U' R2 L2 F2 B2 U' R L F B' U F2 D2 R2 L2 F2 U2 F2 U' F2",
       "imageUrl": "/assets/cube-arts/3x3_27.png"
     },
     {
       "id": "3x3_28",
-      "name": "Black Mamba",
-      "difficulty": "Hard",
-      "moves": "R D L F' R L' D R' U D' B U' R' D'",
+      "name": "Pong",
+      "difficulty": "Medium",
+      "moves": "U R2 F2 B2 L2 U2 D R2 F2 B2 L2",
       "imageUrl": "/assets/cube-arts/3x3_28.png"
     },
     {
       "id": "3x3_29",
-      "name": "Green Mamba",
-      "difficulty": "Hard",
-      "moves": "R D R F R' F' B D R' U' B' U D2",
+      "name": "3 Sides Solved",
+      "difficulty": "Medium",
+      "moves": "U2 D R' D B' L2 B D' R L2 U2 B2 L2 B2 D R2 L2 D R2",
       "imageUrl": "/assets/cube-arts/3x3_29.png"
     },
     {
       "id": "3x3_30",
-      "name": "Tangled",
-      "difficulty": "Hard",
-      "moves": "F B U D F B U D F B U D F2 B2",
+      "name": "C U Around",
+      "difficulty": "Medium",
+      "moves": "U' B2 U L2 D L2 R2 D' B' R D' L R' B2 U2 F' L' U'",
       "imageUrl": "/assets/cube-arts/3x3_30.png"
     },
     {
       "id": "3x3_31",
-      "name": "Four Spots",
-      "difficulty": "Easy",
-      "moves": "F2 B2 U D' R2 L2 U D'",
+      "name": "Evenly Distributed",
+      "difficulty": "Medium",
+      "moves": "D' B2 D' L2 R2 D B2 L2 D' B2 L R' F' L2 D U' F2 R' D' U'",
       "imageUrl": "/assets/cube-arts/3x3_31.png"
     },
     {
       "id": "3x3_32",
-      "name": "Six Spots",
-      "difficulty": "Easy",
-      "moves": "U D' R L' F B' U D'",
+      "name": "Tablecloth",
+      "difficulty": "Medium",
+      "moves": "R L U2 F' U2 D2 R2 L2 F' D2 F2 D R2 L2 F2 B2 D B2 L2",
       "imageUrl": "/assets/cube-arts/3x3_32.png"
     },
     {
       "id": "3x3_33",
-      "name": "Twister",
-      "difficulty": "Medium",
-      "moves": "F R' U L F' L' F U' R U L' U' L F'",
+      "name": "Hi",
+      "difficulty": "Easy",
+      "moves": "M2 U2 M2 U2",
       "imageUrl": "/assets/cube-arts/3x3_33.png"
     },
     {
       "id": "3x3_34",
-      "name": "Kilt - Scottish Skirt",
-      "difficulty": "Medium",
-      "moves": "U' R2 L2 F2 B2 U' R L F B' U F2 D2 R2 L2 F2 U2 F2 U' F2",
+      "name": "Dont Cross Line",
+      "difficulty": "Easy",
+      "moves": "F2 L2 R2 B2 E2",
       "imageUrl": "/assets/cube-arts/3x3_34.png"
     },
     {
       "id": "3x3_35",
-      "name": "Tetris",
+      "name": "Anaconda",
       "difficulty": "Medium",
-      "moves": "L R F B U' D' L' R'",
+      "moves": "L U B' U' R L' B R' F B' D R D' F'",
       "imageUrl": "/assets/cube-arts/3x3_35.png"
     },
     {
       "id": "3x3_36",
-      "name": "Dont Cross Line",
-      "difficulty": "Medium",
-      "moves": "F2 L2 R2 B2 E2",
+      "name": "Tetris",
+      "difficulty": "Easy",
+      "moves": "L R F B U' D' L' R'",
       "imageUrl": "/assets/cube-arts/3x3_36.png"
     },
     {
       "id": "3x3_37",
-      "name": "Hi",
-      "difficulty": "Easy",
-      "moves": "M2 U2 M2 U2",
+      "name": "No Entry",
+      "difficulty": "Medium",
+      "moves": "U' L' B R L' D' L B' U F2 R2 B2 D2 B2 R2 B2 D B2",
       "imageUrl": "/assets/cube-arts/3x3_37.png"
     },
     {
       "id": "3x3_38",
-      "name": "Hi All Around",
-      "difficulty": "Medium",
-      "moves": "U2 R2 F2 U2 D2 F2 L2 U2",
+      "name": "Easy Checkerboard",
+      "difficulty": "Easy",
+      "moves": "M2 E2 S2",
       "imageUrl": "/assets/cube-arts/3x3_38.png"
     },
     {
       "id": "3x3_39",
-      "name": "Displaced Motif",
-      "difficulty": "Hard",
-      "moves": "L2 B2 D' B2 D L2 U R2 D R2 B U R' F2 R U' B' U'",
+      "name": "Opposite Corners",
+      "difficulty": "Medium",
+      "moves": "R L U2 F2 D2 F2 R L F2 D2 B2 D2",
       "imageUrl": "/assets/cube-arts/3x3_39.png"
     },
     {
       "id": "3x3_40",
-      "name": "Are You High",
-      "difficulty": "Hard",
-      "moves": "L R' U2 D2 L' R U2 D2 R2 L2",
+      "name": "Union Jack",
+      "difficulty": "Medium",
+      "moves": "U F B' L2 U2 L2 F' B U2 L2 U",
       "imageUrl": "/assets/cube-arts/3x3_40.png"
     },
     {
       "id": "3x3_41",
-      "name": "C U Around",
-      "difficulty": "Medium",
-      "moves": "U' B2 U L2 D L2 R2 D' B' R D' L R' B2 U2 F' L' U'",
+      "name": "Six Spots",
+      "difficulty": "Easy",
+      "moves": "U D' R L' F B' U D'",
       "imageUrl": "/assets/cube-arts/3x3_41.png"
     },
     {
       "id": "3x3_42",
-      "name": "Order in Chaos",
-      "difficulty": "Hard",
-      "moves": "B L2 B' U2 B F2 U L U B U' R U' B F U' R D R B' U'",
+      "name": "Cube in the Cube",
+      "difficulty": "Medium",
+      "moves": "F L F U' R U F2 L2 U' L' B D' B' L2 U",
       "imageUrl": "/assets/cube-arts/3x3_42.png"
     },
     {
       "id": "3x3_43",
-      "name": "Evenly Distributed",
-      "difficulty": "Hard",
-      "moves": "D' B2 D' L2 R2 D B2 L2 D' B2 L R' F' L2 D U' F2 R' D' U'",
+      "name": "Gift Box",
+      "difficulty": "Medium",
+      "moves": "U B2 R2 B2 L2 F2 R2 D' F2 L2 B F' L F2 D U' R2 F' L' R'",
       "imageUrl": "/assets/cube-arts/3x3_43.png"
     },
     {
       "id": "3x3_44",
-      "name": "The Hole",
+      "name": "Plus",
       "difficulty": "Medium",
-      "moves": "R L' F' B D U'",
+      "moves": "B2 F2 R2 U2 B2 F2 R2 U2 R2 U2",
       "imageUrl": "/assets/cube-arts/3x3_44.png"
     },
     {
       "id": "3x3_45",
-      "name": "No Entry",
+      "name": "Spiral Pattern",
       "difficulty": "Medium",
-      "moves": "U' L' B R L' D' L B' U F2 R2 B2 D2 B2 R2 B2 D B2",
+      "moves": "L' B' D U R U' R' D2 R2 D L D' L' R' F U",
       "imageUrl": "/assets/cube-arts/3x3_45.png"
     },
     {
       "id": "3x3_46",
-      "name": "Plus",
-      "difficulty": "Easy",
-      "moves": "B2 F2 R2 U2 B2 F2 R2 U2 R2 U2",
+      "name": "SpeedSolving",
+      "difficulty": "Medium",
+      "moves": "R' L' U2 F2 D2 F2 R L B2 U2 B2 U2",
       "imageUrl": "/assets/cube-arts/3x3_46.png"
     },
     {
       "id": "3x3_47",
-      "name": "3C3W",
-      "difficulty": "Medium",
-      "moves": "D L B' L2 F L' B' U D' R L' F B D L'",
+      "name": "Four Spots",
+      "difficulty": "Easy",
+      "moves": "F2 B2 U D' R2 L2 U D'",
       "imageUrl": "/assets/cube-arts/3x3_47.png"
     },
     {
       "id": "3x3_48",
-      "name": "Pong",
-      "difficulty": "Easy",
-      "moves": "U R2 F2 B2 L2 U2 D R2 F2 B2 L2",
+      "name": "All Flags & Crests",
+      "difficulty": "Medium",
+      "moves": "B2 U' B2 L2 U B2 U R2 B2 U' L' R' B D U' L2 F2 R'",
       "imageUrl": "/assets/cube-arts/3x3_48.png"
     }
   ],
@@ -371,50 +371,50 @@
     {
       "id": "4x4_1",
       "name": "Checkerboard v1",
-      "difficulty": "Easy",
-      "moves": "U2 D2 R2 L2 F2 B2",
+      "difficulty": "Medium",
+      "moves": "R2 Rw2 L2 y R2 Rw2 L2 y R2 Rw2 L2 U2 Uw2 D2",
       "imageUrl": "/assets/cube-arts/4x4_1.png"
     },
     {
       "id": "4x4_2",
-      "name": "Checkerboard v2",
-      "difficulty": "Easy",
-      "moves": "R2 Rw2 L2 y R2 Rw2 L2 y R2 Rw2 L2 U2 Uw2 D2",
+      "name": "Stripes",
+      "difficulty": "Hard",
+      "moves": "F R2 E' R2 B E R D2 B M' E' F' R2 U' B2 Uw2 Rw2 U2 R2 Fw2 Rw2 u2",
       "imageUrl": "/assets/cube-arts/4x4_2.png"
     },
     {
       "id": "4x4_3",
-      "name": "Dots",
-      "difficulty": "Easy",
-      "moves": "U D' R L' F B' U D'",
+      "name": "Lines",
+      "difficulty": "Medium",
+      "moves": "R2 Rw2 L2 y R2 Rw2 L2 y U2 Uw2 D2 R2 Rw2 L2",
       "imageUrl": "/assets/cube-arts/4x4_3.png"
     },
     {
       "id": "4x4_4",
-      "name": "Cube in a Cube",
-      "difficulty": "Medium",
-      "moves": "F L F U' R U F2 L2 U' L' B D' B' L2 U",
+      "name": "Dots",
+      "difficulty": "Easy",
+      "moves": "U D' R L' F B' U D'",
       "imageUrl": "/assets/cube-arts/4x4_4.png"
     },
     {
       "id": "4x4_5",
-      "name": "Stripes",
-      "difficulty": "Hard",
-      "moves": "F R2 E' R2 B E R D2 B M' E' F' R2 U' B2 Uw2 Rw2 U2 R2 Fw2 Rw2 u2",
+      "name": "Cube in a Cube",
+      "difficulty": "Medium",
+      "moves": "F L F U' R U F2 L2 U' L' B D' B' L2 U",
       "imageUrl": "/assets/cube-arts/4x4_5.png"
     },
     {
       "id": "4x4_6",
-      "name": "Lines",
+      "name": "Cube in a Cube in a Cube",
       "difficulty": "Hard",
-      "moves": "R2 Rw2 L2 y R2 Rw2 L2 y U2 Uw2 D2 R2 Rw2 L2",
+      "moves": "F L F U' R U F2 L2 U' L' B D' B' L2 U Fw Lw Fw Uw' Rw Uw Fw2 Lw2 Uw' Lw' Bw Dw' Bw' Lw2 Uw",
       "imageUrl": "/assets/cube-arts/4x4_6.png"
     },
     {
       "id": "4x4_7",
-      "name": "Cube in a Cube in a Cube",
-      "difficulty": "Hard",
-      "moves": "F L F U' R U F2 L2 U' L' B D' B' L2 U Fw Lw Fw Uw' Rw Uw Fw2 Lw2 Uw' Lw' Bw Dw' Bw' Lw2 Uw",
+      "name": "Checkerboard v2",
+      "difficulty": "Easy",
+      "moves": "U2 D2 R2 L2 F2 B2",
       "imageUrl": "/assets/cube-arts/4x4_7.png"
     }
   ]
