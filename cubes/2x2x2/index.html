@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Cube | Rubikan</title>
+  <link rel="icon" type="image/png" href="/assets/Logo.png" />`n  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+        "@tweenjs/tween.js": "https://unpkg.com/@tweenjs/tween.js@23.1.1/dist/tween.esm.js",
+        "cubejs": "https://jspm.dev/cubejs"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <nav class="navbar"></nav>
+
+  <div id="cube-2x2-view">
+    <div class="art-badge">Mini Cube (2x2x2)</div>
+    <div class="uicontainer-overlay">
+      <div class="controls">
+        <button id="shuffleBtn-2x2"><i class="fas fa-random"></i> Shuffle</button>
+        <button id="resetBtn-2x2"><i class="fas fa-undo"></i> Reset</button>
+        <button id="resetOrientationBtn-2x2"><i class="fas fa-sync-alt"></i> Reset Orientation</button>
+      </div>
+    </div>
+    <div class="bottom-controls">
+      <div class="row">
+        <button id="btnL-2x2" title="L">L</button>
+        <button id="btnR-2x2" title="R">R</button>
+        <button id="btnU-2x2" title="U">U</button>
+        <button id="btnD-2x2" title="D">D</button>
+        <button id="btnF-2x2" title="F">F</button>
+        <button id="btnB-2x2" title="B">B</button>
+      </div>
+      <div class="row">
+        <button id="btnL_prime-2x2" title="L'">L'</button>
+        <button id="btnR_prime-2x2" title="R'">R'</button>
+        <button id="btnU_prime-2x2" title="U'">U'</button>
+        <button id="btnD_prime-2x2" title="D'">D'</button>
+        <button id="btnF_prime-2x2" title="F'">F'</button>
+        <button id="btnB_prime-2x2" title="B'">B'</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="app-2x2-main" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></div>
+
+  <script type="module">
+    import { initNavbar } from '/js/navbar.js';
+    import '/js/cube-2x2.js';
+
+    initNavbar();
+
+    window.dispatchEvent(new CustomEvent('route-changed', { detail: '/cubes/2x2x2-cube' }));
+  </script>
+</body>
+
+</html>

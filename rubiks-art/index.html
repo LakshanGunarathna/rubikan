@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rubik's Art | Rubikan</title>
+  <link rel="icon" type="image/png" href="/assets/Logo.png" />`n  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+        "@tweenjs/tween.js": "https://unpkg.com/@tweenjs/tween.js@23.1.1/dist/tween.esm.js",
+        "cubejs": "https://jspm.dev/cubejs"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <nav class="navbar"></nav>
+
+  <div id="cube-arts-view">
+    <div class="cube-arts-header">
+      <div class="header-info">
+        <h1>Rubick's Art</h1>
+        <p class="cube-arts-description">Transform your cube into a masterpiece.</p>
+      </div>
+      <div class="header-actions">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="artSearchInput" placeholder="Search patterns by name or ID...">
+        </div>
+
+      </div>
+    </div>
+    <div class="cube-arts-content">
+      <aside class="cube-arts-sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-item active" data-filter-type="All" data-filter-value="All">All Patterns</div>
+        </div>
+        <div class="sidebar-section">
+          <h3>Cubes</h3>
+          <div class="sidebar-item" data-filter-type="type" data-filter-value="2x2x2">2x2x2 Cube</div>
+          <div class="sidebar-item" data-filter-type="type" data-filter-value="3x3x3">3x3x3 Cube</div>
+          <div class="sidebar-item" data-filter-type="type" data-filter-value="4x4x4">4x4x4 Cube</div>
+        </div>
+        <div class="sidebar-section">
+          <h3>Difficulty</h3>
+          <div class="sidebar-item" data-filter-type="difficulty" data-filter-value="Easy">Easy</div>
+          <div class="sidebar-item" data-filter-type="difficulty" data-filter-value="Medium">Medium</div>
+          <div class="sidebar-item" data-filter-type="difficulty" data-filter-value="Hard">Hard</div>
+        </div>
+      </aside>
+      <div class="cube-arts-grid" id="cubeArtsGrid"></div>
+    </div>
+  </div>
+
+  <div id="cube-arts-player-view" class="d-none">
+    <div id="artBadge" class="art-badge"></div>
+    <button id="btnArtExit" class="art-badge exit-btn"><i class="fas fa-times"></i> Exit</button>
+
+    <div class="action-instruction">
+      <p id="artInstruction">Hold your solved Cube as shown below, Press "Next" to start.</p>
+    </div>
+
+    <div class="playback-footer">
+      <div class="notation-instruction">
+        <h2 id="artSolutionText">READY TO MAKE!</h2>
+      </div>
+    </div>
+
+    <button id="btnArtSideBack" class="side-nav left-nav" disabled><i class="fas fa-chevron-left"></i> Back</button>
+    <button id="btnArtSideNext" class="side-nav right-nav">Next <i class="fas fa-chevron-right"></i></button>
+    <button id="btnViewPattern" class="side-nav right-nav d-none"><i class="fas fa-cube"></i> 3D View</button>
+  </div>
+
+  <div id="patternViewOverlay" class="error-popup-overlay d-none">
+    <div class="error-popup pattern-modal">
+      <div class="modal-header">
+        <h3 id="modalPatternName">Pattern View</h3>
+        <button id="closePatternModal" class="icon-btn">&times;</button>
+      </div>
+      <div id="modal-cube-container">
+        <!-- 3D Scene will be injected here -->
+      </div>
+      <p class="modal-footer">You can rotate to view the pattern from all sides.</p>
+    </div>
+  </div>
+
+  <div id="app-cube-arts" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:1; display:none;">
+  </div>
+
+  <script type="module">
+    import { initNavbar } from '/js/navbar.js';
+    import '/js/cube-arts.js';
+
+    initNavbar();
+
+  </script>
+</body>
+
+</html>

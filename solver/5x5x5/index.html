@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rubikan - Home</title>
+  <link rel="icon" type="image/png" href="/assets/Logo.png" />`n  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+        "@tweenjs/tween.js": "https://unpkg.com/@tweenjs/tween.js@23.1.1/dist/tween.esm.js",
+        "cubejs": "https://jspm.dev/cubejs"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <nav class="navbar"></nav>
+
+  <div id="home-view">
+    <h1><span>Rubikan</span><br><span>Welcome</span></h1>
+    <p style="text-align: center; color: var(--text-dim); max-width: 600px; margin: 0 auto;">Select a cube from the menu above to start playing or solving.</p>
+  </div>
+
+  <script type="module">
+    import { initNavbar } from './js/navbar.js';
+    initNavbar();
+  </script>
+</body>
+
+</html>
+

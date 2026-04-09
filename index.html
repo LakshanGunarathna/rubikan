@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rubikan - Interactive Rubik's Cube Experience</title>
+  <meta name="description"
+    content="Rubikan is your ultimate interactive Rubik's Cube platform. Explore, play, and solve 2x2, 3x3, 4x4, and 5x5 cubes in stunning 3D. Discover Cube Arts and step-by-step solvers." />
+  <link rel="icon" type="image/png" href="/assets/Logo.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+        "@tweenjs/tween.js": "https://unpkg.com/@tweenjs/tween.js@23.1.1/dist/tween.esm.js",
+        "cubejs": "https://jspm.dev/cubejs"
+      }
+    }
+  </script>
+</head>
+
+<body class="home-body">
+  <nav class="navbar"></nav>
+
+  <main class="home-main">
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero-section">
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
+      <div class="hero-glow hero-glow-3"></div>
+
+      <div class="hero-content">
+        <div class="hero-logo-wrap">
+          <img src="/assets/Logo.png" alt="Rubikan Logo" class="hero-logo" id="hero-logo" />
+          <div class="hero-logo-ring"></div>
+        </div>
+
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="hero-title-main">Rubikan</span>
+            <span class="hero-title-sub">Master the Cube. Express Yourself.</span>
+          </h1>
+          <p class="hero-description">
+            Your ultimate interactive Rubik's Cube platform — explore stunning 3D cubes from 2×2 to 5×5,
+            solve scrambled states with intelligent step-by-step guidance, and create beautiful pixel art
+            patterns using cube faces. The puzzle is yours to master.
+          </p>
+          <div class="hero-badges">
+            <span class="badge"><i class="fas fa-cube"></i> 3D Interactive</span>
+            <span class="badge"><i class="fas fa-brain"></i> AI Solver</span>
+            <span class="badge"><i class="fas fa-palette"></i> Cube Arts</span>
+            <span class="badge"><i class="fas fa-layer-group"></i> 2×2 to 5×5</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint">
+        <span>Explore Features</span>
+        <i class="fas fa-chevron-down bounce"></i>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <section class="features-section" id="features">
+      <div class="section-header">
+        <h2 class="section-title">What is Rubikan?</h2>
+        <p class="section-subtitle">
+          Rubikan combines the timeless logic of Rubik's Cubes with modern 3D technology,
+          offering an immersive platform for enthusiasts of all skill levels.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card" data-delay="0">
+          <div class="feature-icon" style="--icon-color: #60a5fa;">
+            <i class="fas fa-cube"></i>
+          </div>
+          <h3>Interactive 3D Cubes</h3>
+          <p>Manipulate fully interactive 3D Rubik's Cubes with smooth animations. Rotate, scramble, and reset with
+            satisfying tactile feedback.</p>
+        </div>
+        <div class="feature-card" data-delay="1">
+          <div class="feature-icon" style="--icon-color: #a78bfa;">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>Step-by-Step Solver</h3>
+          <p>Paint your cube's current state and let Rubikan compute an optimal solution, guiding you through each move
+            with clear visual cues.</p>
+        </div>
+        <div class="feature-card" data-delay="2">
+          <div class="feature-icon" style="--icon-color: #34d399;">
+            <i class="fas fa-palette"></i>
+          </div>
+          <h3>Rubik's Art Gallery</h3>
+          <p>Browse a curated gallery of stunning mosaic patterns and pixel art crafted entirely from Rubik's Cube
+            faces. Create and share your own.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PAGES SHORTCUT SECTION ===== -->
+    <section class="shortcuts-section" id="shortcuts">
+      <div class="section-header">
+        <h2 class="section-title">Jump Right In</h2>
+        <p class="section-subtitle">Quick access to every feature on Rubikan</p>
+      </div>
+
+      <!-- Rubik's Cubes -->
+      <div class="shortcut-group">
+        <div class="shortcut-group-label">
+          <i class="fas fa-cube"></i>
+          <span>Interactive Rubik's Cubes</span>
+        </div>
+        <div class="shortcut-cards">
+          <a href="/cubes/2x2x2/" class="shortcut-card" id="shortcut-2x2" aria-label="Play 2x2 Cube">
+            <div class="shortcut-card-glow" style="--card-color: #f97316;"></div>
+            <div class="shortcut-icon" style="--card-color: #f97316;">
+              <i class="fas fa-th-large"></i>
+            </div>
+            <div class="shortcut-info">
+              <span class="shortcut-size">2 × 2 × 2</span>
+              <h3 class="shortcut-name">Mini Cube</h3>
+              <p class="shortcut-desc">The pocket-sized puzzle. Perfect for beginners.</p>
+            </div>
+            <div class="shortcut-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+
+          <a href="/cubes/3x3x3/" class="shortcut-card featured" id="shortcut-3x3" aria-label="Play 3x3 Cube">
+            <div class="shortcut-badge">Most Popular</div>
+            <div class="shortcut-card-glow" style="--card-color: #60a5fa;"></div>
+            <div class="shortcut-icon" style="--card-color: #60a5fa;">
+              <i class="fas fa-cube"></i>
+            </div>
+            <div class="shortcut-info">
+              <span class="shortcut-size">3 × 3 × 3</span>
+              <h3 class="shortcut-name">Rubik's Cube</h3>
+              <p class="shortcut-desc">The classic. Billions solved, billions more to go.</p>
+            </div>
+            <div class="shortcut-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+
+          <a href="/cubes/4x4x4/" class="shortcut-card" id="shortcut-4x4" aria-label="Play 4x4 Cube">
+            <div class="shortcut-card-glow" style="--card-color: #a78bfa;"></div>
+            <div class="shortcut-icon" style="--card-color: #a78bfa;">
+              <i class="fas fa-border-all"></i>
+            </div>
+            <div class="shortcut-info">
+              <span class="shortcut-size">4 × 4 × 4</span>
+              <h3 class="shortcut-name">Revenge Cube</h3>
+              <p class="shortcut-desc">Double the layers, quadruple the challenge.</p>
+            </div>
+            <div class="shortcut-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+
+          <a href="/cubes/5x5x5/" class="shortcut-card" id="shortcut-5x5" aria-label="Play 5x5 Cube">
+            <div class="shortcut-card-glow" style="--card-color: #34d399;"></div>
+            <div class="shortcut-icon" style="--card-color: #34d399;">
+              <i class="fas fa-table"></i>
+            </div>
+            <div class="shortcut-info">
+              <span class="shortcut-size">5 × 5 × 5</span>
+              <h3 class="shortcut-name">Professor's Cube</h3>
+              <p class="shortcut-desc">The ultimate test of patience and strategy.</p>
+            </div>
+            <div class="shortcut-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Solvers -->
+      <div class="shortcut-group">
+        <div class="shortcut-group-label">
+          <i class="fas fa-brain"></i>
+          <span>Intelligent Solvers</span>
+        </div>
+        <div class="shortcut-cards">
+          <a href="/solver/2x2x2/" class="shortcut-card" id="solver-2x2" aria-label="Solve 2x2 Cube">
+            <div class="shortcut-card-glow" style="--card-color: #fb923c;"></div>
+            <div class="shortcut-icon" style="--card-color: #fb923c;">
+              <i class="fas fa-th-large"></i>
+            </div>
+            <div class="shortcut-info">
+              <span class="shortcut-size">2×2 Solver</span>
+              <h3 class="shortcut-name">Mini Solver</h3>
+              <p class="shortcut-desc">Paint & solve the Mini Cube in seconds.</p>
+            </div>
+            <div class="shortcut-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+
+          <a href="/solver/3x3x3/" class="shortcut-card" id="solver-3x3" aria-label="Solve 3x3 Cube">
+            <div class="shortcut-card-glow" style="--card-color: #38bdf8;"></div>
+            <div class="shortcut-icon" style="--card-color: #38bdf8;">
+              <i class="fas fa-cube"></i>
+            </div>
+            <div class="shortcut-info">
+              <span class="shortcut-size">3×3 Solver</span>
+              <h3 class="shortcut-name">Classic Solver</h3>
+              <p class="shortcut-desc">Find optimal solutions for the classic cube.</p>
+            </div>
+            <div class="shortcut-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+
+          <a href="/solver/4x4x4/" class="shortcut-card" id="solver-4x4" aria-label="Solve 4x4 Cube">
+            <div class="shortcut-card-glow" style="--card-color: #c084fc;"></div>
+            <div class="shortcut-icon" style="--card-color: #c084fc;">
+              <i class="fas fa-border-all"></i>
+            </div>
+            <div class="shortcut-info">
+              <span class="shortcut-size">4×4 Solver</span>
+              <h3 class="shortcut-name">Revenge Solver</h3>
+              <p class="shortcut-desc">Crack the Revenge Cube with guided steps.</p>
+            </div>
+            <div class="shortcut-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+
+          <a href="/solver/5x5x5/" class="shortcut-card" id="solver-5x5" aria-label="Solve 5x5 Cube">
+            <div class="shortcut-card-glow" style="--card-color: #4ade80;"></div>
+            <div class="shortcut-icon" style="--card-color: #4ade80;">
+              <i class="fas fa-table"></i>
+            </div>
+            <div class="shortcut-info">
+              <span class="shortcut-size">5×5 Solver</span>
+              <h3 class="shortcut-name">Professor Solver</h3>
+              <p class="shortcut-desc">Conquer the Professor's Cube step by step.</p>
+            </div>
+            <div class="shortcut-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Rubik's Art -->
+      <div class="shortcut-group">
+        <div class="shortcut-group-label">
+          <i class="fas fa-palette"></i>
+          <span>Cube Arts</span>
+        </div>
+        <div class="shortcut-cards">
+          <a href="/rubiks-art/" class="shortcut-card shortcut-art" id="shortcut-art" aria-label="Explore Rubik's Art">
+            <div class="shortcut-card-glow" style="--card-color: #f472b6;"></div>
+            <div class="shortcut-icon" style="--card-color: #f472b6;">
+              <i class="fas fa-images"></i>
+            </div>
+            <div class="shortcut-info">
+              <span class="shortcut-size">Gallery</span>
+              <h3 class="shortcut-name">Rubik's Art</h3>
+              <p class="shortcut-desc">Explore breathtaking mosaic patterns and pixel art created with Rubik's Cube
+                faces. A fusion of logic and creativity.</p>
+            </div>
+            <div class="shortcut-arrow"><i class="fas fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="home-footer">
+      <div class="footer-logo">
+        <img src="/assets/Logo.png" alt="Rubikan" class="footer-logo-img" />
+        <span class="footer-brand">Rubikan</span>
+      </div>
+      <p class="footer-tagline">Master the Cube. Express Yourself.</p>
+      <p class="footer-copy">© 2026 Rubikan. Crafted with passion for the puzzle.</p>
+    </footer>
+
+  </main>
+
+  <script type="module">
+    import { initNavbar } from './js/navbar.js';
+    initNavbar();
+
+    // Intersection Observer for scroll animations
+    const cards = document.querySelectorAll('.shortcut-card, .feature-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    cards.forEach(card => observer.observe(card));
+
+    // Hero logo subtle float
+    const heroLogo = document.getElementById('hero-logo');
+    if (heroLogo) {
+      let t = 0;
+      function floatLogo() {
+        t += 0.015;
+        heroLogo.style.transform = `translateY(${Math.sin(t) * 10}px) rotate(${Math.sin(t * 0.5) * 3}deg)`;
+        requestAnimationFrame(floatLogo);
+      }
+      floatLogo();
+    }
+  </script>
+</body>
+
+</html>

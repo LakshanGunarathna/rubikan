@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revenge Cube | Rubikan</title>
+  <link rel="icon" type="image/png" href="/assets/Logo.png" />`n  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+        "@tweenjs/tween.js": "https://unpkg.com/@tweenjs/tween.js@23.1.1/dist/tween.esm.js",
+        "cubejs": "https://jspm.dev/cubejs"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <nav class="navbar"></nav>
+
+  <div id="cube-4x4-view">
+    <div class="art-badge">Revenge Cube (4x4x4)</div>
+    <div class="uicontainer-overlay">
+      <div class="controls">
+        <button id="shuffleBtn-4x4"><i class="fas fa-random"></i> Shuffle</button>
+        <button id="resetBtn-4x4"><i class="fas fa-undo"></i> Reset</button>
+        <button id="resetOrientationBtn-4x4"><i class="fas fa-sync-alt"></i> Reset Orientation</button>
+      </div>
+    </div>
+    <!-- Dual Layer Moves (Left Sidebar) -->
+    <div class="side-controls-left">
+      <div class="column">
+        <button id="btnLw-4x4" title="Lw">Lw</button>
+        <button id="btnRw-4x4" title="Rw">Rw</button>
+        <button id="btnUw-4x4" title="Uw">Uw</button>
+        <button id="btnDw-4x4" title="Dw">Dw</button>
+        <button id="btnFw-4x4" title="Fw">Fw</button>
+        <button id="btnBw-4x4" title="Bw">Bw</button>
+      </div>
+      <div class="column">
+        <button id="btnLw_prime-4x4" title="Lw'">Lw'</button>
+        <button id="btnRw_prime-4x4" title="Rw'">Rw'</button>
+        <button id="btnUw_prime-4x4" title="Uw'">Uw'</button>
+        <button id="btnDw_prime-4x4" title="Dw'">Dw'</button>
+        <button id="btnFw_prime-4x4" title="Fw'">Fw'</button>
+        <button id="btnBw_prime-4x4" title="Bw'">Bw'</button>
+      </div>
+    </div>
+
+    <!-- Inner Layer & Slice Moves (Right Sidebar) -->
+    <div class="side-controls-right">
+      <div class="column">
+        <button id="btnl-4x4" title="l">l</button>
+        <button id="btnr-4x4" title="r">r</button>
+        <button id="btnu-4x4" title="u">u</button>
+        <button id="btnd-4x4" title="d">d</button>
+        <button id="btnf-4x4" title="f">f</button>
+        <button id="btnb-4x4" title="b">b</button>
+        <!-- <button id="btnM-4x4" title="M">M</button>
+        <button id="btnE-4x4" title="E">E</button>
+        <button id="btnS-4x4" title="S">S</button> -->
+      </div>
+      <div class="column">
+        <button id="btnl_prime-4x4" title="l'">l'</button>
+        <button id="btnr_prime-4x4" title="r'">r'</button>
+        <button id="btnu_prime-4x4" title="u'">u'</button>
+        <button id="btnd_prime-4x4" title="d'">d'</button>
+        <button id="btnf_prime-4x4" title="f'">f'</button>
+        <button id="btnb_prime-4x4" title="b'">b'</button>
+        <!-- <button id="btnM_prime-4x4" title="M'">M'</button>
+        <button id="btnE_prime-4x4" title="E'">E'</button>
+        <button id="btnS_prime-4x4" title="S'">S'</button> -->
+      </div>
+    </div>
+
+    <!-- Basic Moves (Bottom Bar) -->
+    <div class="bottom-controls">
+      <div class="row">
+        <button id="btnL-4x4" title="L">L</button>
+        <button id="btnR-4x4" title="R">R</button>
+        <button id="btnU-4x4" title="U">U</button>
+        <button id="btnD-4x4" title="D">D</button>
+        <button id="btnF-4x4" title="F">F</button>
+        <button id="btnB-4x4" title="B">B</button>
+      </div>
+      <div class="row">
+        <button id="btnL_prime-4x4" title="L'">L'</button>
+        <button id="btnR_prime-4x4" title="R'">R'</button>
+        <button id="btnU_prime-4x4" title="U'">U'</button>
+        <button id="btnD_prime-4x4" title="D'">D'</button>
+        <button id="btnF_prime-4x4" title="F'">F'</button>
+        <button id="btnB_prime-4x4" title="B'">B'</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="app-4x4-main" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></div>
+
+  <script type="module">
+    import { initNavbar } from '/js/navbar.js';
+    import '/js/cube-4x4.js';
+
+    initNavbar();
+
+    window.dispatchEvent(new CustomEvent('route-changed', { detail: '/cubes/4x4x4-cube' }));
+  </script>
+</body>
+
+</html>

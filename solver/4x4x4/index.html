@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revenge Cube Solver | Rubikan</title>
+  <link rel="icon" type="image/png" href="/assets/Logo.png" />`n  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+        "@tweenjs/tween.js": "https://unpkg.com/@tweenjs/tween.js@23.1.1/dist/tween.esm.js",
+        "cubejs": "https://jspm.dev/cubejs"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <nav class="navbar"></nav>
+
+  <div id="solve-4x4-view">
+    <div class="art-badge">Revenge Cube Solver (4x4x4)</div>
+    <div id="paint-phase-4x4">
+      <div class="palette-container">
+        <h2>Select Color to Paint</h2>
+        <div class="color-palette-4x4" style="display: flex; gap: 1rem; pointer-events: auto;">
+        </div>
+      </div>
+
+      <div class="paint-footer">
+        <button id="btnPaintReset-4x4" class="action-btn"><i class="fas fa-undo"></i> Reset</button>
+
+        <div class="cube-rotators">
+          <button id="rotLeft-4x4" class="icon-btn"><i class="fas fa-arrow-left"></i></button>
+          <button id="rotUp-4x4" class="icon-btn"><i class="fas fa-arrow-up"></i></button>
+          <button id="rotDown-4x4" class="icon-btn"><i class="fas fa-arrow-down"></i></button>
+          <button id="rotRight-4x4" class="icon-btn"><i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <p id="solver-status-4x4" class="solver-status"></p>
+          <button id="btnStartSolve-4x4" class="action-btn primary"><i class="fas fa-brain"></i> Solve!</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="playback-phase-4x4" class="d-none">
+      <div class="art-badge">4x4 Cube Solver</div>
+      <div class="action-instruction">
+        <p id="humanInstruction-4x4">Hold your Cube as shown below, Press "Next" to start.</p>
+      </div>
+      <div class="notation-instruction">
+        <h2 id="solutionText-4x4">READY TO SOLVE!</h2>
+      </div>
+
+      <button id="btnSideBack-4x4" class="side-nav left-nav" disabled>&lt; Back</button>
+      <button id="btnSideNext-4x4" class="side-nav right-nav">Next &gt;</button>
+    </div>
+  </div>
+
+  <div id="app-4x4" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></div>
+
+  <!-- Overlays -->
+  <div id="cubeSolvedMsg-4x4" class="d-none cube-solved-msg">🎉 CUBE SOLVED!</div>
+
+  <div id="errorPopupOverlay-4x4" class="error-popup-overlay d-none">
+    <div class="error-popup">
+      <h3>⚠️ Your Cube is not colored correctly</h3>
+      <p class="error-subtitle">You should consider the following:</p>
+      <ul id="errorList-4x4"></ul>
+      <p class="error-footer">After fixing the coloring issues press "Solve!" again.</p>
+      <button id="errorPopupClose-4x4" class="error-popup-btn">OK</button>
+    </div>
+  </div>
+
+  <div id="confirmResetOverlay-4x4" class="error-popup-overlay d-none">
+    <div class="error-popup">
+      <h3>🔄 Reset Coloring?</h3>
+      <p class="error-subtitle">If you continue your current coloring will be lost.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+        <button id="confirmResetCancel-4x4" class="error-popup-btn">Cancel</button>
+        <button id="confirmResetOk-4x4" class="error-popup-btn"
+          style="background: rgba(220, 38, 38, 0.2) !important; border-color: rgba(220, 38, 38, 0.3) !important; color: #b91c1c !important;">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="cubeAlreadySolvedOverlay-4x4" class="error-popup-overlay d-none">
+    <div class="error-popup">
+      <h3>🎉 Cube Already Solved!</h3>
+      <p class="error-subtitle">Your cube is already in a solved state. No further moves needed.</p>
+      <button id="cubeAlreadySolvedClose-4x4" class="error-popup-btn">OK</button>
+    </div>
+  </div>
+
+
+  <div id="solverLoadingOverlay-4x4" class="error-popup-overlay d-none">
+    <div class="loading-popup">
+      <div class="scanner-container">
+        <div class="scanner-line"></div>
+        <div class="cube-wireframe"></div>
+      </div>
+      <h3>Finding Solution...</h3>
+      <p class="loading-subtitle">Our AI is scanning millions of possibilities to find the quickest path.</p>
+      <div class="loading-bar-container">
+        <div id="loadingBar-4x4" class="loading-bar"></div>
+      </div>
+      <button id="btnCancelSolve-4x4" class="action-btn cancel-btn">Cancel</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initNavbar } from '/js/navbar.js';
+    import '/js/solver-4x4.js';
+
+    initNavbar();
+
+    window.dispatchEvent(new CustomEvent('route-changed', { detail: '/solver/4x4x4-cube' }));
+  </script>
+</body>
+
+</html>
