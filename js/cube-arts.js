@@ -6,8 +6,11 @@ import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.j
 
 let patterns = [];
 
-// Base path for pure version
-const BASE_PATH = '';
+// Automatically detect the base path (e.g., '/rubikan/' on GitHub Pages or '/' locally)
+const ROOT = (window.location.hostname.includes('github.io') || window.location.pathname.startsWith('/rubikan/'))
+  ? '/rubikan/'
+  : '/';
+const BASE_PATH = ROOT;
 
 // DOM Elements
 const gridContainer = document.getElementById('cubeArtsGrid');
@@ -25,7 +28,7 @@ let searchFilter = '';
 // --- UI rendering and filtering ---
 async function loadCubeArts() {
   try {
-    const res = await fetch('/data/cube-arts.json');
+    const res = await fetch(`${ROOT}data/cube-arts.json`);
     const data = await res.json();
 
     // Flatten the object keys (3x3x3, 2x2x2, 4x4x4) into the patterns array
@@ -161,7 +164,7 @@ function renderCards() {
     const el = document.createElement('div');
     el.className = 'cube-art-card';
     el.innerHTML = `
-      <img src="/${p.imageUrl.replace('/public/', '')}" alt="${p.name}" class="cube-art-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNCkiLz48cmVjdCB4PSIyNSIgeT0iMjUiIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTRhM2I4IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjUiIHkxPSI0MS42IiB4Mj0iNzUiIHkyPSI0MS42IiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIyNSIgeTI9IjU4LjMiIHgyPSI3NSIgeTI9IjU4LjMiIHN0cm9rZT0iIzk0YTMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI0MS42IiB5MT0iMjUiIHgyPSI0MS42IiB5Mj0iNzUiIHN0cm9rZT0iIzk0YTMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI1OC4zIiB5MT0iMjUiIHgyPSI1OC4zIiB5Mj0iNzUiIHN0cm9rZT0iIzk0YTMiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjUwJSIgeT0iOTAlIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NDc0OGIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='"/>
+      <img src="${ROOT}${p.imageUrl.replace('/public/', '').replace(/^\//, '')}" alt="${p.name}" class="cube-art-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNCkiLz48cmVjdCB4PSIyNSIgeT0iMjUiIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTRhM2I4IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjUiIHkxPSI0MS42IiB4Mj0iNzUiIHkyPSI0MS42IiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIyNSIgeTI9IjU4LjMiIHgyPSI3NSIgeTI9IjU4LjMiIHN0cm9rZT0iIzk0YTMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI0MS42IiB5MT0iMjUiIHgyPSI0MS42IiB5Mj0iNzUiIHN0cm9rZT0iIzk0YTMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI1OC4zIiB5MT0iMjUiIHgyPSI1OC4zIiB5Mj0iNzUiIHN0cm9rZT0iIzk0YTMiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjUwJSIgeT0iOTAlIiBmb250LXNpemU9IjgiIGZpbGw9IiM2NDc0OGIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='"/>
       <div class="cube-art-body">
         <div class="cube-art-title">${p.name}</div>
         <div class="cube-art-id">#${p.id}</div>

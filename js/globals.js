@@ -13,3 +13,8 @@ export const RUBIKS_CUBE_COLORS = {
   front: red,
   back: orange
 };
+
+// Automatically detect the base path (e.g., '/rubikan/' on GitHub Pages or '/' locally)
+export const BASE_URL = (window.location.hostname.includes('github.io') || window.location.pathname.startsWith('/rubikan/'))
+  ? '/rubikan/'
+  : '/';
