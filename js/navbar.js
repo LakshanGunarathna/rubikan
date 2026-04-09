@@ -25,10 +25,10 @@ export function initNavbar() {
         <li class="nav-item dropdown">
             <a href="#" class="nav-link">Solver <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown-menu">
-                <li><a href="${ROOT}solver/2x2x2/" class="dropdown-link">2x2x2 Solver (Mini Cube)</a></li>
-                <li><a href="${ROOT}solver/3x3x3/" class="dropdown-link">3x3x3 Solver (Rubik's Cube)</a></li>
-                <li><a href="${ROOT}solver/4x4x4/" class="dropdown-link">4x4x4 Solver (Revenge Cube)</a></li>
-                <li><a href="${ROOT}solver/5x5x5/" class="dropdown-link">5x5x5 Solver (Professor's Cube)</a></li>
+                <li><a href="solver/2x2x2/" class="dropdown-link">2x2x2 Solver (Mini Cube)</a></li>
+                <li><a href="solver/3x3x3/" class="dropdown-link">3x3x3 Solver (Rubik's Cube)</a></li>
+                <li><a href="solver/4x4x4/" class="dropdown-link">4x4x4 Solver (Revenge Cube)</a></li>
+                <li><a href="solver/5x5x5/" class="dropdown-link">5x5x5 Solver (Professor's Cube)</a></li>
             </ul>
         </li>
         <li class="nav-item">
@@ -45,10 +45,10 @@ export function initNavbar() {
     const currentPath = window.location.pathname;
     nav.querySelectorAll('a').forEach(el => {
       const href = el.getAttribute('href');
-      
+
       // Determine if active (handles cases like /rubikan/ and /rubikan/index.html)
       const isActive = (href === ROOT && (currentPath === ROOT || currentPath.endsWith(ROOT + 'index.html'))) ||
-                       (href !== ROOT && href !== '#' && currentPath.includes(href));
+        (href !== ROOT && href !== '#' && currentPath.includes(href));
 
       if (isActive) {
         el.classList.add('active');
