@@ -498,9 +498,8 @@ document.getElementById('btnStartSolve-4x4').addEventListener('click', () => {
     // Setup AbortController for cancellation
     solveAbortController = new AbortController();
 
-    // Automatically switch between local API and production API based on where the site is running
-    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const apiBaseUrl = isLocal ? 'http://localhost:5000' : 'https://rubikan.onrender.com';
+    // Hardcoding to the Render URL so you can test it from anywhere (even locally)
+    const apiBaseUrl = 'https://rubikan.onrender.com';
     fetch(`${apiBaseUrl}/solve`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
