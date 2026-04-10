@@ -498,8 +498,8 @@ document.getElementById('btnStartSolve-4x4').addEventListener('click', () => {
     // Setup AbortController for cancellation
     solveAbortController = new AbortController();
 
-    // Hardcoding to the Render URL so you can test it from anywhere (even locally)
-    const apiBaseUrl = 'https://rubikan.onrender.com';
+    // Hardcoding to the Railway URL so you can test it from anywhere (even locally)
+    const apiBaseUrl = 'https://rubikan-production.up.railway.app';
     fetch(`${apiBaseUrl}/solve`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
