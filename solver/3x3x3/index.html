@@ -50,7 +50,7 @@
     </div>
 
     <div id="playback-phase-3x3" class="d-none">
-      <div class="art-badge">3x3 Cube Solver</div>
+
       <div class="action-instruction">
         <p id="humanInstruction-3x3">Hold your Cube as shown below, Press "Next" to start.</p>
       </div>
@@ -98,6 +98,20 @@
     </div>
   </div>
 
+  <div id="solverLoadingOverlay-3x3" class="error-popup-overlay d-none">
+    <div class="loading-popup">
+      <div class="scanner-container">
+        <div class="scanner-line"></div>
+        <div class="cube-wireframe"></div>
+      </div>
+      <h3>Finding Solution...</h3>
+      <p class="loading-subtitle">Our AI is scanning millions of possibilities to find the quickest path.</p>
+      <div class="loading-bar-container">
+        <div id="loadingBar-3x3" class="loading-bar"></div>
+      </div>
+      <button id="btnCancelSolve-3x3" class="action-btn cancel-btn">Cancel</button>
+    </div>
+  </div>
 
   <script type="module">
     import { initNavbar } from '../../js/navbar.js';

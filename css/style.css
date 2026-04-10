@@ -454,9 +454,8 @@ button:active {
 
 .palette-container {
   position: absolute;
-  top: 5rem;
-  left: 85%;
-  transform: translateX(-50%);
+  top: 90px;
+  right: 1.5rem;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -616,6 +615,10 @@ button:active {
 }
 
 .notation-instruction {
+  position: absolute;
+  top: 90px;
+  right: 1.5rem;
+  z-index: 10;
   background: rgba(255, 255, 255, 0.25);
   color: #1e3a5f;
   padding: 0.6rem 1.2rem;
@@ -629,7 +632,7 @@ button:active {
 }
 
 .notation-instruction h2 {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
 }
@@ -668,15 +671,7 @@ button:active {
   transform: translateY(-2px);
 }
 
-.notation-instruction h2 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin: 0;
-  background: none;
-  color: #1e3a5f;
-  text-shadow: none;
-  letter-spacing: normal;
-}
+
 
 .action-instruction p {
   font-size: 1.2rem;
@@ -1059,6 +1054,8 @@ button:active {
   gap: 2rem;
 }
 
+
+
 .cube-art-card {
   background: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.65);
@@ -1129,6 +1126,30 @@ button:active {
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-top: auto;
+}
+
+.art-solution-instruction {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.25);
+  color: #1e3a5f;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  white-space: nowrap;
+}
+
+.art-solution-instruction h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
 }
 
 .meta-badge {

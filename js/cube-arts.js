@@ -576,7 +576,7 @@ function updatePlaybackUI() {
     const move = solutionSteps[currentStepIndex];
     humanInstruction.innerText = getReverseHumanReadableMove(move.raw);
 
-    let txt = `Undo Step ${currentStepIndex + 1} / ${solutionSteps.length}: `;
+    let txt = `<strong style="color:#eab308">Undo</strong> Step ${currentStepIndex + 1} / ${solutionSteps.length}: `;
     txt += `<strong style="color:#eab308">${getInverseMoveNotation(move.raw)}</strong>`;
     solutionText.innerHTML = txt;
 

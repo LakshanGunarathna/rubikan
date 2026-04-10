@@ -748,16 +748,35 @@ document.getElementById('btnStartSolve-2x2').addEventListener('click', () => {
       solutionSteps.push({ raw: m, axis: moveDef[0], layer: moveDef[1], angle: angle });
     }
 
-    currentStepIndex = 0;
-    lastActionDirection = 1;
-    document.getElementById('paint-phase-2x2').classList.add('d-none');
-    document.getElementById('playback-phase-2x2').classList.remove('d-none');
-    updatePlaybackUI();
+    // Show loading overlay for 3 seconds before transitioning to playback
+    const loadingOverlay = document.getElementById('solverLoadingOverlay-2x2');
+    loadingOverlay.classList.remove('d-none');
+    document.getElementById('solver-status-2x2').innerText = "";
+
+    solveDelayTimer = setTimeout(() => {
+      loadingOverlay.classList.add('d-none');
+      currentStepIndex = 0;
+      lastActionDirection = 1;
+      document.getElementById('paint-phase-2x2').classList.add('d-none');
+      document.getElementById('playback-phase-2x2').classList.remove('d-none');
+      updatePlaybackUI();
+    }, 3000);
 
   } catch (err) {
+    const loadingOverlay2 = document.getElementById('solverLoadingOverlay-2x2');
+    if (loadingOverlay2) loadingOverlay2.classList.add('d-none');
     showErrorPopup(['Your puzzle cannot be solved.']);
     console.error(err);
   }
+});
+
+let solveDelayTimer = null;
+document.getElementById('btnCancelSolve-2x2').addEventListener('click', () => {
+  if (solveDelayTimer) {
+    clearTimeout(solveDelayTimer);
+    solveDelayTimer = null;
+  }
+  document.getElementById('solverLoadingOverlay-2x2').classList.add('d-none');
 });
 
 const FACE_NAMES = { 'U': 'TOP', 'D': 'BOTTOM', 'F': 'FRONT', 'B': 'BACK', 'L': 'LEFT', 'R': 'RIGHT' };
