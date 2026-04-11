@@ -709,8 +709,8 @@ document.getElementById('btnStartSolve-2x2').addEventListener('click', () => {
     EXPECTED_COLORS.forEach(hex => {
       const name = HEX_TO_NAME[hex];
       const count = colorCounts[hex] || 0;
-      if (count < 4) colorErrors.push(`You do not have enough ${name} tiles.`);
-      else if (count > 4) colorErrors.push(`You have too many ${name} tiles.`);
+      if (count < 4) colorErrors.push(`You do not have enough ${name} tiles. (${count}/4)`);
+      else if (count > 4) colorErrors.push(`You have too many ${name} tiles. (${count}/4)`);
     });
     const usedHexes = Object.keys(colorCounts).map(Number);
     const unexpectedColors = usedHexes.filter(h => !EXPECTED_COLORS.includes(h));

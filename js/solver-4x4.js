@@ -434,8 +434,8 @@ document.getElementById('btnStartSolve-4x4').addEventListener('click', () => {
     EXPECTED_COLORS.forEach(hex => {
       const count = colorCounts[hex] || 0;
       const name = HEX_TO_NAME[hex];
-      if (count < 16) errors.push(`You do not have enough ${name} tiles.`);
-      else if (count > 16) errors.push(`You have too many ${name} tiles.`);
+      if (count < 16) errors.push(`You do not have enough ${name} tiles. (${count}/16)`);
+      else if (count > 16) errors.push(`You have too many ${name} tiles. (${count}/16)`);
     });
 
     if (errors.length > 0) {

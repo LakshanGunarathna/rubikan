@@ -594,8 +594,8 @@ document.getElementById('btnStartSolve-3x3').addEventListener('click', () => {
       EXPECTED_COLORS.forEach(hex => {
         const name = HEX_TO_NAME[hex];
         const count = colorCounts[hex] || 0;
-        if (count < 9) errors.push(`You do not have enough ${name} tiles.`);
-        else if (count > 9) errors.push(`You have too many ${name} tiles.`);
+        if (count < 9) errors.push(`You do not have enough ${name} tiles. (${count}/9)`);
+        else if (count > 9) errors.push(`You have too many ${name} tiles. (${count}/9)`);
       });
       showErrorPopup(errors);
       return;
@@ -605,8 +605,8 @@ document.getElementById('btnStartSolve-3x3').addEventListener('click', () => {
     EXPECTED_COLORS.forEach(hex => {
       const name = HEX_TO_NAME[hex];
       const count = colorCounts[hex] || 0;
-      if (count < 9) colorErrors.push(`You do not have enough ${name} tiles.`);
-      else if (count > 9) colorErrors.push(`You have too many ${name} tiles.`);
+      if (count < 9) colorErrors.push(`You do not have enough ${name} tiles. (${count}/9)`);
+      else if (count > 9) colorErrors.push(`You have too many ${name} tiles. (${count}/9)`);
     });
     const usedHexes = Object.keys(colorCounts).map(Number);
     const unexpectedColors = usedHexes.filter(h => !EXPECTED_COLORS.includes(h));
