@@ -185,6 +185,181 @@ window.addEventListener('route-changed', (e) => {
   }
 });
 
+const OPPOSITE_COLORS = {};
+OPPOSITE_COLORS[white] = yellow;
+OPPOSITE_COLORS[yellow] = white;
+OPPOSITE_COLORS[blue] = green;
+OPPOSITE_COLORS[green] = blue;
+OPPOSITE_COLORS[red] = orange;
+OPPOSITE_COLORS[orange] = red;
+
+const ALL_COLORS = [white, yellow, blue, green, red, orange];
+
+const VALID_EDGES = [];
+for (let i = 0; i < ALL_COLORS.length; i++) {
+  for (let j = i + 1; j < ALL_COLORS.length; j++) {
+    const c1 = ALL_COLORS[i];
+    const c2 = ALL_COLORS[j];
+    if (OPPOSITE_COLORS[c1] !== c2) {
+      VALID_EDGES.push([c1, c2]);
+    }
+  }
+}
+
+const VALID_CORNERS = [];
+for (let i = 0; i < ALL_COLORS.length; i++) {
+  for (let j = i + 1; j < ALL_COLORS.length; j++) {
+    for (let k = j + 1; k < ALL_COLORS.length; k++) {
+      const c1 = ALL_COLORS[i];
+      const c2 = ALL_COLORS[j];
+      const c3 = ALL_COLORS[k];
+      if (OPPOSITE_COLORS[c1] !== c2 && OPPOSITE_COLORS[c1] !== c3 && OPPOSITE_COLORS[c2] !== c3) {
+        VALID_CORNERS.push([c1, c2, c3]);
+      }
+    }
+  }
+}
+
+function autoDeducePieces() {
+  let madeChanges = false;
+  const pieces = [];
+  cubies.forEach(cubie => {
+    const stickers = cubie.children.filter(c => c.userData && c.userData.isSticker);
+    if (stickers.length > 1) { // edges and corners
+      pieces.push({
+        cubie,
+        stickers,
+        colors: stickers.map(s => s.material.color.getHex()),
+        isEdge: stickers.length === 2,
+        isCorner: stickers.length === 3
+      });
+    }
+  });
+
+  const fullyPaintedEdges = pieces.filter(p => p.isEdge && !p.colors.includes(0x555555)).map(p => p.colors);
+  const fullyPaintedCorners = pieces.filter(p => p.isCorner && !p.colors.includes(0x555555)).map(p => p.colors);
+
+  pieces.forEach(p => {
+    if (p.colors.includes(0x555555)) {
+      const paintedColors = p.colors.filter(c => c !== 0x555555);
+      if (p.isEdge && paintedColors.length === 1) {
+        const c1 = paintedColors[0];
+        const possiblePairs = VALID_EDGES.filter(pair => pair.includes(c1));
+        const remainingPairs = possiblePairs.filter(pair => {
+          const count = fullyPaintedEdges.filter(fp => fp.includes(pair[0]) && fp.includes(pair[1])).length;
+          return count < 3; // 3 edges per physical edge group on a 5x5
+        });
+        if (remainingPairs.length === 1) {
+          const deducedColor = remainingPairs[0].find(c => c !== c1);
+          const unpaintedSticker = p.stickers.find(s => s.material.color.getHex() === 0x555555);
+          if (unpaintedSticker) {
+            unpaintedSticker.material = unpaintedSticker.material.clone();
+            unpaintedSticker.material.color.setHex(deducedColor);
+            madeChanges = true;
+          }
+        }
+      } else if (p.isCorner && paintedColors.length === 2) {
+        const c1 = paintedColors[0];
+        const c2 = paintedColors[1];
+        const possibleTriplets = VALID_CORNERS.filter(trip => trip.includes(c1) && trip.includes(c2));
+        const remainingTriplets = possibleTriplets.filter(trip => {
+          return !fullyPaintedCorners.some(fp => fp.includes(trip[0]) && fp.includes(trip[1]) && fp.includes(trip[2]));
+        });
+        if (remainingTriplets.length === 1) {
+          const deducedColor = remainingTriplets[0].find(c => c !== c1 && c !== c2);
+          const unpaintedSticker = p.stickers.find(s => s.material.color.getHex() === 0x555555);
+          if (unpaintedSticker) {
+            unpaintedSticker.material = unpaintedSticker.material.clone();
+            unpaintedSticker.material.color.setHex(deducedColor);
+            madeChanges = true;
+          }
+        }
+      }
+    }
+  });
+
+  if (madeChanges) autoDeducePieces();
+}
+
+const CANONICAL_NORMALS = {};
+CANONICAL_NORMALS[white] = new THREE.Vector3(0, 1, 0);
+CANONICAL_NORMALS[yellow] = new THREE.Vector3(0, -1, 0);
+CANONICAL_NORMALS[red] = new THREE.Vector3(0, 0, 1);
+CANONICAL_NORMALS[orange] = new THREE.Vector3(0, 0, -1);
+CANONICAL_NORMALS[blue] = new THREE.Vector3(1, 0, 0);
+CANONICAL_NORMALS[green] = new THREE.Vector3(-1, 0, 0);
+
+const COLOR_FROM_NORMAL = {
+  "0,1,0": white, "0,-1,0": yellow,
+  "0,0,1": red, "0,0,-1": orange,
+  "1,0,0": blue, "-1,0,0": green
+};
+
+function autoFillCenters() {
+  const centerStickers = [];
+  cubies.forEach(c => {
+    const px = Math.round(c.position.x);
+    const py = Math.round(c.position.y);
+    const pz = Math.round(c.position.z);
+    
+    if ((Math.abs(px) === 2 && py === 0 && pz === 0) ||
+        (Math.abs(py) === 2 && px === 0 && pz === 0) ||
+        (Math.abs(pz) === 2 && px === 0 && py === 0)) {
+        
+      const st = c.children.find(child => child.userData && child.userData.isSticker);
+      if (st) {
+        centerStickers.push({
+          sticker: st,
+          normal: new THREE.Vector3(px / 2, py / 2, pz / 2),
+          color: st.material.color.getHex()
+        });
+      }
+    }
+  });
+
+  const painted = centerStickers.filter(s => s.color !== 0x555555);
+  let s1 = null, s2 = null;
+  for (let i = 0; i < painted.length; i++) {
+    for (let j = i + 1; j < painted.length; j++) {
+      if (painted[i].normal.dot(painted[j].normal) === 0) {
+        s1 = painted[i];
+        s2 = painted[j];
+        break;
+      }
+    }
+    if (s1) break;
+  }
+
+  if (s1 && s2) {
+    const v1 = CANONICAL_NORMALS[s1.color];
+    const v2 = CANONICAL_NORMALS[s2.color];
+    if (!v1 || !v2) return;
+
+    const n3 = new THREE.Vector3().crossVectors(s1.normal, s2.normal);
+    const v3 = new THREE.Vector3().crossVectors(v1, v2);
+
+    const mapping = [
+      { n: s1.normal, v: v1 },
+      { n: new THREE.Vector3(-s1.normal.x, -s1.normal.y, -s1.normal.z), v: new THREE.Vector3(-v1.x, -v1.y, -v1.z) },
+      { n: s2.normal, v: v2 },
+      { n: new THREE.Vector3(-s2.normal.x, -s2.normal.y, -s2.normal.z), v: new THREE.Vector3(-v2.x, -v2.y, -v2.z) },
+      { n: n3, v: v3 },
+      { n: new THREE.Vector3(-n3.x, -n3.y, -n3.z), v: new THREE.Vector3(-v3.x, -v3.y, -v3.z) }
+    ];
+
+    centerStickers.forEach(cs => {
+      const mapItem = mapping.find(m => m.n.equals(cs.normal));
+      if (mapItem) {
+        const canonicalKey = `${Math.round(mapItem.v.x)},${Math.round(mapItem.v.y)},${Math.round(mapItem.v.z)}`;
+        const targetHex = COLOR_FROM_NORMAL[canonicalKey];
+        if (targetHex !== undefined && cs.color !== targetHex) {
+          cs.sticker.material = cs.sticker.material.clone();
+          cs.sticker.material.color.setHex(targetHex);
+        }
+      }
+    });
+  }
+}
 
 // Color Palette Setup
 let selectedColorHex = white;
@@ -247,6 +422,29 @@ window.addEventListener('pointerup', (e) => {
   if (hit) {
     hit.object.material = hit.object.material.clone();
     hit.object.material.color.setHex(selectedColorHex);
+
+    const px = Math.round(hit.object.parent.position.x);
+    const py = Math.round(hit.object.parent.position.y);
+    const pz = Math.round(hit.object.parent.position.z);
+    
+    // Check if it is a central piece
+    const isCenter = (Math.abs(px) === 2 && py === 0 && pz === 0) ||
+                     (Math.abs(py) === 2 && px === 0 && pz === 0) ||
+                     (Math.abs(pz) === 2 && px === 0 && py === 0);
+
+    if (isCenter && OPPOSITE_COLORS[selectedColorHex] !== undefined) {
+      const oppP = cubies.find(op => Math.round(op.position.x) === -px && Math.round(op.position.y) === -py && Math.round(op.position.z) === -pz);
+      if (oppP) {
+        const oppSticker = oppP.children.find(c => c.userData && c.userData.isSticker);
+        if (oppSticker) {
+          oppSticker.material = oppSticker.material.clone();
+          oppSticker.material.color.setHex(OPPOSITE_COLORS[selectedColorHex]);
+        }
+      }
+    } else {
+      setTimeout(() => autoDeducePieces(), 0);
+    }
+    autoFillCenters();
   }
 });
 
@@ -440,17 +638,23 @@ function getCubeString() {
     return sticker.material.color.getHex();
   };
 
-  const colors = {};
-  colors[white] = 'U'; colors[yellow] = 'D'; colors[red] = 'R';
-  colors[orange] = 'L'; colors[blue] = 'B'; colors[green] = 'F';
+  const centerColors = {};
+  centerColors[getColor(0, 2, 0, 'y')] = 'U';
+  centerColors[getColor(2, 0, 0, 'x')] = 'R';
+  centerColors[getColor(0, 0, 2, 'z')] = 'F';
+  centerColors[getColor(0, -2, 0, 'y')] = 'D';
+  centerColors[getColor(-2, 0, 0, 'x')] = 'L';
+  centerColors[getColor(0, 0, -2, 'z')] = 'B';
+
+  if (Object.keys(centerColors).length !== 6) throw new Error("Center tiles must have 6 distinct colors! Ensure the middle of each face is uniquely colored.");
 
   let str = '';
-  for (let z of [-2, -1, 0, 1, 2]) for (let x of [-2, -1, 0, 1, 2]) str += colors[getColor(x, 2, z, 'y')]; // U
-  for (let y of [2, 1, 0, -1, -2]) for (let z of [2, 1, 0, -1, -2]) str += colors[getColor(2, y, z, 'x')]; // R
-  for (let y of [2, 1, 0, -1, -2]) for (let x of [-2, -1, 0, 1, 2]) str += colors[getColor(x, y, 2, 'z')]; // F
-  for (let z of [2, 1, 0, -1, -2]) for (let x of [-2, -1, 0, 1, 2]) str += colors[getColor(x, -2, z, 'y')]; // D
-  for (let y of [2, 1, 0, -1, -2]) for (let z of [-2, -1, 0, 1, 2]) str += colors[getColor(-2, y, z, 'x')]; // L
-  for (let y of [2, 1, 0, -1, -2]) for (let x of [2, 1, 0, -1, -2]) str += colors[getColor(x, y, -2, 'z')]; // B
+  for (let z of [-2, -1, 0, 1, 2]) for (let x of [-2, -1, 0, 1, 2]) str += centerColors[getColor(x, 2, z, 'y')]; // U
+  for (let y of [2, 1, 0, -1, -2]) for (let z of [2, 1, 0, -1, -2]) str += centerColors[getColor(2, y, z, 'x')]; // R
+  for (let y of [2, 1, 0, -1, -2]) for (let x of [-2, -1, 0, 1, 2]) str += centerColors[getColor(x, y, 2, 'z')]; // F
+  for (let z of [2, 1, 0, -1, -2]) for (let x of [-2, -1, 0, 1, 2]) str += centerColors[getColor(x, -2, z, 'y')]; // D
+  for (let y of [2, 1, 0, -1, -2]) for (let z of [-2, -1, 0, 1, 2]) str += centerColors[getColor(-2, y, z, 'x')]; // L
+  for (let y of [2, 1, 0, -1, -2]) for (let x of [2, 1, 0, -1, -2]) str += centerColors[getColor(x, y, -2, 'z')]; // B
   return str;
 }
 
