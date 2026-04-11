@@ -178,9 +178,9 @@ function renderCards() {
       </div>
     `;
     el.addEventListener('click', () => {
-      // Currently we only support 3x3x3, 2x2x2 and 4x4x4 3D players. 
-      if (p.type !== '3x3x3' && p.type !== '2x2x2' && p.type !== '4x4x4') {
-        alert("3D guide is only available for 2x2, 3x3 and 4x4 puzzles at the moment!");
+      // Currently we only support 3x3x3, 2x2x2, 4x4x4 and 5x5x5 3D players. 
+      if (p.type !== '3x3x3' && p.type !== '2x2x2' && p.type !== '4x4x4' && p.type !== '5x5x5') {
+        alert("3D guide is only available for 2x2, 3x3, 4x4 and 5x5 puzzles at the moment!");
         return;
       }
       playPattern(p);
@@ -295,6 +295,9 @@ function initCube(type = '3x3x3') {
   } else if (type === '4x4x4') {
     offsets = [-1.5, -0.5, 0.5, 1.5];
     cubeGroup.scale.set(0.8, 0.8, 0.8);
+  } else if (type === '5x5x5') {
+    offsets = [-2, -1, 0, 1, 2];
+    cubeGroup.scale.set(0.65, 0.65, 0.65);
   } else {
     offsets = [-1, 0, 1];
     cubeGroup.scale.set(1, 1, 1);
@@ -323,6 +326,13 @@ function initCube(type = '3x3x3') {
           if (y === -1.5) addSticker(stickerGeometryY, colors.bottom, [0, -0.49, 0]);
           if (z === 1.5) addSticker(stickerGeometryZ, colors.front, [0, 0, 0.49]);
           if (z === -1.5) addSticker(stickerGeometryZ, colors.back, [0, 0, -0.49]);
+        } else if (type === '5x5x5') {
+          if (x === 2) addSticker(stickerGeometryX, colors.right, [0.49, 0, 0]);
+          if (x === -2) addSticker(stickerGeometryX, colors.left, [-0.49, 0, 0]);
+          if (y === 2) addSticker(stickerGeometryY, colors.top, [0, 0.49, 0]);
+          if (y === -2) addSticker(stickerGeometryY, colors.bottom, [0, -0.49, 0]);
+          if (z === 2) addSticker(stickerGeometryZ, colors.front, [0, 0, 0.49]);
+          if (z === -2) addSticker(stickerGeometryZ, colors.back, [0, 0, -0.49]);
         } else {
           if (x > 0) addSticker(stickerGeometryX, colors.right, [0.49, 0, 0]);
           if (x < 0) addSticker(stickerGeometryX, colors.left, [-0.49, 0, 0]);
@@ -350,6 +360,7 @@ function rotateLayer(axis, layer, angle, duration = 300) {
 
     const is2x2 = currentPattern && currentPattern.type === '2x2x2';
     const is4x4 = currentPattern && currentPattern.type === '4x4x4';
+    const is5x5 = currentPattern && currentPattern.type === '5x5x5';
     const activeCubies = cubies.filter(c => {
       const pos = (is2x2 || is4x4) ? Math.round(c.position[axis] * 2) / 2 : Math.round(c.position[axis]);
       if (Array.isArray(layer)) {
@@ -381,6 +392,7 @@ function rotateLayer(axis, layer, angle, duration = 300) {
 function finishRotation(pivot, activeCubies, resolve) {
   const is2x2 = currentPattern && currentPattern.type === '2x2x2';
   const is4x4 = currentPattern && currentPattern.type === '4x4x4';
+  const is5x5 = currentPattern && currentPattern.type === '5x5x5';
   pivot.updateMatrixWorld();
   activeCubies.forEach(c => {
     cubeGroup.attach(c);
@@ -433,6 +445,20 @@ const MOVES_4X4 = {
   'x': ['x', [-1.5, -0.5, 0.5, 1.5], -Math.PI / 2], 'y': ['y', [-1.5, -0.5, 0.5, 1.5], -Math.PI / 2], 'z': ['z', [-1.5, -0.5, 0.5, 1.5], -Math.PI / 2]
 };
 
+const MOVES_5X5 = {
+  'L': ['x', [-2], Math.PI / 2], 'R': ['x', [2], -Math.PI / 2],
+  'U': ['y', [2], -Math.PI / 2], 'D': ['y', [-2], Math.PI / 2],
+  'F': ['z', [2], -Math.PI / 2], 'B': ['z', [-2], Math.PI / 2],
+  'Lw': ['x', [-2, -1], Math.PI / 2], 'Rw': ['x', [1, 2], -Math.PI / 2],
+  'Uw': ['y', [1, 2], -Math.PI / 2], 'Dw': ['y', [-2, -1], Math.PI / 2],
+  'Fw': ['z', [1, 2], -Math.PI / 2], 'Bw': ['z', [-2, -1], Math.PI / 2],
+  'l': ['x', [-1], Math.PI / 2], 'r': ['x', [1], -Math.PI / 2],
+  'u': ['y', [1], -Math.PI / 2], 'd': ['y', [-1], Math.PI / 2],
+  'f': ['z', [1], -Math.PI / 2], 'b': ['z', [-1], Math.PI / 2],
+  'M': ['x', [0], Math.PI / 2], 'E': ['y', [0], Math.PI / 2], 'S': ['z', [0], -Math.PI / 2],
+  'x': ['x', [-2, -1, 0, 1, 2], -Math.PI / 2], 'y': ['y', [-2, -1, 0, 1, 2], -Math.PI / 2], 'z': ['z', [-2, -1, 0, 1, 2], -Math.PI / 2]
+};
+
 let isActive = false;
 let currentPattern = null;
 let currentStepIndex = 0;
@@ -478,7 +504,7 @@ function playPattern(p, updateURL = true) {
     handleRouting();
   }
 
-  const MOVES = p.type === '2x2x2' ? MOVES_2X2 : (p.type === '4x4x4' ? MOVES_4X4 : MOVES_3X3);
+  const MOVES = p.type === '5x5x5' ? MOVES_5X5 : (p.type === '4x4x4' ? MOVES_4X4 : (p.type === '2x2x2' ? MOVES_2X2 : MOVES_3X3));
 
   // Parse moves exactly as they are written to form the pattern
   const rawMovesArray = p.moves.trim().split(/\s+/).filter(m => m);
@@ -622,6 +648,8 @@ function openPatternModal() {
     modalCamera.position.set(2.5, 2.5, 3.75);
   } else if (currentPattern && currentPattern.type === '4x4x4') {
     modalCamera.position.set(4, 4, 6);
+  } else if (currentPattern && currentPattern.type === '5x5x5') {
+    modalCamera.position.set(4.5, 4.5, 6.5);
   } else {
     modalCamera.position.set(3.3, 3.3, 4.9);
   }

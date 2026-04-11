@@ -22,8 +22,8 @@ def solve_cube():
     data = request.json
     state = data.get('state')
     
-    if not state or len(state) != 96:
-        return jsonify({'error': 'Invalid state string. 4x4x4 requires 96 characters.'}), 400
+    if not state or len(state) not in (96, 150):
+        return jsonify({'error': 'Invalid state string. Expected 96 (4x4x4) or 150 (5x5x5) characters.'}), 400
         
     try:
         # Run the dwalton solver 

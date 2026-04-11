@@ -417,5 +417,35 @@
       "moves": "U2 D2 R2 L2 F2 B2",
       "imageUrl": "/assets/cube-arts/4x4_7.png"
     }
+  ],
+  "5x5x5": [
+    {
+      "id": "5x5_1",
+      "name": "Full Checkerboard",
+      "difficulty": "Medium",
+      "moves": "U2 D2 R2 L2 F2 B2 Uw2 Dw2 Rw2 Lw2 Fw2 Bw2",
+      "imageUrl": "/assets/cube-arts/5x5_1.png"
+    },
+    {
+      "id": "5x5_2",
+      "name": "Cube in a Cube in a Cube",
+      "difficulty": "Hard",
+      "moves": "F L F U' R U F2 L2 U' L' B D' B' L2 U Fw Lw Fw Uw' Rw Uw Fw2 Lw2 Uw' Lw' Bw Dw' Bw' Lw2 Uw",
+      "imageUrl": "/assets/cube-arts/5x5_2.png"
+    },
+    {
+      "id": "5x5_3",
+      "name": "Wire",
+      "difficulty": "Medium",
+      "moves": "R L F B R L F B R L F B R2 B2 L2 R2 B2 L2 Rw Lw Fw Bw Rw Lw Fw Bw Rw Lw Fw Bw Rw2 Bw2 Lw2 Rw2 Bw2 Lw2",
+      "imageUrl": "/assets/cube-arts/5x5_3.png"
+    },
+    {
+      "id": "5x5_4",
+      "name": "Center Checkerboard",
+      "difficulty": "Easy",
+      "moves": "M2 E2 S2",
+      "imageUrl": "/assets/cube-arts/5x5_4.png"
+    }
   ]
 }
