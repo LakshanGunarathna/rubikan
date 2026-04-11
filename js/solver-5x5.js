@@ -722,6 +722,10 @@ function mapWcaToRotation5x5(moveStr) {
     case 'y': axis = 'y'; ls = [-2, -1, 0, 1, 2]; angleDef = -Math.PI / 2; break; 
     case 'z': axis = 'z'; ls = [-2, -1, 0, 1, 2]; angleDef = -Math.PI / 2; break;
 
+    case 'm': axis = 'x'; ls = [-1, 0, 1]; angleDef = Math.PI / 2; break;
+    case 'e': axis = 'y'; ls = [-1, 0, 1]; angleDef = Math.PI / 2; break;
+    case 's': axis = 'z'; ls = [-1, 0, 1]; angleDef = -Math.PI / 2; break;
+
     default: return null;
   }
 

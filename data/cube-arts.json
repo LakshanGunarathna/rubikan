@@ -435,17 +435,129 @@
     },
     {
       "id": "5x5_3",
-      "name": "Wire",
-      "difficulty": "Medium",
-      "moves": "R L F B R L F B R L F B R2 B2 L2 R2 B2 L2 Rw Lw Fw Bw Rw Lw Fw Bw Rw Lw Fw Bw Rw2 Bw2 Lw2 Rw2 Bw2 Lw2",
+      "name": "Half Superflip",
+      "difficulty": "Hard",
+      "moves": "x m' U m' U m' U m' U x' y' m' U m' U m' U m' U x' y' m' U m' U m' U m' U x' y' M' Uw M' Uw M' Uw M' Uw x' y' M' Uw M' Uw M' Uw M' Uw x' y' M' Uw M' Uw M' Uw M' Uw y",
       "imageUrl": "/assets/cube-arts/5x5_3.png"
     },
     {
       "id": "5x5_4",
-      "name": "Center Checkerboard",
-      "difficulty": "Easy",
-      "moves": "M2 E2 S2",
+      "name": "Tri-Checkerboard",
+      "difficulty": "Hard",
+      "moves": "F B2 R' D2 B R U D' R L' D' F' R2 D F2 B' Fw Bw2 Rw' Dw2 Bw Rw Uw Dw' Rw Lw' Dw' Fw' Rw2 Dw Fw2 Bw'",
       "imageUrl": "/assets/cube-arts/5x5_4.png"
+    },
+    {
+      "id": "5x5_5",
+      "name": "4 Cubes in a Cube",
+      "difficulty": "Hard",
+      "moves": "x' y' F U' B L U' F2 U2 F U F' U2 D' B D L2 B2 U Fw Uw' Bw Lw Uw' Fw2 Uw2 Fw Uw Fw' Uw2 Dw' Bw Dw Lw2 Bw2 Uw y x",
+      "imageUrl": "/assets/cube-arts/5x5_5.png"
+    },
+    {
+      "id": "5x5_6",
+      "name": "Superflip",
+      "difficulty": "Hard",
+      "moves": "m' U m' U m' U m' U x y' m' U m' U m' U m' U x y' m' U m' U m' U m' U x y' M' Uw M' Uw M' Uw M' Uw x y' M' Uw M' Uw M' Uw M' Uw x y' M' Uw M' Uw M' Uw M' Uw x y'",
+      "imageUrl": "/assets/cube-arts/5x5_6.png"
+    },
+    {
+      "id": "5x5_7",
+      "name": "Flipped Edges",
+      "difficulty": "Medium",
+      "moves": "F B2 R' D2 B R U D' R L' D' F' R2 D F2 B'",
+      "imageUrl": "/assets/cube-arts/5x5_7.png"
+    },
+    {
+      "id": "5x5_8",
+      "name": "Dot In A Dot",
+      "difficulty": "Medium",
+      "moves": "U D' R L' F B' U D' Uw Dw' Rw Lw' Fw Bw' Uw Dw'",
+      "imageUrl": "/assets/cube-arts/5x5_8.png"
+    },
+    {
+      "id": "5x5_9",
+      "name": "Square in a Cube",
+      "difficulty": "Easy",
+      "moves": "U D' R L' F B' U D'",
+      "imageUrl": "/assets/cube-arts/5x5_9.png"
+    },
+    {
+      "id": "5x5_10",
+      "name": "Flipped Edge Checkerboard",
+      "difficulty": "Hard",
+      "moves": "F B2 R' D2 B R U D' R L' D' F' R2 D F2 B' Lw2 Rw2 Uw2 Dw2 Bw2 Fw2",
+      "imageUrl": "/assets/cube-arts/5x5_10.png"
+    },
+    {
+      "id": "5x5_11",
+      "name": "Dot in a Crosshair",
+      "difficulty": "Hard",
+      "moves": "U D' R L' F B' U D' Uw Dw' Rw Lw' Fw Bw' Uw Dw' Lw2 Rw2 Uw2 Dw2 Bw2 Fw2",
+      "imageUrl": "/assets/cube-arts/5x5_11.png"
+    },
+    {
+      "id": "5x5_12",
+      "name": "Double Checkerboard",
+      "difficulty": "Hard",
+      "moves": "U D' R L' F B' U D' Lw2 Rw2 Uw2 Dw2 Bw2 Fw2 L2 R2 F2 B2 D2 U2",
+      "imageUrl": "/assets/cube-arts/5x5_12.png"
+    },
+    {
+      "id": "5x5_13",
+      "name": "Alternate Checkerboard",
+      "difficulty": "Medium",
+      "moves": "U D' R L' F B' U D' Lw2 Rw2 Uw2 Dw2 Bw2 Fw2",
+      "imageUrl": "/assets/cube-arts/5x5_13.png"
+    },
+    {
+      "id": "5x5_14",
+      "name": "Easy Checkerboard",
+      "difficulty": "Easy",
+      "moves": "U2 D2 R2 L2 F2 B2",
+      "imageUrl": "/assets/cube-arts/5x5_14.png"
+    },
+    {
+      "id": "5x5_15",
+      "name": "Four Dots",
+      "difficulty": "Easy",
+      "moves": "l r' u d' l' r u' d",
+      "imageUrl": "/assets/cube-arts/5x5_15.png"
+    },
+    {
+      "id": "5x5_16",
+      "name": "Cross",
+      "difficulty": "Hard",
+      "moves": "U2 u2 M2 U2 u2 M2 F2 f2 E2 F2 f2 E2 U2 u2 S2 U2 u2 S2 R2 r2 E2 R2 r2 E2 M2 E M2 E'",
+      "imageUrl": "/assets/cube-arts/5x5_16.png"
+    },
+    {
+      "id": "5x5_17",
+      "name": "3x3 Peak",
+      "difficulty": "Hard",
+      "moves": "F' l2 F R2 b U' b' Dw' b U b' Dw R2 F' l2 F2 R U' M2 U R' U' M2 U F'",
+      "imageUrl": "/assets/cube-arts/5x5_17.png"
+    },
+    {
+      "id": "5x5_18",
+      "name": "I Love U",
+      "difficulty": "Hard",
+      "moves": "s' m2 f2 m2 e2 f2 S2 e S2 e f S L b' r2 b L' b' Rw2 S' l2 S R2 S' l2 S",
+      "imageUrl": "/assets/cube-arts/5x5_18.png"
+    },
+    {
+      "id": "5x5_19",
+      "name": "Clown",
+      "difficulty": "Medium",
+      "moves": "u r' l u' r l' d' m d m' S' M S M'",
+      "imageUrl": "/assets/cube-arts/5x5_19.png"
+    },
+    {
+      "id": "5x5_20",
+      "name": "Hearts",
+      "difficulty": "Medium",
+      "moves": "M2 m2 S2 D s2 D2 s2 D S2 m' M2 d m' e2 m d m'",
+      "imageUrl": "/assets/cube-arts/5x5_20.png"
     }
   ]
 }

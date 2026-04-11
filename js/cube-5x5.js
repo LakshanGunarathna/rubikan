@@ -175,7 +175,9 @@ const MOVES = {
   'u_prime': ['y', [1], Math.PI / 2], 'd_prime': ['y', [-1], -Math.PI / 2],
   'f_prime': ['z', [1], Math.PI / 2], 'b_prime': ['z', [-1], -Math.PI / 2],
   'M': ['x', [0], Math.PI / 2], 'E': ['y', [0], Math.PI / 2], 'S': ['z', [0], -Math.PI / 2],
-  'M_prime': ['x', [0], -Math.PI / 2], 'E_prime': ['y', [0], -Math.PI / 2], 'S_prime': ['z', [0], Math.PI / 2]
+  'M_prime': ['x', [0], -Math.PI / 2], 'E_prime': ['y', [0], -Math.PI / 2], 'S_prime': ['z', [0], Math.PI / 2],
+  'm': ['x', [-1, 0, 1], Math.PI / 2], 'e': ['y', [-1, 0, 1], Math.PI / 2], 's': ['z', [-1, 0, 1], -Math.PI / 2],
+  'm_prime': ['x', [-1, 0, 1], -Math.PI / 2], 'e_prime': ['y', [-1, 0, 1], -Math.PI / 2], 's_prime': ['z', [-1, 0, 1], Math.PI / 2]
 };
 
 Object.keys(MOVES).forEach(key => {
@@ -192,7 +194,7 @@ if (shuffleBtn) {
   shuffleBtn.addEventListener('click', async () => {
     if (isAnimating || !isActive) return;
 
-    const BASE_KEYS = ['L', 'R', 'U', 'D', 'F', 'B', 'Lw', 'Rw', 'Uw', 'Dw', 'Fw', 'Bw', 'l', 'r', 'u', 'd', 'f', 'b', 'M', 'E', 'S'];
+    const BASE_KEYS = ['L', 'R', 'U', 'D', 'F', 'B', 'Lw', 'Rw', 'Uw', 'Dw', 'Fw', 'Bw', 'l', 'r', 'u', 'd', 'f', 'b', 'M', 'E', 'S', 'm', 'e', 's'];
     let lastMove = { axis: '', layers: [], dir: 0 };
 
     for (let i = 0; i < 35; i++) {
