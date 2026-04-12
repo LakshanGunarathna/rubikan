@@ -412,10 +412,73 @@
     },
     {
       "id": "4x4_7",
+      "name": "3 Cubes in a Cube",
+      "difficulty": "Easy",
+      "moves": "F L F U' R U F2 L2 U' L' B D' B' L2 U Fw Lw Fw Uw' Rw Uw Fw2 Lw2 Uw' Lw' Bw Dw' Bw' Lw2 Uw B2 R' D R D' R' D R U R' D' R D R' D' R U' B2",
+      "imageUrl": "/assets/cube-arts/4x4_7.png"
+    },
+    {
+      "id": "4x4_8",
       "name": "Checkerboard v2",
       "difficulty": "Easy",
-      "moves": "U2 D2 R2 L2 F2 B2",
-      "imageUrl": "/assets/cube-arts/4x4_7.png"
+      "moves": "M2 S2 E2 Rw'2 Fw2 Rw2 Uw2",
+      "imageUrl": "/assets/cube-arts/4x4_8.png"
+    },
+    {
+      "id": "4x4_9",
+      "name": "Checkerboard in Dots",
+      "difficulty": "Easy",
+      "moves": "M E' M' E r' d' r d l u l' u'",
+      "imageUrl": "/assets/cube-arts/4x4_9.png"
+    },
+    {
+      "id": "4x4_10",
+      "name": "6 Colour Cube In A Cube",
+      "difficulty": "Easy",
+      "moves": "B' M2 U2 M2 B F2 R U' R U R2 U R2 F' U F' Uw Lw Uw' Fw2 Dw Rw' Uw Fw Dw2 Rw2",
+      "imageUrl": "/assets/cube-arts/4x4_10.png"
+    },
+    {
+      "id": "4x4_11",
+      "name": "6 Colour Peak",
+      "difficulty": "Easy",
+      "moves": "F U2 L F L' B L U B' R' L' U R' D' F' B R2",
+      "imageUrl": "/assets/cube-arts/4x4_11.png"
+    },
+    {
+      "id": "4x4_12",
+      "name": "2x2 Peak",
+      "difficulty": "Easy",
+      "moves": "b2 d2 Lw2 U F2 L2 D' L' D L' F U' F Lw2 d2 b2",
+      "imageUrl": "/assets/cube-arts/4x4_12.png"
+    },
+    {
+      "id": "4x4_13",
+      "name": "Easy Checkerboard",
+      "difficulty": "Easy",
+      "moves": "M2 S2 E2",
+      "imageUrl": "/assets/cube-arts/4x4_13.png"
+    },
+    {
+      "id": "4x4_14",
+      "name": "Anaconda",
+      "difficulty": "Easy",
+      "moves": "L U B' U' R L' B R' F B' D R D' F'",
+      "imageUrl": "/assets/cube-arts/4x4_14.png"
+    },
+    {
+      "id": "4x4_15",
+      "name": "Diagonal Lines",
+      "difficulty": "Easy",
+      "moves": "R2 L' D F2 R' D' R' L U' D R D B2 R' U D2 l u l' u' r' d' r d x M E M' U M E' M' U' x2 M E M' U M E' M' U' x",
+      "imageUrl": "/assets/cube-arts/4x4_15.png"
+    },
+    {
+      "id": "4x4_16",
+      "name": "Cross",
+      "difficulty": "Easy",
+      "moves": "R2 L' D F2 R' D' R' L U' D R D B2 R' U D2",
+      "imageUrl": "/assets/cube-arts/4x4_16.png"
     }
   ],
   "5x5x5": [
