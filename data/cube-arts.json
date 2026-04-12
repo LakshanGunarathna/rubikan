@@ -479,6 +479,41 @@
       "difficulty": "Easy",
       "moves": "R2 L' D F2 R' D' R' L U' D R D B2 R' U D2",
       "imageUrl": "/assets/cube-arts/4x4_16.png"
+    },
+    {
+      "id": "4x4_17",
+      "name": "Displaced Motif",
+      "difficulty": "Easy",
+      "moves": "L2 B2 D' B2 D L2 U R2 D R2 B U R' F2 R U' B' U'",
+      "imageUrl": "/assets/cube-arts/4x4_17.png"
+    },
+    {
+      "id": "4x4_18",
+      "name": "Checkerboard in a Cube",
+      "difficulty": "Medium",
+      "moves": "R2 F2 D' R' D F' D2 F D' R' r2 F2 r2 F2 f2 r2 f2 L' R E b u b' f' d' f B2 L2 B' F D' f2 D B F' D' f2 D L2 B2 L R' y2",
+      "imageUrl": "/assets/cube-arts/4x4_18.png"
+    },
+    {
+      "id": "4x4_19",
+      "name": "Twisted Cube",
+      "difficulty": "Medium",
+      "moves": "F R' U L F'L'F U' R U L' U' L F'",
+      "imageUrl": "/assets/cube-arts/4x4_19.png"
+    },
+    {
+      "id": "4x4_20",
+      "name": "Cube in a Checkerboard",
+      "difficulty": "Medium",
+      "moves": "L2 D' B R D R' D B R' B R D B' L2",
+      "imageUrl": "/assets/cube-arts/4x4_20.png"
+    },
+    {
+      "id": "4x4_21",
+      "name": "Ron's Cube in a Cube",
+      "difficulty": "Medium",
+      "moves": "F D' F' R D F' R' D R D L' F L D R' F D' Fw Dw' Fw' Rw Dw Fw' Rw' Dw Rw Dw Lw' Fw Lw Dw Rw' Fw Dw'",
+      "imageUrl": "/assets/cube-arts/4x4_21.png"
     }
   ],
   "5x5x5": [
@@ -621,6 +656,13 @@
       "difficulty": "Medium",
       "moves": "M2 m2 S2 D s2 D2 s2 D S2 m' M2 d m' e2 m d m'",
       "imageUrl": "/assets/cube-arts/5x5_20.png"
+    },
+    {
+      "id": "5x5_21",
+      "name": "Cube in a Checkerboard",
+      "difficulty": "Hard",
+      "moves": "U D' R2 D2 L' R B' F L' R B m2 B' F l2 F' L R' F l2 B F' l2 r2 F' L R' F M2 F' D2 R2 U' D Lw Dw Lw2 Dw' Rw Bw' Lw2 Fw Dw' Rw2 Uw Lw' Fw Rw2 Fw' Rw'",
+      "imageUrl": "/assets/cube-arts/5x5_21.png"
     }
   ]
 }
