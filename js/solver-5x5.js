@@ -416,7 +416,7 @@ window.addEventListener('pointerup', (e) => {
     if (!i.object.userData.isSticker) return false;
     const pos = new THREE.Vector3();
     i.object.getWorldPosition(pos);
-    return pos.x > 2.4 || pos.y > 2.4 || pos.z > 2.4 || pos.x < -2.4 || pos.y < -2.4 || pos.z < -2.4;
+    return pos.x > 2.4 || pos.y > 2.4 || pos.z > 2.4;
   });
 
   if (hit) {
