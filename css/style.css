@@ -999,8 +999,30 @@ button:active {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   position: sticky;
-  top: 90px;
+  top: 5px;
+
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+}
+
+/* Custom scrollbar for sidebar */
+.cube-arts-sidebar::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+.cube-arts-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cube-arts-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.cube-arts-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-section {
@@ -1008,7 +1030,7 @@ button:active {
 }
 
 .sidebar-section:last-child {
-  margin-bottom: 0;
+  margin-bottom: 12rem;
 }
 
 .sidebar-section h3 {
@@ -1031,6 +1053,29 @@ button:active {
   margin-bottom: 0.25rem;
   border: 1px solid transparent;
   font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-item-count {
+  background: rgba(0, 0, 0, 0.05);
+  color: #64748b;
+  padding: 0.15rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.sidebar-item:hover .sidebar-item-count {
+  background: rgba(255, 255, 255, 0.8);
+  color: #0f172a;
+}
+
+.sidebar-item.active .sidebar-item-count {
+  background: #2563eb;
+  color: #ffffff;
 }
 
 .sidebar-item:hover {
@@ -1202,6 +1247,40 @@ button:active {
   width: 100% !important;
   height: 100% !important;
   outline: none;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 2rem;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 24px;
+  border: 1px dashed rgba(255, 255, 255, 0.45);
+  color: #64748b;
+  animation: fadeIn 0.4s ease;
+}
+
+.no-results i {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+  color: var(--accent-color);
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  color: #1e3a5f;
+  margin-bottom: 1rem;
+}
+
+.no-results p {
+  font-size: 1.1rem;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 /* Pattern Model Modal Specifics */

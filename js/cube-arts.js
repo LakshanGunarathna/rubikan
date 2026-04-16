@@ -25,18 +25,30 @@ let typeFilter = 'All';
 let diffFilter = 'All';
 let searchFilter = '';
 
+function getDifficulty(moveCount) {
+  if (moveCount <= 10) return 'Easy';
+  if (moveCount <= 20) return 'Medium';
+  if (moveCount <= 35) return 'Hard';
+  if (moveCount <= 50) return 'Extreme';
+  return 'Ultra';
+}
+
 // --- UI rendering and filtering ---
 async function loadCubeArts() {
   try {
     const res = await fetch(`${ROOT}data/cube-arts.json`);
     const data = await res.json();
 
-    // Flatten the object keys (3x3x3, 2x2x2, 4x4x4) into the patterns array
     patterns = [];
     for (const type in data) {
       data[type].forEach(pattern => {
-        // Add the type to the pattern object for the filter logic to work
         pattern.type = type;
+
+        // Calculate dynamic difficulty based on moves
+        const movesArr = pattern.moves.trim().split(/\s+/).filter(m => m);
+        pattern.moveCount = movesArr.length;
+        pattern.dynamicDifficulty = getDifficulty(pattern.moveCount);
+
         patterns.push(pattern);
       });
     }
@@ -133,6 +145,39 @@ function updateStats() {
     const types = new Set(patterns.map(p => p.type));
     cubesEl.innerText = types.size;
   }
+
+  // Update sidebar badges
+  const counts = {
+    all: patterns.length,
+    type: {},
+    difficulty: {}
+  };
+
+  patterns.forEach(p => {
+    // Type counts
+    counts.type[p.type] = (counts.type[p.type] || 0) + 1;
+
+    // Difficulty counts
+    const diff = p.dynamicDifficulty || 'Easy';
+    counts.difficulty[diff] = (counts.difficulty[diff] || 0) + 1;
+  });
+
+  // Update "All" badge
+  const allBadge = document.querySelector('[data-count-id="all"]');
+  if (allBadge) allBadge.innerText = counts.all;
+
+  // Update specific type badges
+  for (const type in counts.type) {
+    const badge = document.querySelector(`[data-count-id="type-${type}"]`);
+    if (badge) badge.innerText = counts.type[type];
+  }
+
+  // Update specific difficulty badges
+  const diffLevels = ['Easy', 'Medium', 'Hard', 'Extreme', 'Ultra'];
+  diffLevels.forEach(diff => {
+    const badge = document.querySelector(`[data-count-id="difficulty-${diff}"]`);
+    if (badge) badge.innerText = counts.difficulty[diff] || 0;
+  });
 }
 
 function renderCards() {
@@ -146,8 +191,7 @@ function renderCards() {
     if (typeFilter !== 'All' && p.type !== typeFilter) return false;
 
     // Difficulty Filter
-    const pDiff = p.difficulty || 'Easy';
-    if (diffFilter !== 'All' && pDiff !== diffFilter) return false;
+    if (diffFilter !== 'All' && p.dynamicDifficulty !== diffFilter) return false;
 
     // Search Filter
     if (searchFilter) {
@@ -159,6 +203,17 @@ function renderCards() {
     }
     return true;
   });
+
+  if (filtered.length === 0) {
+    gridContainer.innerHTML = `
+      <div class="no-results">
+        <i class="fas fa-search"></i>
+        <h3>No Rubik's art available</h3>
+        <p>Try adjusting your search or filters to find what you're looking for.</p>
+      </div>
+    `;
+    return;
+  }
 
   filtered.forEach(p => {
     const el = document.createElement('div');
@@ -172,8 +227,8 @@ function renderCards() {
         <div class="cube-art-id">#${p.id}</div>
         <div class="cube-art-meta">
           <span class="meta-badge">${p.type}</span>
-          <span class="meta-badge">${p.difficulty}</span>
-          <span class="meta-badge">${p.moves.trim().split(' ').length} Moves</span>
+          <span class="meta-badge">${p.dynamicDifficulty}</span>
+          <span class="meta-badge">${p.moveCount} Moves</span>
         </div>
       </div>
     `;
