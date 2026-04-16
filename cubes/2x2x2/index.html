@@ -4,9 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mini Cube | Rubikan</title>
+  <title>Mini Cube 2×2×2 | Rubikan</title>
+  <meta name="description"
+    content="Explore the 2×2×2 Mini Cube in interactive 3D. Learn fascinating facts, history, and world records about the pocket-sized Rubik's puzzle." />
   <link rel="icon" type="image/png" href="../../assets/Logo.png" />
   <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/cube-facts.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <script type="importmap">
     {
@@ -23,6 +26,7 @@
 <body>
   <nav class="navbar"></nav>
 
+  <!-- ===== CUBE SECTION ===== -->
   <div id="cube-2x2-view">
     <div class="art-badge">Mini Cube (2x2x2)</div>
     <div class="uicontainer-overlay">
@@ -50,9 +54,182 @@
         <button id="btnB_prime-2x2" title="B'">B'</button>
       </div>
     </div>
+
+    <div class="cube-scroll-hint">
+      <span>Discover More</span>
+      <i class="fas fa-chevron-down bounce-icon"></i>
+    </div>
   </div>
 
-  <div id="app-2x2-main" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></div>
+  <div id="app-2x2-main"></div>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="cube-facts-divider">
+    <div class="divider-line"></div>
+    <div class="divider-icon"><i class="fas fa-cube"></i></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== INTERESTING FACTS SECTION ===== -->
+  <section class="cube-facts-section" id="cube-facts">
+
+    <div class="facts-glow facts-glow-1"></div>
+    <div class="facts-glow facts-glow-2"></div>
+
+    <!-- Header -->
+    <div class="facts-header">
+      <div class="facts-icon-wrap">
+        <i class="fas fa-lightbulb"></i>
+      </div>
+      <h2 class="facts-title">Interesting Facts & Information</h2>
+      <p class="facts-subtitle">
+        The 2×2×2 Mini Cube — small in size, but packed with more combinations than you'd ever expect.
+        The perfect entry point into the world of twisty puzzles.
+      </p>
+    </div>
+
+    <!-- Quick Stats Row -->
+    <div class="facts-stats-row">
+      <div class="facts-stat-card" data-delay="0"
+        style="--stat-accent: linear-gradient(to right, #f97316, #ef4444); --stat-bg: rgba(249,115,22,0.1); --stat-border: rgba(249,115,22,0.2); --stat-color: #f97316;">
+        <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+        <div class="stat-number">1981</div>
+        <div class="stat-label">Year Released</div>
+      </div>
+
+      <div class="facts-stat-card" data-delay="1"
+        style="--stat-accent: linear-gradient(to right, #3b82f6, #6366f1); --stat-bg: rgba(59,130,246,0.1); --stat-border: rgba(59,130,246,0.2); --stat-color: #3b82f6;">
+        <div class="stat-icon"><i class="fas fa-cubes"></i></div>
+        <div class="stat-number">3.67 Million</div>
+        <div class="stat-label">Possible States</div>
+      </div>
+
+      <div class="facts-stat-card" data-delay="2"
+        style="--stat-accent: linear-gradient(to right, #10b981, #06b6d4); --stat-bg: rgba(16,185,129,0.1); --stat-border: rgba(16,185,129,0.2); --stat-color: #10b981;">
+        <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+        <div class="stat-number">11 Moves</div>
+        <div class="stat-label">God's Number</div>
+      </div>
+
+      <div class="facts-stat-card" data-delay="3"
+        style="--stat-accent: linear-gradient(to right, #a855f7, #ec4899); --stat-bg: rgba(168,85,247,0.1); --stat-border: rgba(168,85,247,0.2); --stat-color: #a855f7;">
+        <div class="stat-icon"><i class="fas fa-stopwatch"></i></div>
+        <div class="stat-number">0.47s</div>
+        <div class="stat-label">World Record</div>
+      </div>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="facts-content">
+
+      <!-- Card 1: What Is It -->
+      <div class="fact-card" data-delay="0"
+        style="--card-accent: #f97316; --card-icon-bg: rgba(249,115,22,0.1); --card-icon-border: rgba(249,115,22,0.2); --card-icon-color: #f97316;">
+        <div class="fact-card-header">
+          <div class="fact-card-icon"><i class="fas fa-info-circle"></i></div>
+          <div class="fact-card-title">What Is the 2×2 Cube?</div>
+        </div>
+        <div class="fact-card-body">
+          <p>
+            Also known as the <strong>Pocket Cube</strong>, the 2×2×2 is the smallest standard Rubik's
+            puzzle. It consists of <span class="fact-highlight">8 corner cubies</span> with no edge or
+            center pieces, making it appear deceptively simple. Despite its compact size, it still
+            requires logical thinking and pattern recognition to solve. It's often recommended as the
+            perfect starting point for anyone new to the world of twisty puzzles.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: Origin -->
+      <div class="fact-card" data-delay="1"
+        style="--card-accent: #3b82f6; --card-icon-bg: rgba(59,130,246,0.1); --card-icon-border: rgba(59,130,246,0.2); --card-icon-color: #3b82f6;">
+        <div class="fact-card-header">
+          <div class="fact-card-icon"><i class="fas fa-history"></i></div>
+          <div class="fact-card-title">The Origin Story</div>
+        </div>
+        <div class="fact-card-body">
+          <p>
+            The Pocket Cube was invented in <span class="fact-highlight">1981</span> by
+            <strong>Larry D. Nichols</strong>, who actually patented a similar 2×2 puzzle before
+            Ernő Rubik patented the 3×3. It was commercially released as an official Rubik's product
+            and quickly became popular as a gateway puzzle, introducing millions of solvers to the
+            fundamentals of face-turning twisty puzzles.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: Surprising Complexity -->
+      <div class="fact-card wide" data-delay="2"
+        style="--card-accent: #10b981; --card-icon-bg: rgba(16,185,129,0.1); --card-icon-border: rgba(16,185,129,0.2); --card-icon-color: #10b981;">
+        <div class="fact-card-header">
+          <div class="fact-card-icon"><i class="fas fa-brain"></i></div>
+          <div class="fact-card-title">Surprisingly Complex</div>
+        </div>
+        <div class="fact-card-body">
+          <p>
+            Don't let the small size fool you — the 2×2 cube has
+            <span class="fact-highlight">3,674,160</span> possible permutations. While that's far
+            fewer than the 3×3's 43 quintillion states, it's still a staggering number for such a tiny
+            puzzle. Mathematicians have determined that any scrambled position can be solved in at most
+            <span class="fact-highlight">11 moves</span> (in half-turn metric), which is the cube's
+            <strong>God's Number</strong>. This means no scramble is ever more than 11 moves away from
+            being solved!
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4: Speedcubing -->
+      <div class="fact-card wide" data-delay="3"
+        style="--card-accent: #a855f7; --card-icon-bg: rgba(168,85,247,0.1); --card-icon-border: rgba(168,85,247,0.2); --card-icon-color: #a855f7;">
+        <div class="fact-card-header">
+          <div class="fact-card-icon"><i class="fas fa-trophy"></i></div>
+          <div class="fact-card-title">Speedcubing & World Records</div>
+        </div>
+        <div class="fact-card-body">
+          <p>
+            The 2×2 is one of the most exciting speedcubing events due to its blazing fast solve times.
+            Officially governed by the <strong>World Cube Association</strong>, the current world record
+            for a single solve stands at an astonishing <span class="fact-highlight">0.47 seconds</span>,
+            achieved by <strong>Teodor Zajder</strong> from Poland. Because solves are so short,
+            luck and reaction time play a bigger role than in larger cubes. The most popular methods
+            include the <strong>Ortega Method</strong> and the advanced <strong>CLL</strong>
+            (Corners of Last Layer) method.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Timeline -->
+    <div class="facts-timeline">
+      <div class="timeline-item" data-delay="0" style="--tl-color: #f97316;">
+        <div class="timeline-year">1981</div>
+        <div class="timeline-label">Pocket Cube<br>Released</div>
+      </div>
+      <div class="timeline-item" data-delay="1" style="--tl-color: #3b82f6;">
+        <div class="timeline-year">2003</div>
+        <div class="timeline-label">WCA Adds 2×2<br>as Official Event</div>
+      </div>
+      <div class="timeline-item" data-delay="2" style="--tl-color: #10b981;">
+        <div class="timeline-year">2005</div>
+        <div class="timeline-label">God's Number<br>Proven to be 11</div>
+      </div>
+      <div class="timeline-item" data-delay="3" style="--tl-color: #a855f7;">
+        <div class="timeline-year">2016</div>
+        <div class="timeline-label">Sub-1 Second<br>Records Begin</div>
+      </div>
+      <div class="timeline-item" data-delay="4" style="--tl-color: #ec4899;">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-label">World Record<br>0.47 seconds</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="cube-page-footer">
+    <p>© 2026 Rubikan. Crafted with passion for the puzzle.</p>
+  </footer>
 
   <script type="module">
     import { initNavbar } from '../../js/navbar.js';
@@ -61,6 +238,22 @@
     initNavbar('../../');
 
     window.dispatchEvent(new CustomEvent('route-changed', { detail: '/cubes/2x2x2-cube' }));
+
+    // Intersection Observer for scroll-reveal animations
+    const animatedElements = document.querySelectorAll('.facts-stat-card, .fact-card, .timeline-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseInt(entry.target.dataset.delay || 0, 10) * 120;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    animatedElements.forEach(el => observer.observe(el));
   </script>
 </body>
 

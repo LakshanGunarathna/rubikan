@@ -4,9 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Professor's Cube | Rubikan</title>
+  <title>Professor's Cube 5×5×5 | Rubikan</title>
+  <meta name="description"
+    content="Explore the 5×5×5 Professor's Cube in interactive 3D. Learn fascinating facts, history, and world records about this ultimate Rubik's challenge." />
   <link rel="icon" type="image/png" href="../../assets/Logo.png" />
   <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/cube-facts.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <script type="importmap">
     {
@@ -23,6 +26,7 @@
 <body>
   <nav class="navbar"></nav>
 
+  <!-- ===== CUBE SECTION ===== -->
   <div id="cube-5x5-view">
     <div class="art-badge">Professor's Cube (5x5x5)</div>
     <div class="uicontainer-overlay">
@@ -105,9 +109,184 @@
         <button id="btns_prime-5x5" title="s'">s'</button> -->
       </div>
     </div>
+
+    <div class="cube-scroll-hint">
+      <span>Discover More</span>
+      <i class="fas fa-chevron-down bounce-icon"></i>
+    </div>
   </div>
 
-  <div id="app-5x5-main" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></div>
+  <div id="app-5x5-main"></div>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="cube-facts-divider">
+    <div class="divider-line"></div>
+    <div class="divider-icon"><i class="fas fa-cube"></i></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== INTERESTING FACTS SECTION ===== -->
+  <section class="cube-facts-section" id="cube-facts">
+
+    <div class="facts-glow facts-glow-1"></div>
+    <div class="facts-glow facts-glow-2"></div>
+
+    <!-- Header -->
+    <div class="facts-header">
+      <div class="facts-icon-wrap">
+        <i class="fas fa-lightbulb"></i>
+      </div>
+      <h2 class="facts-title">Interesting Facts & Information</h2>
+      <p class="facts-subtitle">
+        The 5×5×5 Professor's Cube — the ultimate test of patience, strategy, and mastery.
+        A puzzle so complex it earned the title reserved for scholars.
+      </p>
+    </div>
+
+    <!-- Quick Stats Row -->
+    <div class="facts-stats-row">
+      <div class="facts-stat-card" data-delay="0"
+        style="--stat-accent: linear-gradient(to right, #f97316, #ef4444); --stat-bg: rgba(249,115,22,0.1); --stat-border: rgba(249,115,22,0.2); --stat-color: #f97316;">
+        <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+        <div class="stat-number">1981</div>
+        <div class="stat-label">Year Invented</div>
+      </div>
+
+      <div class="facts-stat-card" data-delay="1"
+        style="--stat-accent: linear-gradient(to right, #3b82f6, #6366f1); --stat-bg: rgba(59,130,246,0.1); --stat-border: rgba(59,130,246,0.2); --stat-color: #3b82f6;">
+        <div class="stat-icon"><i class="fas fa-cubes"></i></div>
+        <div class="stat-number">2.83 × 10⁷⁴</div>
+        <div class="stat-label">Possible States</div>
+      </div>
+
+      <div class="facts-stat-card" data-delay="2"
+        style="--stat-accent: linear-gradient(to right, #10b981, #06b6d4); --stat-bg: rgba(16,185,129,0.1); --stat-border: rgba(16,185,129,0.2); --stat-color: #10b981;">
+        <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+        <div class="stat-number">98 Pieces</div>
+        <div class="stat-label">Visible Cubies</div>
+      </div>
+
+      <div class="facts-stat-card" data-delay="3"
+        style="--stat-accent: linear-gradient(to right, #a855f7, #ec4899); --stat-bg: rgba(168,85,247,0.1); --stat-border: rgba(168,85,247,0.2); --stat-color: #a855f7;">
+        <div class="stat-icon"><i class="fas fa-stopwatch"></i></div>
+        <div class="stat-number">32.14s</div>
+        <div class="stat-label">World Record</div>
+      </div>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="facts-content">
+
+      <!-- Card 1: Origin -->
+      <div class="fact-card" data-delay="0"
+        style="--card-accent: #f97316; --card-icon-bg: rgba(249,115,22,0.1); --card-icon-border: rgba(249,115,22,0.2); --card-icon-color: #f97316;">
+        <div class="fact-card-header">
+          <div class="fact-card-icon"><i class="fas fa-history"></i></div>
+          <div class="fact-card-title">The Origin Story</div>
+        </div>
+        <div class="fact-card-body">
+          <p>
+            The 5×5×5 cube was invented in <span class="fact-highlight">1981</span> by
+            <strong>Udo Krell</strong>, a German inventor. It was marketed as the
+            <strong>"Professor's Cube"</strong>, signifying that it required a professor-level
+            intellect to solve. The name stuck, and it remains one of the most respected challenges
+            in the twisty puzzle community. Its internal mechanism is a marvel of engineering,
+            with over 120 individual parts working in harmony.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: Anatomy -->
+      <div class="fact-card" data-delay="1"
+        style="--card-accent: #3b82f6; --card-icon-bg: rgba(59,130,246,0.1); --card-icon-border: rgba(59,130,246,0.2); --card-icon-color: #3b82f6;">
+        <div class="fact-card-header">
+          <div class="fact-card-icon"><i class="fas fa-puzzle-piece"></i></div>
+          <div class="fact-card-title">Anatomy of the Cube</div>
+        </div>
+        <div class="fact-card-body">
+          <p>
+            The 5×5 has <span class="fact-highlight">98 visible pieces</span>: 8 corners,
+            36 edge pieces (including wing edges), and 54 center pieces. Each face has
+            <strong>9 center pieces</strong> (compared to 4 on a 4×4 and 1 on a 3×3). The cube
+            features fixed center pieces (like the 3×3), along with inner slice layers that add
+            multiple new move types. This creates a puzzle with both familiar and entirely new
+            challenges layered on top.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: Astronomical Complexity (Wide) -->
+      <div class="fact-card wide" data-delay="2"
+        style="--card-accent: #10b981; --card-icon-bg: rgba(16,185,129,0.1); --card-icon-border: rgba(16,185,129,0.2); --card-icon-color: #10b981;">
+        <div class="fact-card-header">
+          <div class="fact-card-icon"><i class="fas fa-brain"></i></div>
+          <div class="fact-card-title">Astronomical Complexity</div>
+        </div>
+        <div class="fact-card-body">
+          <p>
+            The 5×5 cube has approximately <span class="fact-highlight">2.83 × 10⁷⁴</span>
+            possible permutations — a number so vast it's nearly incomprehensible. To illustrate:
+            if every atom in the observable universe represented a unique scramble, you'd still
+            need more universes worth of atoms to represent all possible states. Unlike the 4×4,
+            the 5×5 does <strong>not suffer from parity errors</strong> (since it has odd-numbered
+            layers like the 3×3), but the sheer volume of pieces makes it a marathon of
+            concentration and strategy.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4: Solving & Competition (Wide) -->
+      <div class="fact-card wide" data-delay="3"
+        style="--card-accent: #a855f7; --card-icon-bg: rgba(168,85,247,0.1); --card-icon-border: rgba(168,85,247,0.2); --card-icon-color: #a855f7;">
+        <div class="fact-card-header">
+          <div class="fact-card-icon"><i class="fas fa-trophy"></i></div>
+          <div class="fact-card-title">Solving Methods & Competition</div>
+        </div>
+        <div class="fact-card-body">
+          <p>
+            The most popular method for solving the 5×5 is the <strong>Reduction Method</strong>,
+            where solvers first pair up the center pieces, then the edge pieces, and finally solve
+            it like a 3×3. Advanced speedcubers use the <strong>Yau5 Method</strong> — an optimized
+            variant that reduces pauses and look-ahead breaks. As of 2025, the world record for a
+            single solve stands at <span class="fact-highlight">32.14 seconds</span>, achieved by
+            <strong>Max Park</strong> from the USA. The 5×5 event is considered one of the most
+            prestigious in WCA competitions, requiring both speed and endurance.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Timeline -->
+    <div class="facts-timeline">
+      <div class="timeline-item" data-delay="0" style="--tl-color: #f97316;">
+        <div class="timeline-year">1981</div>
+        <div class="timeline-label">Invented by<br>Udo Krell</div>
+      </div>
+      <div class="timeline-item" data-delay="1" style="--tl-color: #3b82f6;">
+        <div class="timeline-year">1982</div>
+        <div class="timeline-label">Released as<br>"Professor's Cube"</div>
+      </div>
+      <div class="timeline-item" data-delay="2" style="--tl-color: #10b981;">
+        <div class="timeline-year">2003</div>
+        <div class="timeline-label">WCA Adds 5×5<br>as Official Event</div>
+      </div>
+      <div class="timeline-item" data-delay="3" style="--tl-color: #a855f7;">
+        <div class="timeline-year">2017</div>
+        <div class="timeline-label">Sub-40 Second<br>Records Broken</div>
+      </div>
+      <div class="timeline-item" data-delay="4" style="--tl-color: #ec4899;">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-label">World Record<br>32.14 seconds</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="cube-page-footer">
+    <p>© 2026 Rubikan. Crafted with passion for the puzzle.</p>
+  </footer>
 
   <script type="module">
     import { initNavbar } from '../../js/navbar.js';
@@ -116,6 +295,22 @@
     initNavbar('../../');
 
     window.dispatchEvent(new CustomEvent('route-changed', { detail: '/cubes/5x5x5-cube' }));
+
+    // Intersection Observer for scroll-reveal animations
+    const animatedElements = document.querySelectorAll('.facts-stat-card, .fact-card, .timeline-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseInt(entry.target.dataset.delay || 0, 10) * 120;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    animatedElements.forEach(el => observer.observe(el));
   </script>
 </body>
 
