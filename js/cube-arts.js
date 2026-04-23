@@ -53,7 +53,7 @@ async function loadCubeArts() {
       });
     }
 
-    updateStats();
+    updateBadges();
     renderCards();
 
     // Support both new clean path format and old hash format
@@ -136,7 +136,7 @@ function initFilters() {
   }
 }
 
-function updateStats() {
+function updateBadges() {
   const totalEl = document.getElementById('statTotal');
   const cubesEl = document.getElementById('statCubes');
 
@@ -146,37 +146,39 @@ function updateStats() {
     cubesEl.innerText = types.size;
   }
 
-  // Update sidebar badges
-  const counts = {
-    all: patterns.length,
-    type: {},
-    difficulty: {}
-  };
+  // --- "All" badge: total after both type + difficulty filters (ignoring search) ---
+  const allFiltered = patterns.filter(p => {
+    if (typeFilter !== 'All' && p.type !== typeFilter) return false;
+    if (diffFilter !== 'All' && p.dynamicDifficulty !== diffFilter) return false;
+    return true;
+  });
+  const allBadge = document.querySelector('[data-count-id="all"]');
+  if (allBadge) allBadge.innerText = allFiltered.length;
 
-  patterns.forEach(p => {
-    // Type counts
-    counts.type[p.type] = (counts.type[p.type] || 0) + 1;
-
-    // Difficulty counts
-    const diff = p.dynamicDifficulty || 'Easy';
-    counts.difficulty[diff] = (counts.difficulty[diff] || 0) + 1;
+  // --- Type badges: count patterns filtered by the CURRENT difficulty (not type) ---
+  const typeKeys = ['2x2x2', '3x3x3', '4x4x4', '5x5x5'];
+  typeKeys.forEach(type => {
+    const count = patterns.filter(p => {
+      if (p.type !== type) return false;
+      // Apply difficulty filter if active
+      if (diffFilter !== 'All' && p.dynamicDifficulty !== diffFilter) return false;
+      return true;
+    }).length;
+    const badge = document.querySelector(`[data-count-id="type-${type}"]`);
+    if (badge) badge.innerText = count;
   });
 
-  // Update "All" badge
-  const allBadge = document.querySelector('[data-count-id="all"]');
-  if (allBadge) allBadge.innerText = counts.all;
-
-  // Update specific type badges
-  for (const type in counts.type) {
-    const badge = document.querySelector(`[data-count-id="type-${type}"]`);
-    if (badge) badge.innerText = counts.type[type];
-  }
-
-  // Update specific difficulty badges
+  // --- Difficulty badges: count patterns filtered by the CURRENT type (not difficulty) ---
   const diffLevels = ['Easy', 'Medium', 'Hard', 'Extreme', 'Ultra'];
   diffLevels.forEach(diff => {
+    const count = patterns.filter(p => {
+      if (p.dynamicDifficulty !== diff) return false;
+      // Apply type filter if active
+      if (typeFilter !== 'All' && p.type !== typeFilter) return false;
+      return true;
+    }).length;
     const badge = document.querySelector(`[data-count-id="difficulty-${diff}"]`);
-    if (badge) badge.innerText = counts.difficulty[diff] || 0;
+    if (badge) badge.innerText = count;
   });
 }
 
@@ -242,6 +244,9 @@ function renderCards() {
     });
     gridContainer.appendChild(el);
   });
+
+  // Update badges to reflect current filter context
+  updateBadges();
 }
 
 // --- 3D Scene setup ---
