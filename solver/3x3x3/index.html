@@ -4,9 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rubik's Cube Solver | Rubikan</title>
+  <title>Rubik's Cube Solver 3×3×3 | Rubikan</title>
+  <meta name="description"
+    content="Solve your 3×3×3 Rubik's Cube with Rubikan's intelligent step-by-step solver. Paint your cube's current state and get an optimal solution instantly." />
   <link rel="icon" type="image/png" href="../../assets/Logo.png" />
   <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/solver-guide.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <script type="importmap">
     {
@@ -23,6 +26,7 @@
 <body>
   <nav class="navbar"></nav>
 
+  <!-- ===== SOLVER SECTION (Full Viewport) ===== -->
   <div id="solve-3x3-view">
     <div class="art-badge">Rubik's Cube Solver (3x3x3)</div>
     <div id="paint-phase-3x3">
@@ -60,6 +64,12 @@
 
       <button id="btnSideBack-3x3" class="side-nav left-nav" disabled>&lt; Back</button>
       <button id="btnSideNext-3x3" class="side-nav right-nav">Next &gt;</button>
+    </div>
+
+    <!-- Scroll Hint -->
+    <div class="solver-scroll-hint">
+      <span>How to Use</span>
+      <i class="fas fa-chevron-down bounce-icon"></i>
     </div>
   </div>
 
@@ -113,6 +123,213 @@
     </div>
   </div>
 
+  <!-- ===== DIVIDER ===== -->
+  <div class="solver-guide-divider">
+    <div class="divider-line"></div>
+    <div class="divider-icon"><i class="fas fa-brain"></i></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== SOLVER GUIDE & INFORMATION ===== -->
+  <section class="solver-guide-section" id="solver-guide">
+
+    <div class="guide-glow guide-glow-1"></div>
+    <div class="guide-glow guide-glow-2"></div>
+
+    <!-- Header -->
+    <div class="guide-header">
+      <div class="guide-icon-wrap">
+        <i class="fas fa-book-open"></i>
+      </div>
+      <h2 class="guide-title">How to Use the 3×3 Solver</h2>
+      <p class="guide-subtitle">
+        Paint your physical cube's current state onto the 3D model, hit Solve, and follow
+        the step-by-step instructions to reach a solved state. Here's everything you need to know.
+      </p>
+    </div>
+
+    <!-- Step-by-Step Guide -->
+    <div class="guide-steps">
+
+      <div class="guide-step" data-delay="0"
+        style="--step-color: #f97316; --step-bg: rgba(249,115,22,0.1); --step-border: rgba(249,115,22,0.2);">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <div class="step-title">Pick a Color from the Palette</div>
+          <p class="step-desc">
+            Use the <span class="highlight">color palette</span> in the top-right corner to select a color.
+            The 6 standard Rubik's Cube colors are available: <strong>White, Yellow, Red, Orange, Blue,</strong>
+            and <strong>Green</strong>. Click any swatch to activate it.
+          </p>
+        </div>
+      </div>
+
+      <div class="guide-step" data-delay="1"
+        style="--step-color: #3b82f6; --step-bg: rgba(59,130,246,0.1); --step-border: rgba(59,130,246,0.2);">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <div class="step-title">Paint the Cube Faces</div>
+          <p class="step-desc">
+            Click on any tile of the 3D cube to paint it with the selected color. Use the
+            <span class="highlight">rotation arrows</span> at the bottom to spin the cube and reach all 6 faces.
+            Make sure every tile is painted to match your physical cube's current scrambled state exactly.
+          </p>
+        </div>
+      </div>
+
+      <div class="guide-step" data-delay="2"
+        style="--step-color: #10b981; --step-bg: rgba(16,185,129,0.1); --step-border: rgba(16,185,129,0.2);">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <div class="step-title">Verify Your Colors</div>
+          <p class="step-desc">
+            Each color must appear exactly <span class="highlight">9 times</span> across all faces
+            (once per tile). The center tile of each face determines that face's color — make sure
+            all 6 centers are different colors. Rotate the cube and double-check before solving.
+          </p>
+        </div>
+      </div>
+
+      <div class="guide-step" data-delay="3"
+        style="--step-color: #a855f7; --step-bg: rgba(168,85,247,0.1); --step-border: rgba(168,85,247,0.2);">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <div class="step-title">Hit "Solve!" and Follow Along</div>
+          <p class="step-desc">
+            Press the <span class="highlight">Solve!</span> button. The solver will validate your cube,
+            compute an optimal solution, and switch to <strong>playback mode</strong>. Follow each move
+            instruction — hold your real cube in the orientation shown on screen and press
+            <strong>Next</strong> to advance through the steps. Press <strong>Back</strong> if you need
+            to review a previous move.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Color Reference -->
+    <div class="guide-header" style="margin-bottom: 1.5rem;">
+      <h2 class="guide-title" style="font-size: 1.6rem;">Standard Color Layout</h2>
+      <p class="guide-subtitle">
+        The standard Rubik's Cube color scheme. Each face has a fixed center color.
+      </p>
+    </div>
+
+    <div class="color-ref-strip">
+      <div class="color-ref-item" data-delay="0">
+        <div class="color-swatch" style="background: #ffffff;"></div>
+        <span class="color-ref-label">White</span>
+        <span class="color-ref-face">Top (U)</span>
+      </div>
+      <div class="color-ref-item" data-delay="1">
+        <div class="color-swatch" style="background: #ffd500;"></div>
+        <span class="color-ref-label">Yellow</span>
+        <span class="color-ref-face">Bottom (D)</span>
+      </div>
+      <div class="color-ref-item" data-delay="2">
+        <div class="color-swatch" style="background: #b71234;"></div>
+        <span class="color-ref-label">Red</span>
+        <span class="color-ref-face">Front (F)</span>
+      </div>
+      <div class="color-ref-item" data-delay="3">
+        <div class="color-swatch" style="background: #ff5800;"></div>
+        <span class="color-ref-label">Orange</span>
+        <span class="color-ref-face">Back (B)</span>
+      </div>
+      <div class="color-ref-item" data-delay="4">
+        <div class="color-swatch" style="background: #0046ad;"></div>
+        <span class="color-ref-label">Blue</span>
+        <span class="color-ref-face">Right (R)</span>
+      </div>
+      <div class="color-ref-item" data-delay="5">
+        <div class="color-swatch" style="background: #009b48;"></div>
+        <span class="color-ref-label">Green</span>
+        <span class="color-ref-face">Left (L)</span>
+      </div>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="guide-cards">
+
+      <!-- About the Solver -->
+      <div class="guide-card" data-delay="0"
+        style="--card-accent: #3b82f6; --card-icon-bg: rgba(59,130,246,0.1); --card-icon-border: rgba(59,130,246,0.2); --card-icon-color: #3b82f6;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-microchip"></i></div>
+          <div class="guide-card-title">About the Solver</div>
+        </div>
+        <div class="guide-card-body">
+          <p>
+            Our 3×3 solver uses the <strong>Kociemba two-phase algorithm</strong>, one of the most
+            efficient algorithms for solving the Rubik's Cube. It computes near-optimal solutions
+            — typically <strong>20 moves or fewer</strong> — in under a second. The algorithm works
+            by first reducing the cube to a simpler subgroup, then solving it completely.
+          </p>
+        </div>
+      </div>
+
+      <!-- Move Notation -->
+      <div class="guide-card" data-delay="1"
+        style="--card-accent: #a855f7; --card-icon-bg: rgba(168,85,247,0.1); --card-icon-border: rgba(168,85,247,0.2); --card-icon-color: #a855f7;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-font"></i></div>
+          <div class="guide-card-title">Understanding Move Notation</div>
+        </div>
+        <div class="guide-card-body">
+          <ul>
+            <li><strong>R</strong> — Rotate the right face 90° clockwise</li>
+            <li><strong>R'</strong> — Rotate the right face 90° counter-clockwise</li>
+            <li><strong>R2</strong> — Rotate the right face 180°</li>
+            <li><strong>U, D, L, F, B</strong> — Up, Down, Left, Front, Back faces</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tips for Accuracy -->
+      <div class="guide-card wide" data-delay="2"
+        style="--card-accent: #10b981; --card-icon-bg: rgba(16,185,129,0.1); --card-icon-border: rgba(16,185,129,0.2); --card-icon-color: #10b981;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-check-circle"></i></div>
+          <div class="guide-card-title">Tips for Accurate Painting</div>
+        </div>
+        <div class="guide-card-body">
+          <ul>
+            <li>Start by painting all <strong>center tiles</strong> first — they define each face's identity and cannot be swapped.</li>
+            <li>Hold your physical cube in one fixed position while painting to avoid confusion.</li>
+            <li>If you get an error, it usually means a color appears more or fewer than <strong>9 times</strong>. Use the <strong>Reset</strong> button to start over.</li>
+            <li>The solver auto-paints center tiles. You only need to paint the <strong>edge and corner stickers</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- About the 3x3 -->
+      <div class="guide-card wide" data-delay="3"
+        style="--card-accent: #f97316; --card-icon-bg: rgba(249,115,22,0.1); --card-icon-border: rgba(249,115,22,0.2); --card-icon-color: #f97316;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-cube"></i></div>
+          <div class="guide-card-title">About the 3×3×3 Rubik's Cube</div>
+        </div>
+        <div class="guide-card-body">
+          <p>
+            The 3×3×3 Rubik's Cube is the world's most iconic puzzle, invented in
+            <strong>1974</strong> by Ernő Rubik. It has <strong>43,252,003,274,489,856,000</strong>
+            (43 quintillion) possible states, yet any scramble can be solved in <strong>20 moves
+            or fewer</strong> — a limit known as <strong>God's Number</strong>. The cube consists
+            of 26 visible pieces: 8 corners, 12 edges, and 6 fixed centers. The current world
+            record for a single solve is <strong>2.76 seconds</strong>.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="solver-page-footer">
+    <p>© 2026 Rubikan. Crafted with passion for the puzzle.</p>
+  </footer>
+
   <script type="module">
     import { initNavbar } from '../../js/navbar.js';
     import '../../js/solver-3x3.js';
@@ -120,6 +337,22 @@
     initNavbar('../../');
 
     window.dispatchEvent(new CustomEvent('route-changed', { detail: '/solver/3x3x3-cube' }));
+
+    // Intersection Observer for scroll-reveal animations
+    const animatedElements = document.querySelectorAll('.guide-step, .guide-card, .color-ref-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseInt(entry.target.dataset.delay || 0, 10) * 120;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    animatedElements.forEach(el => observer.observe(el));
   </script>
 </body>
 
