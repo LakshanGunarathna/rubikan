@@ -6,8 +6,8 @@ export function initNavbar() {
 
   const navbarHTML = `
     <div class="nav-brand">
-      <img src="${ROOT}assets/Logo.png" alt="Rubikan Logo" class="nav-logo-img" />
-      <span class="nav-brand-text">Rubikan</span>
+      <img src="${ROOT}assets/Logo.png" alt="Rubiks' Art Logo" class="nav-logo-img" />
+      <span class="nav-brand-text">Rubiks' Art</span>
     </div>
     <ul class="nav-links">
         <li class="nav-item">

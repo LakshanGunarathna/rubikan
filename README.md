@@ -1,1 +1,1 @@
-# rubikan
+# Rubiks' Art
