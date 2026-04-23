@@ -569,6 +569,12 @@
       "name": "Cube in a Checkerboard",
       "moves": "U D' R2 D2 L' R B' F L' R B m2 B' F l2 F' L R' F l2 B F' l2 r2 F' L R' F M2 F' D2 R2 U' D Lw Dw Lw2 Dw' Rw Bw' Lw2 Fw Dw' Rw2 Uw Lw' Fw Rw2 Fw' Rw'",
       "imageUrl": "/assets/cube-arts/5x5_21.png"
+    },
+    {
+      "id": "5x5_22",
+      "name": "Cube in a Cube",
+      "moves": "F L F U' R U F2 L2 U' L' B D' B' L2 U",
+      "imageUrl": "/assets/cube-arts/5x5_22.png"
     }
   ]
 }
