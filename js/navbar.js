@@ -32,7 +32,7 @@ export function initNavbar() {
             </ul>
         </li>
         <li class="nav-item">
-            <a href="${ROOT}rubiks-art/" class="nav-link">Rubik's Art</a>
+            <a href="${ROOT}rubiks-art/" class="nav-link">Puzzle Arts</a>
         </li>
     </ul>
   `;
@@ -45,10 +45,10 @@ export function initNavbar() {
     const currentPath = window.location.pathname;
     nav.querySelectorAll('a').forEach(el => {
       const href = el.getAttribute('href');
-      
+
       // Determine if active (handles cases like /rubikan/ and /rubikan/index.html)
       const isActive = (href === ROOT && (currentPath === ROOT || currentPath.endsWith(ROOT + 'index.html'))) ||
-                       (href !== ROOT && href !== '#' && (currentPath.includes(href) || (ROOT !== '/' && currentPath.includes(href.replace(ROOT, '/')))));
+        (href !== ROOT && href !== '#' && (currentPath.includes(href) || (ROOT !== '/' && currentPath.includes(href.replace(ROOT, '/')))));
 
       if (isActive) {
         el.classList.add('active');
