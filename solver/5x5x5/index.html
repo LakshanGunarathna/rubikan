@@ -47,12 +47,16 @@
       </div>
     </div>
     <div id="playback-phase-5x5" class="d-none">
-      <div class="action-instruction"><p id="humanInstruction-5x5">Hold your Cube as shown below, Press "Next" to start.</p></div>
-      <div class="notation-instruction"><h2 id="solutionText-5x5">READY TO SOLVE!</h2></div>
+      <div class="action-instruction">
+        <p id="humanInstruction-5x5">Hold your Cube as shown below, Press "Next" to start.</p>
+      </div>
+      <div class="notation-instruction">
+        <h2 id="solutionText-5x5">READY TO SOLVE!</h2>
+      </div>
       <button id="btnSideBack-5x5" class="side-nav left-nav" disabled>&lt; Back</button>
       <button id="btnSideNext-5x5" class="side-nav right-nav">Next &gt;</button>
     </div>
-    <div class="solver-scroll-hint"><span>How to Use</span><i class="fas fa-chevron-down bounce-icon"></i></div>
+    <!-- <div class="solver-scroll-hint"><span>How to Use</span><i class="fas fa-chevron-down bounce-icon"></i></div> -->
   </div>
 
   <div id="app-5x5" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></div>
@@ -74,7 +78,8 @@
       <p class="error-subtitle">If you continue your current coloring will be lost.</p>
       <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
         <button id="confirmResetCancel-5x5" class="error-popup-btn">Cancel</button>
-        <button id="confirmResetOk-5x5" class="error-popup-btn" style="background: rgba(220, 38, 38, 0.2) !important; border-color: rgba(220, 38, 38, 0.3) !important; color: #b91c1c !important;">Reset</button>
+        <button id="confirmResetOk-5x5" class="error-popup-btn"
+          style="background: rgba(220, 38, 38, 0.2) !important; border-color: rgba(220, 38, 38, 0.3) !important; color: #b91c1c !important;">Reset</button>
       </div>
     </div>
   </div>
@@ -87,10 +92,15 @@
   </div>
   <div id="solverLoadingOverlay-5x5" class="error-popup-overlay d-none">
     <div class="loading-popup">
-      <div class="scanner-container"><div class="scanner-line"></div><div class="cube-wireframe"></div></div>
+      <div class="scanner-container">
+        <div class="scanner-line"></div>
+        <div class="cube-wireframe"></div>
+      </div>
       <h3>Finding Solution...</h3>
       <p class="loading-subtitle">Our AI is scanning millions of possibilities to find the quickest path.</p>
-      <div class="loading-bar-container"><div id="loadingBar-5x5" class="loading-bar"></div></div>
+      <div class="loading-bar-container">
+        <div id="loadingBar-5x5" class="loading-bar"></div>
+      </div>
       <button id="btnCancelSolve-5x5" class="action-btn cancel-btn">Cancel</button>
     </div>
   </div>
@@ -110,36 +120,48 @@
     <div class="guide-header">
       <div class="guide-icon-wrap"><i class="fas fa-book-open"></i></div>
       <h2 class="guide-title">How to Use the 5×5 Solver</h2>
-      <p class="guide-subtitle">Paint your Professor's Cube's current state onto the 3D model, press Solve, and follow the step-by-step instructions to reach a solved state.</p>
+      <p class="guide-subtitle">Paint your Professor's Cube's current state onto the 3D model, press Solve, and follow
+        the step-by-step instructions to reach a solved state.</p>
     </div>
 
     <div class="guide-steps">
-      <div class="guide-step" data-delay="0" style="--step-color: #f97316; --step-bg: rgba(249,115,22,0.1); --step-border: rgba(249,115,22,0.2);">
+      <div class="guide-step" data-delay="0"
+        style="--step-color: #f97316; --step-bg: rgba(249,115,22,0.1); --step-border: rgba(249,115,22,0.2);">
         <div class="step-number">1</div>
         <div class="step-content">
           <div class="step-title">Pick a Color from the Palette</div>
-          <p class="step-desc">Use the <span class="highlight">color palette</span> in the top-right corner. Select from the 6 standard colors: <strong>White, Yellow, Red, Orange, Blue,</strong> and <strong>Green</strong>.</p>
+          <p class="step-desc">Use the <span class="highlight">color palette</span> in the top-right corner. Select from
+            the 6 standard colors: <strong>White, Yellow, Red, Orange, Blue,</strong> and <strong>Green</strong>.</p>
         </div>
       </div>
-      <div class="guide-step" data-delay="1" style="--step-color: #3b82f6; --step-bg: rgba(59,130,246,0.1); --step-border: rgba(59,130,246,0.2);">
+      <div class="guide-step" data-delay="1"
+        style="--step-color: #3b82f6; --step-bg: rgba(59,130,246,0.1); --step-border: rgba(59,130,246,0.2);">
         <div class="step-number">2</div>
         <div class="step-content">
           <div class="step-title">Paint All 150 Tiles</div>
-          <p class="step-desc">Click on any tile to paint it. Use the <span class="highlight">rotation arrows</span> to access all 6 faces. Each face has <strong>25 tiles</strong> (5×5 grid) — this is the most tile-intensive cube, so take your time for accuracy.</p>
+          <p class="step-desc">Click on any tile to paint it. Use the <span class="highlight">rotation arrows</span> to
+            access all 6 faces. Each face has <strong>25 tiles</strong> (5×5 grid) — this is the most tile-intensive
+            cube, so take your time for accuracy.</p>
         </div>
       </div>
-      <div class="guide-step" data-delay="2" style="--step-color: #10b981; --step-bg: rgba(16,185,129,0.1); --step-border: rgba(16,185,129,0.2);">
+      <div class="guide-step" data-delay="2"
+        style="--step-color: #10b981; --step-bg: rgba(16,185,129,0.1); --step-border: rgba(16,185,129,0.2);">
         <div class="step-number">3</div>
         <div class="step-content">
           <div class="step-title">Verify Your Colors</div>
-          <p class="step-desc">Each color must appear exactly <span class="highlight">25 times</span> across all faces. The 5×5 has a <strong>fixed center tile</strong> on each face (like the 3×3), which helps orient your painting. Double-check every face before solving.</p>
+          <p class="step-desc">Each color must appear exactly <span class="highlight">25 times</span> across all faces.
+            The 5×5 has a <strong>fixed center tile</strong> on each face (like the 3×3), which helps orient your
+            painting. Double-check every face before solving.</p>
         </div>
       </div>
-      <div class="guide-step" data-delay="3" style="--step-color: #a855f7; --step-bg: rgba(168,85,247,0.1); --step-border: rgba(168,85,247,0.2);">
+      <div class="guide-step" data-delay="3"
+        style="--step-color: #a855f7; --step-bg: rgba(168,85,247,0.1); --step-border: rgba(168,85,247,0.2);">
         <div class="step-number">4</div>
         <div class="step-content">
           <div class="step-title">Hit "Solve!" and Follow Along</div>
-          <p class="step-desc">Press <span class="highlight">Solve!</span> to validate and compute a solution. The 5×5 solver may take several seconds due to the puzzle's immense complexity. Follow each move in <strong>playback mode</strong> using <strong>Next</strong> and <strong>Back</strong>.</p>
+          <p class="step-desc">Press <span class="highlight">Solve!</span> to validate and compute a solution. The 5×5
+            solver may take several seconds due to the puzzle's immense complexity. Follow each move in <strong>playback
+              mode</strong> using <strong>Next</strong> and <strong>Back</strong>.</p>
         </div>
       </div>
     </div>
@@ -149,21 +171,52 @@
       <p class="guide-subtitle">The standard color scheme for the 5×5 Professor's Cube.</p>
     </div>
     <div class="color-ref-strip">
-      <div class="color-ref-item" data-delay="0"><div class="color-swatch" style="background: #ffffff;"></div><span class="color-ref-label">White</span><span class="color-ref-face">Top (U)</span></div>
-      <div class="color-ref-item" data-delay="1"><div class="color-swatch" style="background: #ffd500;"></div><span class="color-ref-label">Yellow</span><span class="color-ref-face">Bottom (D)</span></div>
-      <div class="color-ref-item" data-delay="2"><div class="color-swatch" style="background: #b71234;"></div><span class="color-ref-label">Red</span><span class="color-ref-face">Front (F)</span></div>
-      <div class="color-ref-item" data-delay="3"><div class="color-swatch" style="background: #ff5800;"></div><span class="color-ref-label">Orange</span><span class="color-ref-face">Back (B)</span></div>
-      <div class="color-ref-item" data-delay="4"><div class="color-swatch" style="background: #0046ad;"></div><span class="color-ref-label">Blue</span><span class="color-ref-face">Right (R)</span></div>
-      <div class="color-ref-item" data-delay="5"><div class="color-swatch" style="background: #009b48;"></div><span class="color-ref-label">Green</span><span class="color-ref-face">Left (L)</span></div>
+      <div class="color-ref-item" data-delay="0">
+        <div class="color-swatch" style="background: #ffffff;"></div><span class="color-ref-label">White</span><span
+          class="color-ref-face">Top (U)</span>
+      </div>
+      <div class="color-ref-item" data-delay="1">
+        <div class="color-swatch" style="background: #ffd500;"></div><span class="color-ref-label">Yellow</span><span
+          class="color-ref-face">Bottom (D)</span>
+      </div>
+      <div class="color-ref-item" data-delay="2">
+        <div class="color-swatch" style="background: #b71234;"></div><span class="color-ref-label">Red</span><span
+          class="color-ref-face">Front (F)</span>
+      </div>
+      <div class="color-ref-item" data-delay="3">
+        <div class="color-swatch" style="background: #ff5800;"></div><span class="color-ref-label">Orange</span><span
+          class="color-ref-face">Back (B)</span>
+      </div>
+      <div class="color-ref-item" data-delay="4">
+        <div class="color-swatch" style="background: #0046ad;"></div><span class="color-ref-label">Blue</span><span
+          class="color-ref-face">Right (R)</span>
+      </div>
+      <div class="color-ref-item" data-delay="5">
+        <div class="color-swatch" style="background: #009b48;"></div><span class="color-ref-label">Green</span><span
+          class="color-ref-face">Left (L)</span>
+      </div>
     </div>
 
     <div class="guide-cards">
-      <div class="guide-card" data-delay="0" style="--card-accent: #3b82f6; --card-icon-bg: rgba(59,130,246,0.1); --card-icon-border: rgba(59,130,246,0.2); --card-icon-color: #3b82f6;">
-        <div class="guide-card-header"><div class="guide-card-icon"><i class="fas fa-microchip"></i></div><div class="guide-card-title">About the Solver</div></div>
-        <div class="guide-card-body"><p>Our 5×5 solver uses the <strong>Reduction Method</strong> — it first groups the 9 center pieces per face, then pairs the edge pieces, and finally solves it as a 3×3. Solutions typically require <strong>60–80 moves</strong>. With <strong>2.83 × 10⁷⁴</strong> possible states, this is by far the most complex cube we solve.</p></div>
+      <div class="guide-card" data-delay="0"
+        style="--card-accent: #3b82f6; --card-icon-bg: rgba(59,130,246,0.1); --card-icon-border: rgba(59,130,246,0.2); --card-icon-color: #3b82f6;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-microchip"></i></div>
+          <div class="guide-card-title">About the Solver</div>
+        </div>
+        <div class="guide-card-body">
+          <p>Our 5×5 solver uses the <strong>Reduction Method</strong> — it first groups the 9 center pieces per face,
+            then pairs the edge pieces, and finally solves it as a 3×3. Solutions typically require <strong>60–80
+              moves</strong>. With <strong>2.83 × 10⁷⁴</strong> possible states, this is by far the most complex cube we
+            solve.</p>
+        </div>
       </div>
-      <div class="guide-card" data-delay="1" style="--card-accent: #a855f7; --card-icon-bg: rgba(168,85,247,0.1); --card-icon-border: rgba(168,85,247,0.2); --card-icon-color: #a855f7;">
-        <div class="guide-card-header"><div class="guide-card-icon"><i class="fas fa-font"></i></div><div class="guide-card-title">Understanding Move Notation</div></div>
+      <div class="guide-card" data-delay="1"
+        style="--card-accent: #a855f7; --card-icon-bg: rgba(168,85,247,0.1); --card-icon-border: rgba(168,85,247,0.2); --card-icon-color: #a855f7;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-font"></i></div>
+          <div class="guide-card-title">Understanding Move Notation</div>
+        </div>
         <div class="guide-card-body">
           <ul>
             <li><strong>R, L, U, D, F, B</strong> — Outer face moves (same as 3×3)</li>
@@ -174,25 +227,41 @@
           </ul>
         </div>
       </div>
-      <div class="guide-card wide" data-delay="2" style="--card-accent: #10b981; --card-icon-bg: rgba(16,185,129,0.1); --card-icon-border: rgba(16,185,129,0.2); --card-icon-color: #10b981;">
-        <div class="guide-card-header"><div class="guide-card-icon"><i class="fas fa-check-circle"></i></div><div class="guide-card-title">Tips for Accurate Painting</div></div>
+      <div class="guide-card wide" data-delay="2"
+        style="--card-accent: #10b981; --card-icon-bg: rgba(16,185,129,0.1); --card-icon-border: rgba(16,185,129,0.2); --card-icon-color: #10b981;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-check-circle"></i></div>
+          <div class="guide-card-title">Tips for Accurate Painting</div>
+        </div>
         <div class="guide-card-body">
           <ul>
             <li>Start with the <strong>fixed center tile</strong> on each face — it defines that face's color.</li>
             <li>With 150 total tiles (25 per face), take your time and rotate frequently to verify.</li>
             <li>If you get an error, a color likely appears more or fewer than <strong>25 times</strong>.</li>
-            <li>The 5×5 has <strong>no parity issues</strong> (unlike the 4×4), so if your painting is correct, the solver will always find a solution.</li>
+            <li>The 5×5 has <strong>no parity issues</strong> (unlike the 4×4), so if your painting is correct, the
+              solver will always find a solution.</li>
           </ul>
         </div>
       </div>
-      <div class="guide-card wide" data-delay="3" style="--card-accent: #f97316; --card-icon-bg: rgba(249,115,22,0.1); --card-icon-border: rgba(249,115,22,0.2); --card-icon-color: #f97316;">
-        <div class="guide-card-header"><div class="guide-card-icon"><i class="fas fa-cube"></i></div><div class="guide-card-title">About the 5×5×5 Professor's Cube</div></div>
-        <div class="guide-card-body"><p>Invented in <strong>1981</strong> by Udo Krell, the Professor's Cube has <strong>98 visible pieces</strong> and an astronomical <strong>2.83 × 10⁷⁴</strong> possible states. Unlike the 4×4, it has <strong>no parity errors</strong> thanks to its odd-numbered layers. The world record is <strong>32.14 seconds</strong> by Max Park.</p></div>
+      <div class="guide-card wide" data-delay="3"
+        style="--card-accent: #f97316; --card-icon-bg: rgba(249,115,22,0.1); --card-icon-border: rgba(249,115,22,0.2); --card-icon-color: #f97316;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-cube"></i></div>
+          <div class="guide-card-title">About the 5×5×5 Professor's Cube</div>
+        </div>
+        <div class="guide-card-body">
+          <p>Invented in <strong>1981</strong> by Udo Krell, the Professor's Cube has <strong>98 visible pieces</strong>
+            and an astronomical <strong>2.83 × 10⁷⁴</strong> possible states. Unlike the 4×4, it has <strong>no parity
+              errors</strong> thanks to its odd-numbered layers. The world record is <strong>32.14 seconds</strong> by
+            Max Park.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer class="solver-page-footer"><p>© 2026 Rubiks' Art. Crafted with passion for the puzzle.</p></footer>
+  <footer class="solver-page-footer">
+    <p>© 2026 Rubiks' Art. Crafted with passion for the puzzle.</p>
+  </footer>
 
   <script type="module">
     import { initNavbar } from '../../js/navbar.js';
@@ -212,4 +281,5 @@
     animatedElements.forEach(el => observer.observe(el));
   </script>
 </body>
+
 </html>

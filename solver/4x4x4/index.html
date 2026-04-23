@@ -47,12 +47,16 @@
       </div>
     </div>
     <div id="playback-phase-4x4" class="d-none">
-      <div class="action-instruction"><p id="humanInstruction-4x4">Hold your Cube as shown below, Press "Next" to start.</p></div>
-      <div class="notation-instruction"><h2 id="solutionText-4x4">READY TO SOLVE!</h2></div>
+      <div class="action-instruction">
+        <p id="humanInstruction-4x4">Hold your Cube as shown below, Press "Next" to start.</p>
+      </div>
+      <div class="notation-instruction">
+        <h2 id="solutionText-4x4">READY TO SOLVE!</h2>
+      </div>
       <button id="btnSideBack-4x4" class="side-nav left-nav" disabled>&lt; Back</button>
       <button id="btnSideNext-4x4" class="side-nav right-nav">Next &gt;</button>
     </div>
-    <div class="solver-scroll-hint"><span>How to Use</span><i class="fas fa-chevron-down bounce-icon"></i></div>
+    <!-- <div class="solver-scroll-hint"><span>How to Use</span><i class="fas fa-chevron-down bounce-icon"></i></div> -->
   </div>
 
   <div id="app-4x4" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></div>
@@ -74,7 +78,8 @@
       <p class="error-subtitle">If you continue your current coloring will be lost.</p>
       <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
         <button id="confirmResetCancel-4x4" class="error-popup-btn">Cancel</button>
-        <button id="confirmResetOk-4x4" class="error-popup-btn" style="background: rgba(220, 38, 38, 0.2) !important; border-color: rgba(220, 38, 38, 0.3) !important; color: #b91c1c !important;">Reset</button>
+        <button id="confirmResetOk-4x4" class="error-popup-btn"
+          style="background: rgba(220, 38, 38, 0.2) !important; border-color: rgba(220, 38, 38, 0.3) !important; color: #b91c1c !important;">Reset</button>
       </div>
     </div>
   </div>
@@ -87,10 +92,15 @@
   </div>
   <div id="solverLoadingOverlay-4x4" class="error-popup-overlay d-none">
     <div class="loading-popup">
-      <div class="scanner-container"><div class="scanner-line"></div><div class="cube-wireframe"></div></div>
+      <div class="scanner-container">
+        <div class="scanner-line"></div>
+        <div class="cube-wireframe"></div>
+      </div>
       <h3>Finding Solution...</h3>
       <p class="loading-subtitle">Our AI is scanning millions of possibilities to find the quickest path.</p>
-      <div class="loading-bar-container"><div id="loadingBar-4x4" class="loading-bar"></div></div>
+      <div class="loading-bar-container">
+        <div id="loadingBar-4x4" class="loading-bar"></div>
+      </div>
       <button id="btnCancelSolve-4x4" class="action-btn cancel-btn">Cancel</button>
     </div>
   </div>
@@ -110,36 +120,48 @@
     <div class="guide-header">
       <div class="guide-icon-wrap"><i class="fas fa-book-open"></i></div>
       <h2 class="guide-title">How to Use the 4×4 Solver</h2>
-      <p class="guide-subtitle">Paint your Revenge Cube's current state onto the 3D model, press Solve, and follow the step-by-step instructions to reach a solved state.</p>
+      <p class="guide-subtitle">Paint your Revenge Cube's current state onto the 3D model, press Solve, and follow the
+        step-by-step instructions to reach a solved state.</p>
     </div>
 
     <div class="guide-steps">
-      <div class="guide-step" data-delay="0" style="--step-color: #f97316; --step-bg: rgba(249,115,22,0.1); --step-border: rgba(249,115,22,0.2);">
+      <div class="guide-step" data-delay="0"
+        style="--step-color: #f97316; --step-bg: rgba(249,115,22,0.1); --step-border: rgba(249,115,22,0.2);">
         <div class="step-number">1</div>
         <div class="step-content">
           <div class="step-title">Pick a Color from the Palette</div>
-          <p class="step-desc">Use the <span class="highlight">color palette</span> in the top-right corner. Select from the 6 standard colors: <strong>White, Yellow, Red, Orange, Blue,</strong> and <strong>Green</strong>.</p>
+          <p class="step-desc">Use the <span class="highlight">color palette</span> in the top-right corner. Select from
+            the 6 standard colors: <strong>White, Yellow, Red, Orange, Blue,</strong> and <strong>Green</strong>.</p>
         </div>
       </div>
-      <div class="guide-step" data-delay="1" style="--step-color: #3b82f6; --step-bg: rgba(59,130,246,0.1); --step-border: rgba(59,130,246,0.2);">
+      <div class="guide-step" data-delay="1"
+        style="--step-color: #3b82f6; --step-bg: rgba(59,130,246,0.1); --step-border: rgba(59,130,246,0.2);">
         <div class="step-number">2</div>
         <div class="step-content">
           <div class="step-title">Paint All 96 Tiles</div>
-          <p class="step-desc">Click on any tile to paint it. Use the <span class="highlight">rotation arrows</span> to reach all 6 faces. Each face has <strong>16 tiles</strong> (4×4 grid). Paint every tile to match your physical cube's scrambled state exactly.</p>
+          <p class="step-desc">Click on any tile to paint it. Use the <span class="highlight">rotation arrows</span> to
+            reach all 6 faces. Each face has <strong>16 tiles</strong> (4×4 grid). Paint every tile to match your
+            physical cube's scrambled state exactly.</p>
         </div>
       </div>
-      <div class="guide-step" data-delay="2" style="--step-color: #10b981; --step-bg: rgba(16,185,129,0.1); --step-border: rgba(16,185,129,0.2);">
+      <div class="guide-step" data-delay="2"
+        style="--step-color: #10b981; --step-bg: rgba(16,185,129,0.1); --step-border: rgba(16,185,129,0.2);">
         <div class="step-number">3</div>
         <div class="step-content">
           <div class="step-title">Verify Your Colors</div>
-          <p class="step-desc">Each color must appear exactly <span class="highlight">16 times</span> across all faces. The 4×4 has <strong>no fixed centers</strong> — the solver uses the 4 center tiles per face to determine orientation. Double-check before solving.</p>
+          <p class="step-desc">Each color must appear exactly <span class="highlight">16 times</span> across all faces.
+            The 4×4 has <strong>no fixed centers</strong> — the solver uses the 4 center tiles per face to determine
+            orientation. Double-check before solving.</p>
         </div>
       </div>
-      <div class="guide-step" data-delay="3" style="--step-color: #a855f7; --step-bg: rgba(168,85,247,0.1); --step-border: rgba(168,85,247,0.2);">
+      <div class="guide-step" data-delay="3"
+        style="--step-color: #a855f7; --step-bg: rgba(168,85,247,0.1); --step-border: rgba(168,85,247,0.2);">
         <div class="step-number">4</div>
         <div class="step-content">
           <div class="step-title">Hit "Solve!" and Follow Along</div>
-          <p class="step-desc">Press <span class="highlight">Solve!</span> to validate and compute a solution. The 4×4 solver may take a few moments due to the puzzle's complexity. Follow each move in <strong>playback mode</strong> using <strong>Next</strong> and <strong>Back</strong>.</p>
+          <p class="step-desc">Press <span class="highlight">Solve!</span> to validate and compute a solution. The 4×4
+            solver may take a few moments due to the puzzle's complexity. Follow each move in <strong>playback
+              mode</strong> using <strong>Next</strong> and <strong>Back</strong>.</p>
         </div>
       </div>
     </div>
@@ -149,21 +171,52 @@
       <p class="guide-subtitle">The standard color scheme for the 4×4 Revenge Cube.</p>
     </div>
     <div class="color-ref-strip">
-      <div class="color-ref-item" data-delay="0"><div class="color-swatch" style="background: #ffffff;"></div><span class="color-ref-label">White</span><span class="color-ref-face">Top (U)</span></div>
-      <div class="color-ref-item" data-delay="1"><div class="color-swatch" style="background: #ffd500;"></div><span class="color-ref-label">Yellow</span><span class="color-ref-face">Bottom (D)</span></div>
-      <div class="color-ref-item" data-delay="2"><div class="color-swatch" style="background: #b71234;"></div><span class="color-ref-label">Red</span><span class="color-ref-face">Front (F)</span></div>
-      <div class="color-ref-item" data-delay="3"><div class="color-swatch" style="background: #ff5800;"></div><span class="color-ref-label">Orange</span><span class="color-ref-face">Back (B)</span></div>
-      <div class="color-ref-item" data-delay="4"><div class="color-swatch" style="background: #0046ad;"></div><span class="color-ref-label">Blue</span><span class="color-ref-face">Right (R)</span></div>
-      <div class="color-ref-item" data-delay="5"><div class="color-swatch" style="background: #009b48;"></div><span class="color-ref-label">Green</span><span class="color-ref-face">Left (L)</span></div>
+      <div class="color-ref-item" data-delay="0">
+        <div class="color-swatch" style="background: #ffffff;"></div><span class="color-ref-label">White</span><span
+          class="color-ref-face">Top (U)</span>
+      </div>
+      <div class="color-ref-item" data-delay="1">
+        <div class="color-swatch" style="background: #ffd500;"></div><span class="color-ref-label">Yellow</span><span
+          class="color-ref-face">Bottom (D)</span>
+      </div>
+      <div class="color-ref-item" data-delay="2">
+        <div class="color-swatch" style="background: #b71234;"></div><span class="color-ref-label">Red</span><span
+          class="color-ref-face">Front (F)</span>
+      </div>
+      <div class="color-ref-item" data-delay="3">
+        <div class="color-swatch" style="background: #ff5800;"></div><span class="color-ref-label">Orange</span><span
+          class="color-ref-face">Back (B)</span>
+      </div>
+      <div class="color-ref-item" data-delay="4">
+        <div class="color-swatch" style="background: #0046ad;"></div><span class="color-ref-label">Blue</span><span
+          class="color-ref-face">Right (R)</span>
+      </div>
+      <div class="color-ref-item" data-delay="5">
+        <div class="color-swatch" style="background: #009b48;"></div><span class="color-ref-label">Green</span><span
+          class="color-ref-face">Left (L)</span>
+      </div>
     </div>
 
     <div class="guide-cards">
-      <div class="guide-card" data-delay="0" style="--card-accent: #3b82f6; --card-icon-bg: rgba(59,130,246,0.1); --card-icon-border: rgba(59,130,246,0.2); --card-icon-color: #3b82f6;">
-        <div class="guide-card-header"><div class="guide-card-icon"><i class="fas fa-microchip"></i></div><div class="guide-card-title">About the Solver</div></div>
-        <div class="guide-card-body"><p>Our 4×4 solver uses a <strong>reduction-based approach</strong> — it first pairs centers and edges to reduce the puzzle to a 3×3-equivalent state, then applies the Kociemba algorithm. Solutions typically require <strong>40–60 moves</strong> and may take a few seconds to compute due to the 7.40 × 10⁴⁵ possible states.</p></div>
+      <div class="guide-card" data-delay="0"
+        style="--card-accent: #3b82f6; --card-icon-bg: rgba(59,130,246,0.1); --card-icon-border: rgba(59,130,246,0.2); --card-icon-color: #3b82f6;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-microchip"></i></div>
+          <div class="guide-card-title">About the Solver</div>
+        </div>
+        <div class="guide-card-body">
+          <p>Our 4×4 solver uses a <strong>reduction-based approach</strong> — it first pairs centers and edges to
+            reduce the puzzle to a 3×3-equivalent state, then applies the Kociemba algorithm. Solutions typically
+            require <strong>40–60 moves</strong> and may take a few seconds to compute due to the 7.40 × 10⁴⁵ possible
+            states.</p>
+        </div>
       </div>
-      <div class="guide-card" data-delay="1" style="--card-accent: #a855f7; --card-icon-bg: rgba(168,85,247,0.1); --card-icon-border: rgba(168,85,247,0.2); --card-icon-color: #a855f7;">
-        <div class="guide-card-header"><div class="guide-card-icon"><i class="fas fa-font"></i></div><div class="guide-card-title">Understanding Move Notation</div></div>
+      <div class="guide-card" data-delay="1"
+        style="--card-accent: #a855f7; --card-icon-bg: rgba(168,85,247,0.1); --card-icon-border: rgba(168,85,247,0.2); --card-icon-color: #a855f7;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-font"></i></div>
+          <div class="guide-card-title">Understanding Move Notation</div>
+        </div>
         <div class="guide-card-body">
           <ul>
             <li><strong>R, L, U, D, F, B</strong> — Outer face moves (same as 3×3)</li>
@@ -173,25 +226,41 @@
           </ul>
         </div>
       </div>
-      <div class="guide-card wide" data-delay="2" style="--card-accent: #10b981; --card-icon-bg: rgba(16,185,129,0.1); --card-icon-border: rgba(16,185,129,0.2); --card-icon-color: #10b981;">
-        <div class="guide-card-header"><div class="guide-card-icon"><i class="fas fa-check-circle"></i></div><div class="guide-card-title">Tips for Accurate Painting</div></div>
+      <div class="guide-card wide" data-delay="2"
+        style="--card-accent: #10b981; --card-icon-bg: rgba(16,185,129,0.1); --card-icon-border: rgba(16,185,129,0.2); --card-icon-color: #10b981;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-check-circle"></i></div>
+          <div class="guide-card-title">Tips for Accurate Painting</div>
+        </div>
         <div class="guide-card-body">
           <ul>
-            <li>The 4×4 has <strong>4 center tiles per face</strong> — paint them first to establish each face's identity.</li>
+            <li>The 4×4 has <strong>4 center tiles per face</strong> — paint them first to establish each face's
+              identity.</li>
             <li>With 96 total tiles, take your time and rotate frequently to verify all faces.</li>
             <li>If you get an error, a color likely appears more or fewer than <strong>16 times</strong>.</li>
             <li>The solver handles <strong>parity errors</strong> automatically — just paint what you see.</li>
           </ul>
         </div>
       </div>
-      <div class="guide-card wide" data-delay="3" style="--card-accent: #f97316; --card-icon-bg: rgba(249,115,22,0.1); --card-icon-border: rgba(249,115,22,0.2); --card-icon-color: #f97316;">
-        <div class="guide-card-header"><div class="guide-card-icon"><i class="fas fa-cube"></i></div><div class="guide-card-title">About the 4×4×4 Revenge Cube</div></div>
-        <div class="guide-card-body"><p>Invented in <strong>1981</strong> by Péter Sebestény, the Revenge Cube has <strong>56 visible pieces</strong> and <strong>7.40 × 10⁴⁵</strong> possible states. It's infamous for <strong>parity errors</strong> — situations impossible on a 3×3 that require special algorithms. The world record is <strong>16.79 seconds</strong> by Max Park.</p></div>
+      <div class="guide-card wide" data-delay="3"
+        style="--card-accent: #f97316; --card-icon-bg: rgba(249,115,22,0.1); --card-icon-border: rgba(249,115,22,0.2); --card-icon-color: #f97316;">
+        <div class="guide-card-header">
+          <div class="guide-card-icon"><i class="fas fa-cube"></i></div>
+          <div class="guide-card-title">About the 4×4×4 Revenge Cube</div>
+        </div>
+        <div class="guide-card-body">
+          <p>Invented in <strong>1981</strong> by Péter Sebestény, the Revenge Cube has <strong>56 visible
+              pieces</strong> and <strong>7.40 × 10⁴⁵</strong> possible states. It's infamous for <strong>parity
+              errors</strong> — situations impossible on a 3×3 that require special algorithms. The world record is
+            <strong>16.79 seconds</strong> by Max Park.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer class="solver-page-footer"><p>© 2026 Rubiks' Art. Crafted with passion for the puzzle.</p></footer>
+  <footer class="solver-page-footer">
+    <p>© 2026 Rubiks' Art. Crafted with passion for the puzzle.</p>
+  </footer>
 
   <script type="module">
     import { initNavbar } from '../../js/navbar.js';
@@ -211,4 +280,5 @@
     animatedElements.forEach(el => observer.observe(el));
   </script>
 </body>
+
 </html>
