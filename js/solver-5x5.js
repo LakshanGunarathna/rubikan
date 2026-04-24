@@ -559,7 +559,7 @@ document.getElementById('btnStartSolve-5x5').addEventListener('click', () => {
 
     solveAbortController = new AbortController();
 
-    const apiBaseUrl = 'https://cubesolverapi-917370863662.europe-west1.run.app';
+    const apiBaseUrl = 'https://rubik-cube-solver-api-24244059806.europe-west1.run.app';
     fetch(`${apiBaseUrl}/solve`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
