@@ -498,8 +498,8 @@ document.getElementById('btnStartSolve-4x4').addEventListener('click', () => {
     // Setup AbortController for cancellation
     solveAbortController = new AbortController();
 
-    // Hardcoding to the Railway URL so you can test it from anywhere (even locally)
-    const apiBaseUrl = 'https://rubikan-production.up.railway.app';
+    // Hardcoding to the Google Cloud Run URL so you can test it from anywhere (even locally)
+    const apiBaseUrl = 'https://rubik-cube-solver-api-24244059806.europe-west1.run.app';
     fetch(`${apiBaseUrl}/solve`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

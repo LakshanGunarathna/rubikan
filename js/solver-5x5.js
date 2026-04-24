@@ -7,7 +7,7 @@ import * as TWEEN from '@tweenjs/tween.js';
 const container = document.getElementById('app-5x5');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-camera.position.set(8, 8, 12); 
+camera.position.set(8, 8, 12);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -301,11 +301,11 @@ function autoFillCenters() {
     const px = Math.round(c.position.x);
     const py = Math.round(c.position.y);
     const pz = Math.round(c.position.z);
-    
+
     if ((Math.abs(px) === 2 && py === 0 && pz === 0) ||
-        (Math.abs(py) === 2 && px === 0 && pz === 0) ||
-        (Math.abs(pz) === 2 && px === 0 && py === 0)) {
-        
+      (Math.abs(py) === 2 && px === 0 && pz === 0) ||
+      (Math.abs(pz) === 2 && px === 0 && py === 0)) {
+
       const st = c.children.find(child => child.userData && child.userData.isSticker);
       if (st) {
         centerStickers.push({
@@ -426,11 +426,11 @@ window.addEventListener('pointerup', (e) => {
     const px = Math.round(hit.object.parent.position.x);
     const py = Math.round(hit.object.parent.position.y);
     const pz = Math.round(hit.object.parent.position.z);
-    
+
     // Check if it is a central piece
     const isCenter = (Math.abs(px) === 2 && py === 0 && pz === 0) ||
-                     (Math.abs(py) === 2 && px === 0 && pz === 0) ||
-                     (Math.abs(pz) === 2 && px === 0 && py === 0);
+      (Math.abs(py) === 2 && px === 0 && pz === 0) ||
+      (Math.abs(pz) === 2 && px === 0 && py === 0);
 
     if (isCenter && OPPOSITE_COLORS[selectedColorHex] !== undefined) {
       const oppP = cubies.find(op => Math.round(op.position.x) === -px && Math.round(op.position.y) === -py && Math.round(op.position.z) === -pz);
@@ -538,7 +538,7 @@ document.getElementById('btnStartSolve-5x5').addEventListener('click', () => {
     const loadingOverlay = document.getElementById('solverLoadingOverlay-5x5');
 
     loadingOverlay.classList.remove('d-none');
-    statusEl.innerText = ""; 
+    statusEl.innerText = "";
 
     const stateStr = getCubeString();
 
@@ -559,7 +559,7 @@ document.getElementById('btnStartSolve-5x5').addEventListener('click', () => {
 
     solveAbortController = new AbortController();
 
-    const apiBaseUrl = 'https://rubikan-production.up.railway.app';
+    const apiBaseUrl = 'https://rubik-cube-solver-api-24244059806.europe-west1.run.app';
     fetch(`${apiBaseUrl}/solve`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -666,7 +666,7 @@ function mapWcaToRotation5x5(moveStr) {
     let digit = face;
     let baseFace = moveStr[1];
     mod = moveStr.substring(2);
-    
+
     if (mod.startsWith('w')) {
       face = digit + baseFace + 'w';
       mod = mod.substring(1);
@@ -711,15 +711,15 @@ function mapWcaToRotation5x5(moveStr) {
     case 'f': case '2F': axis = 'z'; ls = [1]; angleDef = -Math.PI / 2; break;
     case 'b': case '2B': axis = 'z'; ls = [-1]; angleDef = Math.PI / 2; break;
 
-    case 'M': case '3L': axis = 'x'; ls = [0]; angleDef = Math.PI / 2; break; 
-    case '3R': axis = 'x'; ls = [0]; angleDef = -Math.PI / 2; break; 
+    case 'M': case '3L': axis = 'x'; ls = [0]; angleDef = Math.PI / 2; break;
+    case '3R': axis = 'x'; ls = [0]; angleDef = -Math.PI / 2; break;
     case 'E': case '3D': axis = 'y'; ls = [0]; angleDef = Math.PI / 2; break;
     case '3U': axis = 'y'; ls = [0]; angleDef = -Math.PI / 2; break;
     case 'S': case '3F': axis = 'z'; ls = [0]; angleDef = -Math.PI / 2; break;
     case '3B': axis = 'z'; ls = [0]; angleDef = Math.PI / 2; break;
 
-    case 'x': axis = 'x'; ls = [-2, -1, 0, 1, 2]; angleDef = -Math.PI / 2; break; 
-    case 'y': axis = 'y'; ls = [-2, -1, 0, 1, 2]; angleDef = -Math.PI / 2; break; 
+    case 'x': axis = 'x'; ls = [-2, -1, 0, 1, 2]; angleDef = -Math.PI / 2; break;
+    case 'y': axis = 'y'; ls = [-2, -1, 0, 1, 2]; angleDef = -Math.PI / 2; break;
     case 'z': axis = 'z'; ls = [-2, -1, 0, 1, 2]; angleDef = -Math.PI / 2; break;
 
     case 'm': axis = 'x'; ls = [-1, 0, 1]; angleDef = Math.PI / 2; break;
@@ -758,7 +758,7 @@ function updatePlaybackUI() {
   const btnSideNext = document.getElementById('btnSideNext-5x5');
   const cubeSolvedMsg = document.getElementById('cubeSolvedMsg-5x5');
 
-  const stepCounterEl = document.querySelector('.step-counter'); 
+  const stepCounterEl = document.querySelector('.step-counter');
   let stepCounter = stepCounterEl;
   if (!stepCounter) {
     stepCounter = document.createElement('div');
