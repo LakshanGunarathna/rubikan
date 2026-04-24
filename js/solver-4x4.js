@@ -533,6 +533,7 @@ document.getElementById('btnStartSolve-4x4').addEventListener('click', () => {
         document.getElementById('paint-phase-4x4').classList.add('d-none');
         document.getElementById('playback-phase-4x4').classList.remove('d-none');
         updatePlaybackUI();
+        if (typeof gtag === 'function') gtag('event', 'solve_started', { 'cube_size': '4x4x4' });
       })
       .catch(err => {
         loadingOverlay.classList.add('d-none');
@@ -796,7 +797,12 @@ function updatePlaybackUI() {
   if (currentStepIndex >= solutionSteps.length) {
     btnSideNext.disabled = true;
     btnSideNext.innerHTML = 'Done!';
-    if (cubeSolvedMsg) cubeSolvedMsg.classList.remove('d-none');
+    if (cubeSolvedMsg) {
+      if (cubeSolvedMsg.classList.contains('d-none')) {
+         cubeSolvedMsg.classList.remove('d-none');
+         if (typeof gtag === 'function') gtag('event', 'cube_solved', { 'cube_size': '4x4x4' });
+      }
+    }
   } else {
     btnSideNext.disabled = false;
     btnSideNext.innerHTML = 'Next &gt;';

@@ -715,6 +715,7 @@ document.getElementById('btnStartSolve-3x3').addEventListener('click', () => {
       document.getElementById('paint-phase-3x3').classList.add('d-none');
       document.getElementById('playback-phase-3x3').classList.remove('d-none');
       updatePlaybackUI();
+      if (typeof gtag === 'function') gtag('event', 'solve_started', { 'cube_size': '3x3x3' });
     }, 3000);
 
   } catch (err) {
@@ -806,7 +807,12 @@ function updatePlaybackUI() {
   if (currentStepIndex >= solutionSteps.length) {
     btnSideNext.disabled = true;
     btnSideNext.innerHTML = 'Done!';
-    if (cubeSolvedMsg) cubeSolvedMsg.classList.remove('d-none');
+    if (cubeSolvedMsg) {
+      if (cubeSolvedMsg.classList.contains('d-none')) {
+         cubeSolvedMsg.classList.remove('d-none');
+         if (typeof gtag === 'function') gtag('event', 'cube_solved', { 'cube_size': '3x3x3' });
+      }
+    }
   } else {
     btnSideNext.disabled = false;
     btnSideNext.innerHTML = 'Next &gt;';
