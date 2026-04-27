@@ -161,11 +161,15 @@ function rotateWholeCube(axis, angle) {
 
 // Mode Selection
 let isActive = false;
+let warmupTimeout = null;
+let warmupSent = false;
+
 window.addEventListener('route-changed', (e) => {
   const path = e.detail;
   if (path === '/solver/5x5x5-cube') {
     isActive = true;
     container.style.display = 'block';
+
 
     scene.traverse(child => {
       if (child.userData.isSticker) {
@@ -182,6 +186,12 @@ window.addEventListener('route-changed', (e) => {
     container.style.display = 'none';
     const solvedMsg = document.getElementById('cubeSolvedMsg-5x5');
     if (solvedMsg) solvedMsg.classList.add('d-none');
+
+    if (warmupTimeout) {
+      clearTimeout(warmupTimeout);
+      warmupTimeout = null;
+    }
+    warmupSent = false;
   }
 });
 
@@ -423,6 +433,17 @@ window.addEventListener('pointerup', (e) => {
     hit.object.material = hit.object.material.clone();
     hit.object.material.color.setHex(selectedColorHex);
 
+    if (!warmupSent && !warmupTimeout) {
+      warmupTimeout = setTimeout(() => {
+        fetch('https://rubik-cube-solver-api-678903368413.europe-west1.run.app/solve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ state: "UUUUUUUUUUUUUUUUUUUUUUUUURRRRRRRRRRRRRRRRRRRRRRRRRFFFFFFFFFFFFFFFFFFFFFFFFFDDDDDDDDDDDDDDDDDDDDDDDDDLLLLLLLLLLLLLLLLLLLLLLLLLBBBBBBBBBBBBBBBBBBBBBBBBB" })
+        }).catch(() => { });
+        warmupSent = true;
+      }, 15000);
+    }
+
     const px = Math.round(hit.object.parent.position.x);
     const py = Math.round(hit.object.parent.position.y);
     const pz = Math.round(hit.object.parent.position.z);
@@ -502,6 +523,11 @@ function showErrorPopup(messages) {
 }
 
 document.getElementById('btnStartSolve-5x5').addEventListener('click', () => {
+  if (warmupTimeout) {
+    clearTimeout(warmupTimeout);
+    warmupTimeout = null;
+  }
+
   try {
     document.getElementById('solver-status-5x5').innerText = "Validating...";
     const colorCounts = {};

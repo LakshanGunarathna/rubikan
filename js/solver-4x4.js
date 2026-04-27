@@ -173,11 +173,15 @@ function rotateWholeCube(axis, angle, duration = 300) {
 
 // Mode Selection
 let isActive = false;
+let warmupTimeout = null;
+let warmupSent = false;
+
 window.addEventListener('route-changed', (e) => {
   const path = e.detail;
   if (path === '/solver/4x4x4-cube') {
     isActive = true;
     container.style.display = 'block';
+
 
     scene.traverse(child => {
       if (child.userData.isSticker) {
@@ -194,6 +198,12 @@ window.addEventListener('route-changed', (e) => {
     container.style.display = 'none';
     const solvedMsg = document.getElementById('cubeSolvedMsg-4x4');
     if (solvedMsg) solvedMsg.classList.add('d-none');
+
+    if (warmupTimeout) {
+      clearTimeout(warmupTimeout);
+      warmupTimeout = null;
+    }
+    warmupSent = false;
   }
 });
 
@@ -389,6 +399,17 @@ window.addEventListener('pointerup', (e) => {
     hit.object.material = hit.object.material.clone();
     hit.object.material.color.setHex(selectedColorHex);
 
+    if (!warmupSent && !warmupTimeout) {
+      warmupTimeout = setTimeout(() => {
+        fetch('https://rubik-cube-solver-api-678903368413.europe-west1.run.app/solve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ state: "UUUUUUUUUUUUUUUURRRRRRRRRRRRRRRRFFFFFFFFFFFFFFFFDDDDDDDDDDDDDDDDLLLLLLLLLLLLLLLLBBBBBBBBBBBBBBBB" })
+        }).catch(() => {});
+        warmupSent = true;
+      }, 30000);
+    }
+
     setTimeout(() => {
       autoDeducePieces();
     }, 0);
@@ -449,6 +470,11 @@ function showErrorPopup(messages) {
 }
 
 document.getElementById('btnStartSolve-4x4').addEventListener('click', () => {
+  if (warmupTimeout) {
+    clearTimeout(warmupTimeout);
+    warmupTimeout = null;
+  }
+  
   try {
     document.getElementById('solver-status-4x4').innerText = "Validating...";
     const colorCounts = {};
@@ -540,7 +566,7 @@ document.getElementById('btnStartSolve-4x4').addEventListener('click', () => {
     // Setup AbortController for cancellation
     solveAbortController = new AbortController();
 
-    const apiBaseUrl = 'https://rubikcubesolverapi-production.up.railway.app/solve';
+    const apiBaseUrl = 'https://rubik-cube-solver-api-678903368413.europe-west1.run.app';
     fetch(`${apiBaseUrl}/solve`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
