@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { RUBIKS_CUBE_COLORS as colors, white, yellow, blue, green, red, orange } from './globals.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-import * as TWEEN from '@tweenjs/tween.js';
+
 import Cube from 'cubejs';
 
 setTimeout(() => Cube.initSolver(), 100);
@@ -44,7 +44,9 @@ const cubies = [];
 const cubeGroup = new THREE.Group();
 scene.add(cubeGroup);
 
-
+// Persistent pivot for slice rotations (reused across all moves)
+const pivot = new THREE.Object3D();
+cubeGroup.add(pivot);
 
 const coreGeometry = new RoundedBoxGeometry(0.99, 0.99, 0.99, 5, 0.10);
 const coreMaterial = new THREE.MeshStandardMaterial({ color: 0x222222, roughness: 0.7, metalness: 0.1 });
@@ -100,33 +102,41 @@ for (let x = -1; x <= 1; x++) {
 }
 
 let isAnimating = false;
+let animationState = null;
 
 function rotateLayer(axis, layer, angle, duration = 300) {
   return new Promise((resolve) => {
     if (isAnimating && duration > 0) return;
     isAnimating = true;
 
+    // Step 1: Select the slice
     const activeCubies = cubies.filter(c => Math.abs(Math.round(c.position[axis]) - layer) < 0.1);
 
-    const pivot = new THREE.Group();
-    cubeGroup.add(pivot);
+    // Step 2: Reset pivot and reparent pieces to it
+    pivot.rotation.set(0, 0, 0);
     activeCubies.forEach(c => pivot.attach(c));
 
     if (duration > 0) {
-      new TWEEN.Tween({ val: 0 })
-        .to({ val: angle }, duration)
-        .easing(TWEEN.Easing.Quadratic.InOut)
-        .onUpdate((obj) => pivot.rotation[axis] = obj.val)
-        .onComplete(() => finishRotation(pivot, activeCubies, resolve))
-        .start();
+      // Step 3: Set up frame-based animation state
+      const totalRotation = Math.abs(angle);
+      animationState = {
+        axis,
+        targetRotation: angle,
+        currentRotation: 0,
+        speed: totalRotation / (duration / 1000),
+        activePieces: activeCubies,
+        resolve
+      };
     } else {
+      // Instant rotation
       pivot.rotation[axis] = angle;
-      finishRotation(pivot, activeCubies, resolve);
+      finishRotation(activeCubies, resolve);
     }
   });
 }
 
-function finishRotation(pivot, activeCubies, resolve) {
+// Finalize — reparent pieces back to cube group
+function finishRotation(activeCubies, resolve) {
   pivot.updateMatrixWorld();
   activeCubies.forEach(c => {
     cubeGroup.attach(c);
@@ -140,7 +150,7 @@ function finishRotation(pivot, activeCubies, resolve) {
     euler.z = Math.round(euler.z / (Math.PI / 2)) * (Math.PI / 2);
     c.quaternion.setFromEuler(euler);
   });
-  cubeGroup.remove(pivot);
+  animationState = null;
   isAnimating = false;
   if (resolve) resolve();
 }
@@ -212,11 +222,60 @@ OPPOSITE_COLORS[green] = blue;
 OPPOSITE_COLORS[red] = orange;
 OPPOSITE_COLORS[orange] = red;
 
+let isDraggingCube = false;
+
 window.addEventListener('pointerdown', (e) => {
   if (!isActive) return;
   if (e.target !== renderer.domElement) return;
   pointerDownPos.x = e.clientX;
   pointerDownPos.y = e.clientY;
+  isDraggingCube = false;
+});
+
+// Mouse/touch drag to rotate whole cube in X and Y directions
+window.addEventListener('pointermove', (e) => {
+  if (!isActive || isAnimating || isDraggingCube) return;
+  if (e.target !== renderer.domElement) return;
+
+  const dx = e.clientX - pointerDownPos.x;
+  const dy = e.clientY - pointerDownPos.y;
+  const dist = Math.sqrt(dx * dx + dy * dy);
+
+  // Only trigger after 10px drag threshold
+  if (dist < 10) return;
+  if (pointerDownPos.x === 0 && pointerDownPos.y === 0) return;
+
+  isDraggingCube = true;
+
+  // Determine dominant drag direction and rotate whole cube
+  if (Math.abs(dx) > Math.abs(dy)) {
+    // Horizontal drag → Y-axis rotation
+    const dir = dx > 0 ? 1 : -1;
+    rotateWholeCube('y', (Math.PI / 2) * dir, 300);
+  } else {
+    // Vertical drag → X-axis rotation
+    const dir = dy > 0 ? 1 : -1;
+    rotateWholeCube('x', (Math.PI / 2) * dir, 300);
+  }
+});
+
+// Arrow key controls for whole cube rotation
+window.addEventListener('keydown', (e) => {
+  if (!isActive || isAnimating) return;
+
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+    e.preventDefault();
+    const dir = e.key === 'ArrowLeft' ? -1 : 1;
+    rotateWholeCube('y', (Math.PI / 2) * dir, 300);
+    return;
+  }
+
+  if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    const dir = e.key === 'ArrowUp' ? -1 : 1;
+    rotateWholeCube('x', (Math.PI / 2) * dir, 300);
+    return;
+  }
 });
 
 window.addEventListener('pointerup', (e) => {
@@ -440,20 +499,25 @@ function autoFillCenters() {
   }
 }
 
-function rotateWholeCube(axis, angle) {
-  if (isAnimating) return;
-  isAnimating = true;
+// Whole-cube rotation — moves all 27 cubies simultaneously on the pivot
+function rotateWholeCube(axis, angle, duration = 300) {
+  return new Promise((resolve) => {
+    if (isAnimating) { resolve(); return; }
+    isAnimating = true;
 
-  const pivot = new THREE.Group();
-  cubeGroup.add(pivot);
-  cubies.forEach(c => pivot.attach(c));
+    pivot.rotation.set(0, 0, 0);
+    cubies.forEach(c => pivot.attach(c));
 
-  new TWEEN.Tween({ val: 0 })
-    .to({ val: angle }, 300)
-    .easing(TWEEN.Easing.Quadratic.Out)
-    .onUpdate((obj) => pivot.rotation[axis] = obj.val)
-    .onComplete(() => finishRotation(pivot, cubies))
-    .start();
+    const totalRotation = Math.abs(angle);
+    animationState = {
+      axis,
+      targetRotation: angle,
+      currentRotation: 0,
+      speed: totalRotation / (duration / 1000),
+      activePieces: cubies.slice(),
+      resolve
+    };
+  });
 }
 
 document.getElementById('rotLeft-3x3').addEventListener('click', () => rotateWholeCube('y', -Math.PI / 2));
@@ -809,8 +873,8 @@ function updatePlaybackUI() {
     btnSideNext.innerHTML = 'Done!';
     if (cubeSolvedMsg) {
       if (cubeSolvedMsg.classList.contains('d-none')) {
-         cubeSolvedMsg.classList.remove('d-none');
-         if (typeof gtag === 'function') gtag('event', 'cube_solved', { 'cube_size': '3x3x3' });
+        cubeSolvedMsg.classList.remove('d-none');
+        if (typeof gtag === 'function') gtag('event', 'cube_solved', { 'cube_size': '3x3x3' });
       }
     }
   } else {
@@ -841,12 +905,32 @@ async function handleBack() {
 document.getElementById('btnSideNext-3x3').addEventListener('click', handleNext);
 document.getElementById('btnSideBack-3x3').addEventListener('click', handleBack);
 
+let lastFrameTime = 0;
 function animate(time) {
   requestAnimationFrame(animate);
   if (isActive) {
-    TWEEN.update(time);
+    const delta = lastFrameTime ? (time - lastFrameTime) / 1000 : 0;
+    lastFrameTime = time;
+
+    // Incrementally rotate pivot each frame until target is reached
+    if (animationState) {
+      const anim = animationState;
+      const direction = Math.sign(anim.targetRotation);
+      const step = anim.speed * delta * direction;
+      anim.currentRotation += step;
+
+      if (Math.abs(anim.currentRotation) >= Math.abs(anim.targetRotation)) {
+        pivot.rotation[anim.axis] = anim.targetRotation;
+        finishRotation(anim.activePieces, anim.resolve);
+      } else {
+        pivot.rotation[anim.axis] = anim.currentRotation;
+      }
+    }
+
     controls.update();
     renderer.render(scene, camera);
+  } else {
+    lastFrameTime = time;
   }
 }
 animate();

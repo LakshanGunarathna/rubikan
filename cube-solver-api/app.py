@@ -1,11 +1,17 @@
 import sys
 import subprocess
 import os
+import threading
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+
+# Global lock to prevent the solver from running concurrently in the same container.
+# The underlying C solver uses hardcoded temp files which causes race conditions
+# if executed simultaneously by multiple threads.
+solver_lock = threading.Lock()
 
 # Location of the repository (assumes cloned internally or mounted)
 SOLVER_DIR = os.path.join(os.path.dirname(__file__), 'rubiks-cube-NxNxN-solver')
@@ -28,13 +34,14 @@ def solve_cube():
     try:
         # Run the dwalton solver 
         # Using sys.executable to ensure we use the same Python environment that Flask is running in
-        result = subprocess.run(
-            [sys.executable, 'rubiks-cube-solver.py', '--state', state],
-            cwd=SOLVER_DIR,
-            capture_output=True,
-            text=True,
-            check=True
-        )
+        with solver_lock:
+            result = subprocess.run(
+                [sys.executable, 'rubiks-cube-solver.py', '--state', state],
+                cwd=SOLVER_DIR,
+                capture_output=True,
+                text=True,
+                check=True
+            )
         
         output = result.stdout
         

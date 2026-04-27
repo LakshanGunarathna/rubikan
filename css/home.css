@@ -239,13 +239,14 @@
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(12, 1fr);
   gap: 1.5rem;
   max-width: 1100px;
   margin: 0 auto;
 }
 
 .feature-card {
+  grid-column: span 4;
   background: rgba(255, 255, 255, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 20px;
@@ -330,12 +331,13 @@
 /* Cards row */
 .shortcut-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
 }
 
 /* Individual shortcut card */
 .shortcut-card {
+  grid-column: span 3;
   position: relative;
   display: flex;
   align-items: center;
@@ -534,6 +536,21 @@
 /* ===================================================
    RESPONSIVE
    =================================================== */
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  .feature-card {
+    grid-column: span 4;
+  }
+  .shortcut-cards {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  .shortcut-card {
+    grid-column: span 4;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-content {
     flex-direction: column;
@@ -562,8 +579,17 @@
     justify-content: center;
   }
 
+  .features-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .feature-card {
+    grid-column: span 4;
+  }
   .shortcut-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .shortcut-card {
+    grid-column: span 4;
   }
 
   .shortcut-art {
@@ -574,9 +600,5 @@
 @media (max-width: 480px) {
   .hero-title-main {
     font-size: 2.4rem;
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr;
   }
 }

@@ -9,6 +9,11 @@ export function initNavbar() {
       <img src="${ROOT}assets/Logo.png" alt="Rubiks' Art Logo" class="nav-logo-img" />
       <span class="nav-brand-text">Rubiks' Art</span>
     </div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <ul class="nav-links">
         <li class="nav-item">
             <a href="${ROOT}" class="nav-link" data-path="/">Home</a>
@@ -66,5 +71,25 @@ export function initNavbar() {
       brand.style.cursor = 'pointer';
       brand.addEventListener('click', () => window.location.href = ROOT);
     }
+
+    // Handle mobile hamburger menu
+    const hamburger = nav.querySelector('.hamburger');
+    const navLinks = nav.querySelector('.nav-links');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+    }
+
+    // Handle dropdown toggle on mobile
+    const dropdowns = nav.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+      dropdown.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          dropdown.classList.toggle('active');
+        }
+      });
+    });
   });
 }

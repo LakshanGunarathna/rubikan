@@ -1095,13 +1095,14 @@ button:active {
 .cube-arts-grid {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(12, 1fr);
   gap: 2rem;
 }
 
 
 
 .cube-art-card {
+  grid-column: span 4;
   background: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: 24px;
@@ -1478,3 +1479,156 @@ button:active {
   background: rgba(239, 68, 68, 0.2) !important;
   border-color: rgba(239, 68, 68, 0.3) !important;
 }
+
+/* ===================================================
+   STRUCTURAL GRID & RESPONSIVENESS
+   =================================================== */
+.structural-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+/* Navbar Mobile Toggle */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--text-primary);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.mobile-filter-toggle {
+  display: none;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .structural-grid {
+    grid-template-columns: repeat(8, 1fr) !important;
+  }
+  .cube-arts-grid {
+    grid-template-columns: repeat(8, 1fr) !important;
+  }
+  .cube-art-card {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 768px) {
+  .structural-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  .cube-arts-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  .cube-art-card {
+    grid-column: span 4;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 2rem;
+    transition: left 0.4s ease;
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    left: 0;
+  }
+
+  .nav-item {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    display: none;
+  }
+
+  .nav-item.dropdown.active .dropdown-menu {
+    display: block;
+  }
+
+  /* Filters Mobile Sidebar */
+  .mobile-filter-toggle {
+    display: inline-flex;
+  }
+
+  .cube-arts-sidebar {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: calc(100vh - 70px);
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.95);
+    transition: left 0.4s ease;
+    overflow-y: auto;
+    border-radius: 0 24px 24px 0;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+    display: block !important;
+  }
+
+  .cube-arts-sidebar.active {
+    left: 0;
+  }
+}

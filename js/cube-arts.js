@@ -833,3 +833,33 @@ if (btnArtExit) {
     initFilters();
   }
 })();
+
+// Mobile Filter Toggle Logic
+const mobileFilterToggle = document.getElementById('mobileFilterToggle');
+const cubeArtsSidebar = document.querySelector('.cube-arts-sidebar');
+
+if (mobileFilterToggle && cubeArtsSidebar) {
+  mobileFilterToggle.addEventListener('click', () => {
+    cubeArtsSidebar.classList.toggle('active');
+  });
+
+  // Close sidebar when clicking outside on mobile
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+      if (!cubeArtsSidebar.contains(e.target) && e.target !== mobileFilterToggle && !mobileFilterToggle.contains(e.target)) {
+        cubeArtsSidebar.classList.remove('active');
+      }
+    }
+  });
+
+  // Close sidebar when clicking a filter item on mobile
+  const sidebarItemsInner = cubeArtsSidebar.querySelectorAll('.sidebar-item');
+  sidebarItemsInner.forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        cubeArtsSidebar.classList.remove('active');
+      }
+    });
+  });
+}
+

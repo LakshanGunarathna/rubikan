@@ -559,7 +559,7 @@ document.getElementById('btnStartSolve-5x5').addEventListener('click', () => {
 
     solveAbortController = new AbortController();
 
-    const apiBaseUrl = 'https://cubesolverapi-917370863662.europe-west1.run.app';
+    const apiBaseUrl = 'https://rubik-cube-solver-api-678903368413.europe-west1.run.app';
     fetch(`${apiBaseUrl}/solve`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -809,8 +809,8 @@ function updatePlaybackUI() {
     btnSideNext.innerHTML = 'Done!';
     if (cubeSolvedMsg) {
       if (cubeSolvedMsg.classList.contains('d-none')) {
-         cubeSolvedMsg.classList.remove('d-none');
-         if (typeof gtag === 'function') gtag('event', 'cube_solved', { 'cube_size': '5x5x5' });
+        cubeSolvedMsg.classList.remove('d-none');
+        if (typeof gtag === 'function') gtag('event', 'cube_solved', { 'cube_size': '5x5x5' });
       }
     }
   } else {
