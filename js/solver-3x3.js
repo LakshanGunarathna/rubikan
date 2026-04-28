@@ -223,6 +223,7 @@ OPPOSITE_COLORS[red] = orange;
 OPPOSITE_COLORS[orange] = red;
 
 let isDraggingCube = false;
+let isPointerDown = false;
 
 window.addEventListener('pointerdown', (e) => {
   if (!isActive) return;
@@ -230,11 +231,12 @@ window.addEventListener('pointerdown', (e) => {
   pointerDownPos.x = e.clientX;
   pointerDownPos.y = e.clientY;
   isDraggingCube = false;
+  isPointerDown = true;
 });
 
 // Mouse/touch drag to rotate whole cube in X and Y directions
 window.addEventListener('pointermove', (e) => {
-  if (!isActive || isAnimating || isDraggingCube) return;
+  if (!isActive || isAnimating || isDraggingCube || !isPointerDown) return;
   if (e.target !== renderer.domElement) return;
 
   const dx = e.clientX - pointerDownPos.x;
@@ -279,6 +281,7 @@ window.addEventListener('keydown', (e) => {
 });
 
 window.addEventListener('pointerup', (e) => {
+  isPointerDown = false;
   if (!isActive) return;
   if (e.target !== renderer.domElement) return;
   if (!document.getElementById('playback-phase-3x3').classList.contains('d-none')) return;

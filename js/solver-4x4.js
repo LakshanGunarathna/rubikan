@@ -334,6 +334,7 @@ const mouse = new THREE.Vector2();
 let pointerDownPos = { x: 0, y: 0 };
 
 let isDraggingCube = false;
+let isPointerDown = false;
 
 window.addEventListener('pointerdown', (e) => {
   if (!isActive) return;
@@ -341,10 +342,11 @@ window.addEventListener('pointerdown', (e) => {
   pointerDownPos.x = e.clientX;
   pointerDownPos.y = e.clientY;
   isDraggingCube = false;
+  isPointerDown = true;
 });
 
 window.addEventListener('pointermove', (e) => {
-  if (!isActive || isAnimating || isDraggingCube) return;
+  if (!isActive || isAnimating || isDraggingCube || !isPointerDown) return;
   if (e.target !== renderer.domElement) return;
   const dx = e.clientX - pointerDownPos.x;
   const dy = e.clientY - pointerDownPos.y;
@@ -352,9 +354,9 @@ window.addEventListener('pointermove', (e) => {
   if (pointerDownPos.x === 0 && pointerDownPos.y === 0) return;
   isDraggingCube = true;
   if (Math.abs(dx) > Math.abs(dy)) {
-    rotateWholeCube('y', (Math.PI / 2) * (dx > 0 ? -1 : 1), 300);
+    rotateWholeCube('y', (Math.PI / 2) * (dx > 0 ? 1 : -1), 300);
   } else {
-    rotateWholeCube('x', (Math.PI / 2) * (dy > 0 ? -1 : 1), 300);
+    rotateWholeCube('x', (Math.PI / 2) * (dy > 0 ? 1 : -1), 300);
   }
 });
 
@@ -373,6 +375,7 @@ window.addEventListener('keydown', (e) => {
 });
 
 window.addEventListener('pointerup', (e) => {
+  isPointerDown = false;
   if (!isActive) return;
   if (e.target !== renderer.domElement) return;
   if (document.getElementById('paint-phase-4x4').classList.contains('d-none')) return;
@@ -405,7 +408,7 @@ window.addEventListener('pointerup', (e) => {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ state: "UUUUUUUUUUUUUUUURRRRRRRRRRRRRRRRFFFFFFFFFFFFFFFFDDDDDDDDDDDDDDDDLLLLLLLLLLLLLLLLBBBBBBBBBBBBBBBB" })
-        }).catch(() => {});
+        }).catch(() => { });
         warmupSent = true;
       }, 30000);
     }
@@ -474,7 +477,7 @@ document.getElementById('btnStartSolve-4x4').addEventListener('click', () => {
     clearTimeout(warmupTimeout);
     warmupTimeout = null;
   }
-  
+
   try {
     document.getElementById('solver-status-4x4').innerText = "Validating...";
     const colorCounts = {};

@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import { RUBIKS_CUBE_COLORS as colors, white, yellow, blue, green, red, orange } from './globals.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-import * as TWEEN from '@tweenjs/tween.js';
 
 const container = document.getElementById('app-5x5');
 const scene = new THREE.Scene();
@@ -40,6 +39,9 @@ scene.add(dirLight3);
 const cubies = [];
 const cubeGroup = new THREE.Group();
 scene.add(cubeGroup);
+
+const pivot = new THREE.Object3D();
+cubeGroup.add(pivot);
 
 const coreGeometry = new RoundedBoxGeometry(0.99, 0.99, 0.99, 5, 0.10);
 const coreMaterial = new THREE.MeshStandardMaterial({ color: 0x222222, roughness: 0.7, metalness: 0.1 });
@@ -95,6 +97,7 @@ for (let x of [-2, -1, 0, 1, 2]) {
 }
 
 let isAnimating = false;
+let animationState = null;
 
 function rotateLayer(axis, layers, angle, duration = 300) {
   return new Promise((resolve) => {
@@ -106,57 +109,66 @@ function rotateLayer(axis, layers, angle, duration = 300) {
       return layers.some(l => Math.abs(pos - l) < 0.1);
     });
 
-    const pivot = new THREE.Group();
-    cubeGroup.add(pivot);
+    pivot.rotation.set(0, 0, 0);
     activeCubies.forEach(c => pivot.attach(c));
 
     if (duration > 0) {
-      new TWEEN.Tween({ val: 0 })
-        .to({ val: angle }, duration)
-        .easing(TWEEN.Easing.Quadratic.InOut)
-        .onUpdate((obj) => pivot.rotation[axis] = obj.val)
-        .onComplete(() => finishRotation(pivot, activeCubies, resolve))
-        .start();
+      const totalRotation = Math.abs(angle);
+      animationState = {
+        axis,
+        targetRotation: angle,
+        currentRotation: 0,
+        speed: totalRotation / (duration / 1000),
+        activePieces: activeCubies,
+        resolve
+      };
     } else {
       pivot.rotation[axis] = angle;
-      finishRotation(pivot, activeCubies, resolve);
+      finishRotation(activeCubies, resolve);
     }
   });
 }
 
-function finishRotation(pivot, activeCubies, resolve) {
+function finishRotation(activePieces, resolve) {
   pivot.updateMatrixWorld();
-  activeCubies.forEach(c => {
+  activePieces.forEach(c => {
     cubeGroup.attach(c);
-    c.position.x = Math.round(c.position.x);
-    c.position.y = Math.round(c.position.y);
-    c.position.z = Math.round(c.position.z);
-
+    c.position.set(
+      Math.round(c.position.x),
+      Math.round(c.position.y),
+      Math.round(c.position.z)
+    );
     const euler = new THREE.Euler().setFromQuaternion(c.quaternion);
-    euler.x = Math.round(euler.x / (Math.PI / 2)) * (Math.PI / 2);
-    euler.y = Math.round(euler.y / (Math.PI / 2)) * (Math.PI / 2);
-    euler.z = Math.round(euler.z / (Math.PI / 2)) * (Math.PI / 2);
+    euler.set(
+      Math.round(euler.x / (Math.PI / 2)) * (Math.PI / 2),
+      Math.round(euler.y / (Math.PI / 2)) * (Math.PI / 2),
+      Math.round(euler.z / (Math.PI / 2)) * (Math.PI / 2)
+    );
     c.quaternion.setFromEuler(euler);
   });
-  cubeGroup.remove(pivot);
+  animationState = null;
   isAnimating = false;
   if (resolve) resolve();
 }
 
-function rotateWholeCube(axis, angle) {
-  if (isAnimating) return;
-  isAnimating = true;
+function rotateWholeCube(axis, angle, duration = 300) {
+  return new Promise((resolve) => {
+    if (isAnimating) { resolve(); return; }
+    isAnimating = true;
 
-  const pivot = new THREE.Group();
-  cubeGroup.add(pivot);
-  cubies.forEach(c => pivot.attach(c));
+    pivot.rotation.set(0, 0, 0);
+    cubies.forEach(c => pivot.attach(c));
 
-  new TWEEN.Tween({ val: 0 })
-    .to({ val: angle }, 300)
-    .easing(TWEEN.Easing.Quadratic.Out)
-    .onUpdate((obj) => pivot.rotation[axis] = obj.val)
-    .onComplete(() => finishRotation(pivot, cubies))
-    .start();
+    const totalRotation = Math.abs(angle);
+    animationState = {
+      axis,
+      targetRotation: angle,
+      currentRotation: 0,
+      speed: totalRotation / (duration / 1000),
+      activePieces: cubies.slice(),
+      resolve
+    };
+  });
 }
 
 // Mode Selection
@@ -399,15 +411,54 @@ if (paletteContainer) {
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 let pointerDownPos = { x: 0, y: 0 };
+let isDraggingCube = false;
+let isPointerDown = false;
 
 window.addEventListener('pointerdown', (e) => {
   if (!isActive) return;
   if (e.target !== renderer.domElement) return;
   pointerDownPos.x = e.clientX;
   pointerDownPos.y = e.clientY;
+  isDraggingCube = false;
+  isPointerDown = true;
+});
+
+window.addEventListener('pointermove', (e) => {
+  if (!isActive || isAnimating || isDraggingCube || !isPointerDown) return;
+  if (e.target !== renderer.domElement) return;
+
+  const dx = e.clientX - pointerDownPos.x;
+  const dy = e.clientY - pointerDownPos.y;
+  const dist = Math.sqrt(dx * dx + dy * dy);
+
+  if (dist < 10) return;
+  if (pointerDownPos.x === 0 && pointerDownPos.y === 0) return;
+
+  isDraggingCube = true;
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+    rotateWholeCube('y', (Math.PI / 2) * (dx > 0 ? 1 : -1), 300);
+  } else {
+    rotateWholeCube('x', (Math.PI / 2) * (dy > 0 ? 1 : -1), 300);
+  }
+});
+
+window.addEventListener('keydown', (e) => {
+  if (!isActive || isAnimating) return;
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+    e.preventDefault();
+    rotateWholeCube('y', (Math.PI / 2) * (e.key === 'ArrowLeft' ? -1 : 1), 300);
+    return;
+  }
+  if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    rotateWholeCube('x', (Math.PI / 2) * (e.key === 'ArrowUp' ? -1 : 1), 300);
+    return;
+  }
 });
 
 window.addEventListener('pointerup', (e) => {
+  isPointerDown = false;
   if (!isActive) return;
   if (e.target !== renderer.domElement) return;
   if (document.getElementById('paint-phase-5x5').classList.contains('d-none')) return;
@@ -868,12 +919,30 @@ document.getElementById('btnSideBack-5x5').addEventListener('click', async () =>
   }
 });
 
+let lastFrameTime = 0;
 function animate(time) {
   requestAnimationFrame(animate);
   if (isActive) {
-    TWEEN.update(time);
+    const delta = lastFrameTime ? (time - lastFrameTime) / 1000 : 0;
+    lastFrameTime = time;
+
+    if (animationState) {
+      const anim = animationState;
+      const direction = Math.sign(anim.targetRotation);
+      const step = anim.speed * delta * direction;
+      anim.currentRotation += step;
+      if (Math.abs(anim.currentRotation) >= Math.abs(anim.targetRotation)) {
+        pivot.rotation[anim.axis] = anim.targetRotation;
+        finishRotation(anim.activePieces, anim.resolve);
+      } else {
+        pivot.rotation[anim.axis] = anim.currentRotation;
+      }
+    }
+
     controls.update();
     renderer.render(scene, camera);
+  } else {
+    lastFrameTime = time;
   }
 }
 animate();
