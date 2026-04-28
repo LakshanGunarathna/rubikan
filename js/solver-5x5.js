@@ -489,10 +489,10 @@ window.addEventListener('pointerup', (e) => {
         fetch('https://rubik-cube-solver-api-678903368413.europe-west1.run.app/solve', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ state: "UUUUUUUUUUUUUUUUUUUUUUUUURRRRRRRRRRRRRRRRRRRRRRRRRFFFFFFFFFFFFFFFFFFFFFFFFFDDDDDDDDDDDDDDDDDDDDDDDDDLLLLLLLLLLLLLLLLLLLLLLLLLBBBBBBBBBBBBBBBBBBBBBBBBB" })
+          body: JSON.stringify({ state: "UDUDUDUDUDUDUDUDUDUDUDUDURLRLRLRLRLRLRLRLRLRLRLRLRFBFBFBFBFBFBFBFBFBFBFBFBFDUDUDUDUDUDUDUDUDUDUDUDUDLRLRLRLRLRLRLRLRLRLRLRLRLBFBFBFBFBFBFBFBFBFBFBFBFB" })
         }).catch(() => { });
         warmupSent = true;
-      }, 15000);
+      }, 10000);
     }
 
     const px = Math.round(hit.object.parent.position.x);
