@@ -152,6 +152,9 @@ function finishRotation(activeCubies, resolve) {
 }
 
 function rotateWholeCube(axis, angle, duration = 300) {
+  if (!document.getElementById('playback-phase-4x4').classList.contains('d-none')) {
+    return Promise.resolve();
+  }
   return new Promise((resolve) => {
     if (isAnimating) { resolve(); return; }
     isAnimating = true;
@@ -338,6 +341,7 @@ let isPointerDown = false;
 
 window.addEventListener('pointerdown', (e) => {
   if (!isActive) return;
+  if (!document.getElementById('playback-phase-4x4').classList.contains('d-none')) return;
   if (e.target !== renderer.domElement) return;
   pointerDownPos.x = e.clientX;
   pointerDownPos.y = e.clientY;
@@ -347,6 +351,7 @@ window.addEventListener('pointerdown', (e) => {
 
 window.addEventListener('pointermove', (e) => {
   if (!isActive || isAnimating || isDraggingCube || !isPointerDown) return;
+  if (!document.getElementById('playback-phase-4x4').classList.contains('d-none')) return;
   if (e.target !== renderer.domElement) return;
   const dx = e.clientX - pointerDownPos.x;
   const dy = e.clientY - pointerDownPos.y;
@@ -362,6 +367,7 @@ window.addEventListener('pointermove', (e) => {
 
 window.addEventListener('keydown', (e) => {
   if (!isActive || isAnimating) return;
+  if (!document.getElementById('playback-phase-4x4').classList.contains('d-none')) return;
   if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
     e.preventDefault();
     rotateWholeCube('y', (Math.PI / 2) * (e.key === 'ArrowLeft' ? -1 : 1), 300);

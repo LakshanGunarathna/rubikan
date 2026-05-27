@@ -227,6 +227,7 @@ let isPointerDown = false;
 
 window.addEventListener('pointerdown', (e) => {
   if (!isActive) return;
+  if (!document.getElementById('playback-phase-3x3').classList.contains('d-none')) return;
   if (e.target !== renderer.domElement) return;
   pointerDownPos.x = e.clientX;
   pointerDownPos.y = e.clientY;
@@ -237,6 +238,7 @@ window.addEventListener('pointerdown', (e) => {
 // Mouse/touch drag to rotate whole cube in X and Y directions
 window.addEventListener('pointermove', (e) => {
   if (!isActive || isAnimating || isDraggingCube || !isPointerDown) return;
+  if (!document.getElementById('playback-phase-3x3').classList.contains('d-none')) return;
   if (e.target !== renderer.domElement) return;
 
   const dx = e.clientX - pointerDownPos.x;
@@ -264,6 +266,7 @@ window.addEventListener('pointermove', (e) => {
 // Arrow key controls for whole cube rotation
 window.addEventListener('keydown', (e) => {
   if (!isActive || isAnimating) return;
+  if (!document.getElementById('playback-phase-3x3').classList.contains('d-none')) return;
 
   if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
     e.preventDefault();
@@ -504,6 +507,9 @@ function autoFillCenters() {
 
 // Whole-cube rotation — moves all 27 cubies simultaneously on the pivot
 function rotateWholeCube(axis, angle, duration = 300) {
+  if (!document.getElementById('playback-phase-3x3').classList.contains('d-none')) {
+    return Promise.resolve();
+  }
   return new Promise((resolve) => {
     if (isAnimating) { resolve(); return; }
     isAnimating = true;
